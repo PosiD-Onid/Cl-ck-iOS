@@ -11,7 +11,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("Log!n")
+                Text("그렇지 않나여 ㅎ")
                     .font(.title)
                 Image(systemName: "person")
                     .imageScale(.large)
