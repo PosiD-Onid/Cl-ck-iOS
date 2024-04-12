@@ -14,6 +14,7 @@
 		AFDD3D2A2BC82CC9002B4B98 /* MainCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD3D292BC82CC8002B4B98 /* MainCalendarView.swift */; };
 		AFDD3D2C2BC82D6B002B4B98 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD3D2B2BC82D6B002B4B98 /* Alarm.swift */; };
 		AFDD3D2E2BC969DC002B4B98 /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD3D2D2BC969DB002B4B98 /* CalenderView.swift */; };
+		AFDD3D302BC96A74002B4B98 /* TPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD3D2F2BC96A74002B4B98 /* TPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		AFDD3D292BC82CC8002B4B98 /* MainCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCalendarView.swift; sourceTree = "<group>"; };
 		AFDD3D2B2BC82D6B002B4B98 /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		AFDD3D2D2BC969DB002B4B98 /* CalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
+		AFDD3D2F2BC96A74002B4B98 /* TPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				AFDD3D292BC82CC8002B4B98 /* MainCalendarView.swift */,
 				AFDD3D2B2BC82D6B002B4B98 /* Alarm.swift */,
 				AFDD3D2D2BC969DB002B4B98 /* CalenderView.swift */,
+				AFDD3D2F2BC96A74002B4B98 /* TPage.swift */,
 				7C7E59442BAC1FC500D39E2C /* Assets.xcassets */,
 				7C7E59462BAC1FC500D39E2C /* Preview Content */,
 			);
@@ -147,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AFDD3D2A2BC82CC9002B4B98 /* MainCalendarView.swift in Sources */,
+				AFDD3D302BC96A74002B4B98 /* TPage.swift in Sources */,
 				7C7E59432BAC1FC300D39E2C /* ContentView.swift in Sources */,
 				7C7E59412BAC1FC300D39E2C /* Cl_ckApp.swift in Sources */,
 				AFDD3D2E2BC969DC002B4B98 /* CalenderView.swift in Sources */,
