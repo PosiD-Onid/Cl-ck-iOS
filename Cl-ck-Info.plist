@@ -8,8 +8,6 @@
 		<string>MainColor</string>
 		<key>UIImageName</key>
 		<string>ClickLogo.white</string>
-		<key>UILaunchScreen</key>
-		<dict/>
 	</dict>
 </dict>
 </plist>
