@@ -24,12 +24,18 @@ struct TPage: View {
 }
 
 struct headView: View {
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         VStack {
             HStack(spacing: 100) {
-                Image(systemName: "xmark")
-                    .resizable()
-                    .frame(width: 15.87, height: 15.87)
+                Button {
+                   dismiss()
+                } label: {
+                    Image(systemName: "xmark")
+                        .resizable()
+                        .frame(width: 15.87, height: 15.87)
+                }
                 Image("ClickLogo")
                     .resizable()
                     .frame(width: 100, height: 45)
