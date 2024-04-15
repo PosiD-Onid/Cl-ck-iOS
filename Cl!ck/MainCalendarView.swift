@@ -204,7 +204,7 @@ private struct CellView: View {
         .background(
             RoundedRectangle(cornerRadius: 0)
                 .stroke(Color.white, lineWidth: 0.5)
-                .frame(width: 52.5, height: 130.7)
+                .frame(width: 52.5, height: 131)
                 .background(RectangleColor)
         )
     }
