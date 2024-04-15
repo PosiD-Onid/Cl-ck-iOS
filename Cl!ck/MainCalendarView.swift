@@ -21,11 +21,9 @@ struct MainCalendarView: View {
     }
     
     var body: some View {
-        NavigationView {
-            VStack {
-                headerView
-                    Spacer()
-                    .frame(height: 0)
+        VStack(spacing: 0) {
+            headerView
+            NavigationView {
                 calendarGridView
                     .padding(.horizontal)
             }
@@ -120,15 +118,15 @@ struct MainCalendarView: View {
                         let clicked = selectedDate == date
                         let isToday = date.formattedCalendarDay == today.formattedCalendarDay
                         
-                        CellView(day: day, clicked: clicked, isToday: isToday)
+                            CellView(day: day, clicked: clicked, isToday: isToday)
+                        
                     } else if let prevMonthDate = Calendar.current.date(
                         byAdding: .day,
                         value: index + lastDayOfMonthBefore,
                         to: previousMonth()
                     ) {
                         let day = Calendar.current.component(.day, from: prevMonthDate)
-                        
-                        CellView(day: day, isCurrentMonthDay: false)
+                            CellView(day: day, isCurrentMonthDay: false)
                     }
                 }
                 .onTapGesture {
@@ -169,6 +167,13 @@ private struct CellView: View {
             return Color.white
         }
     }
+    private var RectangleColor: Color {
+        if isToday {
+            return Color.gray.opacity(0.4)
+        } else {
+            return Color.white
+        }
+    }
 
     fileprivate init(
         day: Int,
@@ -184,13 +189,24 @@ private struct CellView: View {
 
     fileprivate var body: some View {
         VStack {
+            Divider()
+                .frame(width: 53.2, height: 0.5)
+                .background(.gray800)
             RoundedRectangle(cornerRadius: 10)
                 .fill(backgroundColor)
                 .frame(width: 35, height: 35)
                 .overlay(Text(String(day)))
                 .foregroundColor(textColor)
+            Spacer()
+                .frame(height: 88)
         }
         .frame(height: isAnimation ? 35 : 120)
+        .background(
+            RoundedRectangle(cornerRadius: 0)
+                .stroke(Color.white, lineWidth: 0.5)
+                .frame(width: 52.5, height: 130.7)
+                .background(RectangleColor)
+        )
     }
 }
 
