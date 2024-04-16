@@ -9,11 +9,12 @@ import SwiftUI
 
 
 struct TPage: View {
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         NavigationView {
             VStack {
-                headView()
+                TPageheadView
                 CalenderView()
                     .padding(.vertical)
                 TPageList()
@@ -21,17 +22,12 @@ struct TPage: View {
         }
         .navigationBarBackButtonHidden(true)
     }
-}
-
-struct headView: View {
-    @Environment(\.dismiss) var dismiss
-    
-    var body: some View {
+    private var TPageheadView: some View {
         VStack {
             HStack(spacing: 100) {
-                Button {
-                   dismiss()
-                } label: {
+                Button(action: {
+                    dismiss()
+                }) {
                     Image(systemName: "xmark")
                         .resizable()
                         .frame(width: 15.87, height: 15.87)
@@ -45,10 +41,11 @@ struct headView: View {
             }
             
             .foregroundColor(Color("MainColor"))
+            Divider()
         }
-        Divider()
     }
 }
+
 
 struct TPageList: View {
     let grades = ["1", "2", "3"]
