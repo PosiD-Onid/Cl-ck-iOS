@@ -25,7 +25,8 @@ struct MainCalendarView: View {
             headerView
             NavigationView {
                 calendarGridView
-                    .padding(.horizontal)
+                    .padding([.horizontal, .bottom])
+                    .padding(.bottom)
             }
         }
     }
@@ -35,7 +36,6 @@ struct MainCalendarView: View {
         VStack {
             yearMonthView
                 .padding(.bottom, 20)
-            
             HStack {
                 ForEach(Self.weekdaySymbols.indices, id: \.self) { index in
                     Text(Self.weekdaySymbols[index].uppercased())
@@ -142,7 +142,7 @@ struct MainCalendarView: View {
 
 // MARK: - Cell View
 private struct CellView: View {
-    @State private var isAnimation = false
+    @State private var isAnimation = true
     private var day: Int
     private var clicked: Bool
     private var isToday: Bool
@@ -169,12 +169,12 @@ private struct CellView: View {
     }
     private var RectangleColor: Color {
         if isToday {
-            return Color.gray.opacity(0.4)
+            return Color.gray.opacity(0.2)
         } else {
             return Color.white
         }
     }
-
+    
     fileprivate init(
         day: Int,
         clicked: Bool = false,
@@ -186,26 +186,32 @@ private struct CellView: View {
         self.isToday = isToday
         self.isCurrentMonthDay = isCurrentMonthDay
     }
-
+    
     fileprivate var body: some View {
         VStack {
-            Divider()
-                .frame(width: 53.2, height: 0.5)
-                .background(.gray800)
+            if isAnimation {
+                RoundedRectangle(cornerRadius: 0)
+                    .frame(width: 85, height: 0.5)
+                    .foregroundColor(.white)
+            } else {
+                RoundedRectangle(cornerRadius: 0)
+                    .frame(width: 85, height: 0.5)
+                    .foregroundColor(.gray400)
+            }
             RoundedRectangle(cornerRadius: 10)
                 .fill(backgroundColor)
                 .frame(width: 35, height: 35)
                 .overlay(Text(String(day)))
                 .foregroundColor(textColor)
             Spacer()
-                .frame(height: 88)
+                .frame(height: isAnimation ? 368 : 88)
         }
-        .frame(height: isAnimation ? 35 : 120)
+        .frame(height: isAnimation ? 50 : 120)
         .background(
             RoundedRectangle(cornerRadius: 0)
                 .stroke(Color.white, lineWidth: 0.5)
-                .frame(width: 52.5, height: 131)
-                .background(RectangleColor)
+                .frame(width: 52.5, height: 130.7)
+                .background(isAnimation ? .clear : RectangleColor)
         )
     }
 }
