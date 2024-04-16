@@ -12,26 +12,49 @@ struct Alarm: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        NavigationView {
-            Text("알람")
-        }
-        .navigationBarBackButtonHidden(true)
-        .navigationBarTitleDisplayMode(.large)
-        .toolbar {
-            ToolbarItem(placement: .cancellationAction) {
-                HStack {
-                    Button(action: {
-                        dismiss()
-                    }) {
-                        Image(systemName: "chevron.backward")
-                            .foregroundColor(.black)
-                            .font(.title2)
-                    }
-                    Text("알람")
-                        .font(.title .bold())
-                }
+        VStack(alignment: .leading) {
+            AlarmheadView
+                .padding(.leading)
+            VStack(alignment: .leading, spacing: 3) {
+                AlarmView
+                Divider()
+                AlarmView
+                Divider()
+                Spacer()
             }
         }
+        .navigationBarBackButtonHidden(true)
+    }
+    
+    private var AlarmheadView: some View {
+        Button(action: {
+            dismiss()
+        }) {
+            HStack {
+                Image(systemName: "chevron.backward")
+                    .foregroundColor(.black)
+                    .font(.system(size: 33))
+                Text("알람")
+                    .font(.title .bold())
+                    .foregroundColor(.black)
+            }
+        }
+    }
+    
+    private var AlarmView: some View {
+        HStack {
+            Circle()
+                .foregroundColor(.main)
+                .frame(width: 10)
+                .padding(.trailing)
+            VStack(alignment: .leading) {
+                Text("웹프 수행평가 제출 3시간전")
+                    .font(.system(size: 15) .bold())
+                Text("웹프 수행평가 제출이 오후 11시 59분에 마감됩니다.")
+                    .font(.system(size: 13))
+            }
+        }
+        .padding()
     }
 }
 
