@@ -21,12 +21,30 @@ struct MainCalendarView: View {
     }
     
     var body: some View {
-        VStack(spacing: 0) {
-            headerView
-            NavigationView {
-                calendarGridView
-                    .padding([.horizontal, .bottom])
-                    .padding(.bottom)
+        NavigationView {
+            VStack(spacing: 0) {
+                headerView
+                ZStack {
+                    calendarGridView
+                        .padding([.horizontal, .bottom])
+                        .padding(.bottom)
+                    ButtonView
+                }
+            }
+        }
+    }
+    
+    // MARK: - Button View
+    private var ButtonView: some View {
+        NavigationLink(destination: TPage()) {
+            ZStack {
+                Circle()
+                    .frame(width: 70)
+                    .foregroundColor(.gray800)
+                Image(systemName: "plus")
+                    .resizable()
+                    .frame(width: 25, height: 25)
+                    .foregroundColor(.white)
             }
         }
     }
@@ -45,6 +63,7 @@ struct MainCalendarView: View {
                 }
             }
             .padding(.horizontal)
+            Spacer()
         }
     }
     
