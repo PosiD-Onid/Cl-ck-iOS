@@ -22,6 +22,7 @@ struct TPage: View {
         }
         .navigationBarBackButtonHidden(true)
     }
+    
     private var TPageheadView: some View {
         VStack {
             HStack(spacing: 100) {
@@ -35,9 +36,11 @@ struct TPage: View {
                 Image("ClickLogo")
                     .resizable()
                     .frame(width: 100, height: 45)
-                Image(systemName: "checkmark")
-                    .resizable()
-                    .frame(width: 21.5, height: 15.5)
+                NavigationLink(destination: MainCalendarView()) {
+                    Image(systemName: "checkmark")
+                        .resizable()
+                        .frame(width: 21.5, height: 15.5)
+                }
             }
             
             .foregroundColor(Color("MainColor"))
