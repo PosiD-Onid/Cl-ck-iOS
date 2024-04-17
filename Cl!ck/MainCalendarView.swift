@@ -8,9 +8,37 @@
 import Foundation
 import SwiftUI
 
+struct TodayData: View {
+    let currentDate = Date()
+    
+    var body: some View {
+        HStack {
+            Text(getCurrentDate())
+            Text(getDayOfWeek())
+            Spacer()
+                .frame(width: 300)
+        }
+        .font(.title3 .bold())
+    }
+    func getCurrentDate() -> String {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd."
+            return dateFormatter.string(from: currentDate)
+        }
+
+
+    func getDayOfWeek() -> String {
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: "ko_KR")
+            dateFormatter.dateFormat = "E"
+            return dateFormatter.string(from: currentDate)
+        }
+}
+
 struct MainCalendarView: View {
     @State private var selectedMonth: Date = Date()
     @State private var selectedDate: Date?
+    let currentDate = Date()
     
     init(
         selectedMonth: Date = Date(),
@@ -22,33 +50,47 @@ struct MainCalendarView: View {
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 0) {
+            VStack {
+                Spacer()
+                    .frame(height: 10)
                 headerView
-                ZStack {
-                    calendarGridView
-                        .padding([.horizontal, .bottom])
-                        .padding(.bottom)
-                    ButtonView
-                }
+                calendarGridView
+                    .padding(.horizontal)
+                SideMemu
+                    .padding(.top)
+                scheduleView
+                Spacer()
             }
         }
+        .navigationBarBackButtonHidden(true)
+    }
+    private var scheduleView: some View {
+        HStack {
+            RoundedRectangle(cornerRadius: 10)
+                .frame(width: 5, height: 20)
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
+            Text("수행평가가 없습니다.")
+            Spacer()
+                .frame(width: 180)
+        }
+        .foregroundColor(.gray800.opacity(0.5))
     }
     
-    // MARK: - Button View
-    private var ButtonView: some View {
-        NavigationLink(destination: TPage()) {
-            ZStack {
-                Circle()
-                    .frame(width: 70)
-                    .foregroundColor(.gray800)
-                Image(systemName: "plus")
-                    .resizable()
-                    .frame(width: 25, height: 25)
-                    .foregroundColor(.white)
+    // MARK: - SideMemu
+    private var SideMemu: some View {
+        VStack {
+            Divider()
+            Button {
+                
+            } label: {
+                RoundedRectangle(cornerRadius: 10)
+                    .frame(width: 50, height: 3)
+                    .foregroundColor(.gray400)
+                    .padding()
             }
+            TodayData()
         }
     }
-    
     // MARK: - Header View
     private var headerView: some View {
         VStack {
@@ -63,7 +105,6 @@ struct MainCalendarView: View {
                 }
             }
             .padding(.horizontal)
-            Spacer()
         }
     }
     
@@ -161,7 +202,6 @@ struct MainCalendarView: View {
 
 // MARK: - Cell View
 private struct CellView: View {
-    @State private var isAnimation = true
     private var day: Int
     private var clicked: Bool
     private var isToday: Bool
@@ -174,7 +214,7 @@ private struct CellView: View {
         } else if isCurrentMonthDay {
             return Color.black
         } else {
-            return Color.white
+            return Color.clear
         }
     }
     private var backgroundColor: Color {
@@ -183,14 +223,14 @@ private struct CellView: View {
         } else if clicked {
             return Color.gray.opacity(0.5)
         } else {
-            return Color.white
+            return Color.clear
         }
     }
     private var RectangleColor: Color {
         if isToday {
             return Color.gray.opacity(0.2)
         } else {
-            return Color.white
+            return Color.clear
         }
     }
     
@@ -208,30 +248,12 @@ private struct CellView: View {
     
     fileprivate var body: some View {
         VStack {
-            if isAnimation {
-                RoundedRectangle(cornerRadius: 0)
-                    .frame(width: 85, height: 0.5)
-                    .foregroundColor(.white)
-            } else {
-                RoundedRectangle(cornerRadius: 0)
-                    .frame(width: 85, height: 0.5)
-                    .foregroundColor(.gray400)
-            }
-            RoundedRectangle(cornerRadius: 10)
-                .fill(backgroundColor)
-                .frame(width: 35, height: 35)
-                .overlay(Text(String(day)))
-                .foregroundColor(textColor)
-            Spacer()
-                .frame(height: isAnimation ? 368 : 88)
+          RoundedRectangle(cornerRadius: 10)
+            .fill(backgroundColor)
+            .frame(width: 35, height: 35)
+            .overlay(Text(String(day)))
+            .foregroundColor(textColor)
         }
-        .frame(height: isAnimation ? 50 : 120)
-        .background(
-            RoundedRectangle(cornerRadius: 0)
-                .stroke(Color.white, lineWidth: 0.5)
-                .frame(width: 52.5, height: 130.7)
-                .background(isAnimation ? .clear : RectangleColor)
-        )
     }
 }
 
