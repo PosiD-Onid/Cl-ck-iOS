@@ -8,33 +8,6 @@
 import Foundation
 import SwiftUI
 
-struct CurrentDateData: View {
-    let currentDate = Date()
-    
-    var body: some View {
-        HStack {
-            Text(getCurrentDayOfMonth())
-            Text(getCurrentDayOfWeek())
-            Spacer()
-                .frame(width: 300)
-        }
-        .font(.title3 .bold())
-    }
-    
-    func getCurrentDayOfMonth() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd."
-        return dateFormatter.string(from: currentDate)
-    }
-
-
-    func getCurrentDayOfWeek() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ko_KR")
-        dateFormatter.dateFormat = "E"
-        return dateFormatter.string(from: currentDate)
-    }
-}
 
 struct MainView: View {
     @State private var SelectedMonth: Date = Date()
@@ -57,43 +30,11 @@ struct MainView: View {
                 headerView
                 calendarGridView
                     .padding(.horizontal)
-                SideMenuView
-                    .padding(.top)
-                scheduleView
                 Spacer()
             }
         }
         .navigationBarBackButtonHidden(true)
     }
-    
-    private var scheduleView: some View {
-        HStack {
-            RoundedRectangle(cornerRadius: 10)
-                .frame(width: 5, height: 20)
-                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
-            Text("수행평가가 없습니다.")
-            Spacer()
-                .frame(width: 180)
-        }
-        .foregroundColor(.gray800.opacity(0.5))
-    }
-    
-    // MARK: - SideMenuView
-    private var SideMenuView: some View {
-        VStack {
-            Divider()
-            Button {
-                
-            } label: {
-                RoundedRectangle(cornerRadius: 10)
-                    .frame(width: 50, height: 3)
-                    .foregroundColor(.gray400)
-                    .padding()
-            }
-            CurrentDateData()
-        }
-    }
-    
     // MARK: - Header View
     private var headerView: some View {
         VStack {

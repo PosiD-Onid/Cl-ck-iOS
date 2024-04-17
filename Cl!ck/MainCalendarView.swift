@@ -226,13 +226,6 @@ private struct CellView: View {
             return Color.clear
         }
     }
-    private var RectangleColor: Color {
-        if isToday {
-            return Color.gray.opacity(0.2)
-        } else {
-            return Color.clear
-        }
-    }
     
     fileprivate init(
         day: Int,
