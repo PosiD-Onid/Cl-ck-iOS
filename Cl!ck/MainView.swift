@@ -24,16 +24,51 @@ struct MainView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                Spacer()
-                    .frame(height: 10)
-                headerView
-                calendarGridView
-                    .padding(.horizontal)
-                Spacer()
+            ZStack {
+                DividerView
+                VStack {
+                    Spacer()
+                        .frame(height: 10)
+                    VStack(spacing: -15) {
+                        headerView
+                        calendarGridView
+                            .padding(.horizontal)
+                    }
+                    Spacer()
+                    HStack {
+                        Spacer()
+                            .frame(width: 270)
+                        ButtonView()
+                        Spacer()
+                    }
+                }
             }
         }
         .navigationBarBackButtonHidden(true)
+    }
+    
+    private struct ButtonView: View {
+        var body: some View {
+            VStack {
+                Spacer()
+                NavigationLink(destination: TPage()) {
+                    HStack {
+                        Spacer()
+                        ZStack{
+                            Circle()
+                                .frame(width: 70)
+                                .foregroundColor(.black.opacity(0.8))
+                            Image(systemName: "plus")
+                                .resizable()
+                                .frame(width: 25, height: 25)
+                                .foregroundColor(.white)
+                        }
+                        .shadow(radius: 10)
+                        Spacer()
+                    }
+                }
+            }
+        }
     }
     // MARK: - Header View
     private var headerView: some View {
@@ -52,6 +87,21 @@ struct MainView: View {
         }
     }
     
+    // MARK: - DividerView
+    private var DividerView: some View {
+        VStack {
+            Spacer()
+                .frame(height: 200)
+            VStack(spacing: 110) {
+                Divider()
+                Divider()
+                Divider()
+                Divider()
+                Divider()
+            }
+            Spacer()
+        }
+    }
     // MARK: - Year Month View
     private var yearMonthView: some View {
         HStack(alignment: .center) {
@@ -198,6 +248,16 @@ private struct CalendarCellView: View {
                 .overlay(Text(String(day)))
                 .foregroundColor(textColor)
         }
+        .frame(height: 100)
+        .background(
+            VStack {
+                Spacer()
+                    .frame(height: 52)
+                Rectangle()
+                    .frame(width: 52.7,height: 110)
+                    .foregroundColor(rectangleColor)
+            }
+        )
     }
 }
 
