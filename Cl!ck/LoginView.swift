@@ -23,7 +23,7 @@ struct ContentView: View {
             }
             .padding(.top, 50)
             Button(action: {
-                
+                CTabView()
             }){
                 HStack {
                     Image("DAuth-Icon")
@@ -40,14 +40,6 @@ struct ContentView: View {
                         .stroke(Color.black, lineWidth: 1)
                     )
                 .padding(.top, 300)
-            }
-            Button(action: {
-                
-            }){
-                Text("회원 가입을 진행할까요?")
-                    .foregroundStyle(Color.black)
-                    .bold()
-                    .font(.system(size:13))
             }
         }
         .padding()
