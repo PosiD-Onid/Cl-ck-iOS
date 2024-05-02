@@ -16,7 +16,7 @@ struct ContentView: View {
                         .frame(height: geometryReader.size.height / 8)
                     Image("ClickLogo")
                         .resizable()
-                        .frame(width: geometryReader.size.width / 2.2, height: geometryReader.size.height / 10)
+                        .frame(width: geometryReader.size.width / 2.2, height: geometryReader.size.height / 9)
                     
                     Divider()
                         .frame(width: geometryReader.size.width / 1.4, height: 1)
