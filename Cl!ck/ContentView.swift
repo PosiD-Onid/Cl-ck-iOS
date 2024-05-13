@@ -31,7 +31,7 @@ struct ContentView: View {
                     .foregroundColor(Color("gray800"))
                     Spacer()
                         .frame(height: geometryReader.size.height / 2.2)
-                    NavigationLink(destination: MainCalendarView()) {
+                    NavigationLink(destination: Login()) {
                         HStack {
                             Image("DodamLogo")
                             Text("DAuth로 시작하기")

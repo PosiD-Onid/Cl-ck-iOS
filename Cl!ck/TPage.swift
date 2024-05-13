@@ -15,8 +15,6 @@ struct TPage: View {
         NavigationView {
             VStack {
                 TPageheadView
-                CalenderView()
-                    .padding(.vertical)
                 TPageList()
             }
         }
@@ -44,17 +42,26 @@ struct TPage: View {
             }
             
             .foregroundColor(Color("MainColor"))
-            Divider()
         }
     }
 }
 
 
 struct TPageList: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     let grades = ["1", "2", "3"]
     let classes = ["1", "2", "3", "4"]
     let subjects = ["국어", "수학", "사회", "과학", "한국사", "기술가정", "웹프로그래밍", "자바", "도덕", "음악"]
     let places = ["교실", "국어실", "수학실", "음악실", "과학실", "임베디드실", "체육관"]
+    
+    @State private var constant = false
+    
+    @State private var startDate: Date = Date()
+    @State private var startTime: Date = Date()
+    @State private var endDate: Date = Date()
+    @State private var endTime: Date = Date()
+    
     @State private var selected_grade = ""
     @State private var selected_class = ""
     @State private var selected_place = ""
@@ -83,6 +90,25 @@ struct TPageList: View {
                     }
                 }
                 Section {
+                        Toggle(isOn: $constant, label: {
+                            Text("하루 종일")
+                        })
+                        .toggleStyle(SwitchToggleStyle(tint: Color("MainColor")))
+                    if !constant {
+                        DatePicker("시작", selection: $startDate)
+                            .frame(height: 35)
+                    } else {
+                        DatePicker("시작", selection: $startDate, displayedComponents: .date)
+                    }
+                    if !constant {
+                        DatePicker("종료", selection: $endDate)
+                            .frame(height: 35)
+                    } else {
+                        DatePicker("종료", selection: $endDate, displayedComponents: .date)
+                    }
+                }
+                
+                Section {
                     Picker("과목", selection: $selected_subject) {
                         ForEach(subjects, id: \.self) {
                             Text($0)
@@ -107,3 +133,4 @@ struct TPageList: View {
 #Preview {
     TPage()
 }
+
