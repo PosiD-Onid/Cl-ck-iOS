@@ -31,19 +31,17 @@ struct ContentView: View {
                     .foregroundColor(Color("gray800"))
                     Spacer()
                         .frame(height: geometryReader.size.height / 2.2)
-                    NavigationLink(destination: Login()) {
+                    NavigationLink(destination: Choosepage()) {
                         HStack {
-                            Image("DodamLogo")
-                            Text("DAuth로 시작하기")
-                                .foregroundStyle(.black)
+                            Text("시작하기")
+                                .foregroundStyle(.white)
+                                .bold()
                                 .font(.system(size: geometryReader.size.width / 23))
                         }
-                        .frame(width: geometryReader.size.width / 1.2, height: geometryReader.size.height / 13)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(.black, lineWidth: 1)
-                        )
+                        .frame(width: geometryReader.size.width / 1.2, height: geometryReader.size.height / 14)
                     }
+                    .background(Color("MainColor"))
+                    .cornerRadius(10)
                 }
             }
         }

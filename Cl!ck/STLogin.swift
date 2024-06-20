@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct Login: View {
+struct STLogin: View {
     @Environment(\.dismiss) var dismiss
     
     @State private var username = ""
@@ -19,6 +19,13 @@ struct Login: View {
                     BodyView
                     ButtonView
                         .disabled(!isTextFieldFilled || !isPasswordFilled)
+                    Spacer()
+                        .frame(height: 0)
+                    NavigationLink(destination: STSignup()) {
+                        Text("C!ick에 처음온 학생인가요?")
+                            .underline()
+                            .font(.system(size: 13))
+                    }
                 }
             }
             .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { _ in
@@ -50,7 +57,7 @@ struct Login: View {
     
     private var BodyView: some View {
         VStack(alignment: .leading) {
-            Text("도담도담계정으로 로그인 해주세요")
+            Text("C!ick계정으로 로그인 해주세요")
                 .font(.title2)
             TextField("아이디", text: $username)
                 .autocapitalization(.none)
@@ -88,6 +95,7 @@ struct Login: View {
             .onChange(of: password) { newValue in
                 isPasswordFilled = !newValue.isEmpty
             }
+            .padding(.top).frame(height: 45)
             Spacer()
         }
         .padding(.top, 50)
@@ -106,5 +114,5 @@ struct Login: View {
 }
 
 #Preview {
-    Login()
+    STLogin()
 }
