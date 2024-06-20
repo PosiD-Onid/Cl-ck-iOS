@@ -156,7 +156,7 @@ private struct CellView: View {
   fileprivate var body: some View {
     VStack {
       RoundedRectangle(cornerRadius: 10)
-        .fill(backgroundColor)
+            .fill(backgroundColor)
         .frame(width: 40, height: 40)
         .overlay(Text(String(day)))
         .foregroundColor(textColor)

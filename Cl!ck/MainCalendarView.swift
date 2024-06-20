@@ -7,9 +7,13 @@
 
 import Foundation
 import SwiftUI
+import Combine
+
 
 struct TodayData: View {
     let currentDate = Date()
+    @State private var draggedOffset = CGSize.zero
+    @State private var isActive = false
     
     var body: some View {
         HStack {
@@ -41,6 +45,10 @@ struct MainCalendarView: View {
     @State private var selectedDate: Date?
     let currentDate = Date()
     
+    
+    //임시
+    @State private var isTapSideMenu = true
+    
     init(
         selectedMonth: Date = Date(),
         selectedDate: Date? = nil
@@ -51,25 +59,23 @@ struct MainCalendarView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                Spacer()
-                    .frame(height: 10)
-                headerView
-                calendarGridView
-                    .padding(.horizontal)
-                SideMemu
-                    .padding(.top)
-                Spacer()
-                HStack {
+            ZStack {
+                MainView()
+                VStack {
                     Spacer()
-                        .frame(width: 270)
-                    ButtonView()
-                    Spacer()
+                    if isTapSideMenu {
+                        SideMenu(onClick: $onClick, isTapSideMenu: $isTapSideMenu)
+                            .transition(.move(edge: .bottom))
+                            .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
+                            .padding(.top, 425)
+                    }
                 }
             }
+            .navigationBarBackButtonHidden(true)
         }
-        .navigationBarBackButtonHidden(true)
+        
     }
+    
     
     private struct ButtonView: View {
         var body: some View {
@@ -81,13 +87,14 @@ struct MainCalendarView: View {
                         ZStack{
                             Circle()
                                 .frame(width: 70)
-                                .foregroundColor(.black.opacity(0.8))
+                                .foregroundColor(.gray)
                             Image(systemName: "plus")
                                 .resizable()
                                 .frame(width: 25, height: 25)
                                 .foregroundColor(.white)
                         }
                         .shadow(radius: 10)
+                        .padding()
                         Spacer()
                     }
                 }
@@ -106,106 +113,131 @@ struct MainCalendarView: View {
         .foregroundColor(.gray800.opacity(0.5))
     }
     
-    private var scheduleView2: some View {
-        HStack {
-            RoundedRectangle(cornerRadius: 10)
-                .frame(width: 5, height: 43)
-                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
-                .foregroundColor(.red)
-            Button {
-                onClick = true
-            } label: {
-                VStack(alignment: .leading) {
-                    Text("국어수행")
-                        .font(.system(size: 15))
-                        .foregroundColor(.black)
-                    Text("국어실")
-                        .font(.system(size: 13))
-                        .foregroundColor(.gray400)
-                }
-            }
-            Spacer()
-                .frame(width: 270)
-        }
-    }
-    
-    private var Detailedschedule: some View {
-        VStack {
+    struct scheduleView2: View {
+        @Binding var onClick: Bool
+        var body: some View {
             HStack {
-                Spacer()
-                Button {
-                    onClick = false
-                } label: {
-                    Image(systemName: "xmark")
-                        .resizable()
-                        .frame(width: 20, height: 20)
-                        .padding()
-                        .foregroundColor(.black)
-                }
-            }
-            HStack {
-                VStack(alignment: .leading, spacing: 13) {
-                    HStack {
-                        Circle()
-                            .frame(width: 20)
-                            .foregroundColor(.red)
-                            .padding(.trailing)
-                        Text("국어수행")
-                            .font(.system(size: 20) .bold())
-                    }
-                    HStack {
-                        Image(systemName: "calendar")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                            .padding(.trailing)
-                        Text("3월 19일 화요일")
-                            .font(.system(size: 20))
-                    }
-                    HStack {
-                        Image(systemName: "location")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                            .padding(.trailing)
-                        Text("국어실")
-                            .font(.system(size: 20))
-                    }
-                    HStack {
-                        Image(systemName: "bell")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                            .padding(.trailing)
-                        Text("하루 전")
-                            .font(.system(size: 20))
-                    }
-                    HStack {
-                        Image(systemName: "text.alignleft")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                            .padding(.trailing)
-                        Text("내용")
-                            .font(.system(size: 20))
-                    }
-                    Spacer()
-                        .frame(width: 330)
-                }
-            }
-        }
-    }
-    
-    // MARK: - SideMemu
-    private var SideMemu: some View {
-        VStack {
-            Divider()
-            if onClick {
-                Detailedschedule
-            } else {
                 RoundedRectangle(cornerRadius: 10)
-                    .frame(width: 50, height: 3)
-                    .foregroundColor(.gray400)
-                    .padding()
-                TodayData()
-                scheduleView2
+                    .frame(width: 5, height: 43)
+                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
+                    .foregroundColor(.red)
+                Button {
+                    onClick = true
+                } label: {
+                    VStack(alignment: .leading) {
+                        Text("국어수행")
+                            .font(.system(size: 15))
+                            .foregroundColor(.black)
+                        Text("국어실")
+                            .font(.system(size: 13))
+                            .foregroundColor(.gray400)
+                    }
+                }
+                Spacer()
+                    .frame(width: 270)
             }
+        }
+    }
+    
+    struct Detailedschedule: View {
+        @Binding var onClick: Bool
+        var body: some View {
+            
+            VStack {
+                HStack {
+                    Spacer()
+                    Button {
+                        self.onClick = false
+                    } label: {
+                        Image(systemName: "xmark")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                            .padding()
+                            .foregroundColor(.black)
+                    }
+                }
+                HStack {
+                    VStack(alignment: .leading, spacing: 13) {
+                        HStack {
+                            Circle()
+                                .frame(width: 20)
+                                .foregroundColor(.red)
+                                .padding(.trailing)
+                            Text("국어수행")
+                                .font(.system(size: 20) .bold())
+                        }
+                        HStack {
+                            Image(systemName: "calendar")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .padding(.trailing)
+                            Text("3월 19일 화요일")
+                                .font(.system(size: 20))
+                        }
+                        HStack {
+                            Image(systemName: "location")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .padding(.trailing)
+                            Text("국어실")
+                                .font(.system(size: 20))
+                        }
+                        HStack {
+                            Image(systemName: "bell")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .padding(.trailing)
+                            Text("하루 전")
+                                .font(.system(size: 20))
+                        }
+                        HStack {
+                            Image(systemName: "text.alignleft")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .padding(.trailing)
+                            Text("내용")
+                                .font(.system(size: 20))
+                        }
+                        Spacer()
+                            .frame(width: 330)
+                    }
+                }
+            }
+        }
+    }
+    
+    // MARK: - SideMenu
+    public struct SideMenu: View {
+        @Binding var onClick: Bool
+        @Binding var isTapSideMenu: Bool
+        
+        var body: some View {
+            VStack {
+                Divider()
+                if onClick {
+                    Detailedschedule(onClick: $onClick)
+                } else {
+                    RoundedRectangle(cornerRadius: 10)
+                        .frame(width: 50, height: 3)
+                        .foregroundColor(Color.gray400)
+                        .padding()
+                    TodayData()
+                    scheduleView2(onClick: $onClick)
+                }
+                Spacer()
+                HStack {
+                    ButtonView()
+                        .frame(width:100, height:100)
+                        .padding(.leading, 270)
+                }
+            }
+            .background(.white)
+            .onTapGesture {
+                withAnimation {
+                    isTapSideMenu.toggle()
+                }
+            }
+            
         }
     }
     // MARK: - Header View
