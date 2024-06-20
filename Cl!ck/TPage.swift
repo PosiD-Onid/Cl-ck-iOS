@@ -41,7 +41,7 @@ struct TPage: View {
                 }
             }
             
-            .foregroundColor(Color("MainColor"))
+            .foregroundColor(.accentColor)
         }
     }
 }

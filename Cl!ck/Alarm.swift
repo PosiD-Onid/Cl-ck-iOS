@@ -44,7 +44,7 @@ struct Alarm: View {
     private var AlarmView: some View {
         HStack {
             Circle()
-                .foregroundColor(.main)
+                .foregroundColor(.accentColor)
                 .frame(width: 10)
                 .padding(.trailing)
             VStack(alignment: .leading) {
