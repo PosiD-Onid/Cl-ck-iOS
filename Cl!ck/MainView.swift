@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 
-
 struct MainView: View {
     @State private var SelectedMonth: Date = Date()
     @State private var SelectedDate: Date?
@@ -211,6 +210,7 @@ private struct CalendarCellView: View {
             return Color.clear
         }
     }
+    //숫자 배경색 코드
     private var backgroundColor: Color {
         if isToday {
             return Color.black.opacity(0.7)
@@ -220,6 +220,7 @@ private struct CalendarCellView: View {
             return Color.clear
         }
     }
+    //오늘 날짜 배경색 코드
     private var rectangleColor: Color {
         if isToday {
             return Color.gray.opacity(0.2)
@@ -241,6 +242,8 @@ private struct CalendarCellView: View {
     }
     
     fileprivate var body: some View {
+//        var onClick: Bool = true
+//        let isTapSideMenu: Bool = false
         VStack {
             RoundedRectangle(cornerRadius: 10)
                 .fill(backgroundColor)
@@ -258,6 +261,12 @@ private struct CalendarCellView: View {
                     .foregroundColor(rectangleColor)
             }
         )
+        .onTapGesture(count: 2) {
+//            SideMenu(onClick: $onClick, isTapSideMenu: $isTapSideMenu)
+//                .transition(.move(edge: .bottom))
+//                .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
+//                .padding(.top, 425)
+        }
     }
 }
 
