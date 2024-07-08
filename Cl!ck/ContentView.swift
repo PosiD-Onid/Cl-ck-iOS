@@ -25,7 +25,7 @@ struct ContentView: View {
                     
                     VStack(alignment: .center) {
                         Text("오직 학생들에 의한, 학생들을 위한")
-                        Text("수행평가 관리 플랫폼 C!ick")
+                        Text("수행평가 일정관리 플랫폼 C!ick")
                     }
                     .font(.system(size: geometryReader.size.width / 21))
                     .foregroundColor(Color("gray800"))
