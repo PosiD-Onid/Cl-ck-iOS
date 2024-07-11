@@ -1,3 +1,23 @@
+# macOS .DS_Store files
+.DS_Store
+
+# Xcode
+*.xcuserdatad
+*.xcuserdata
+*.xccheckout
+*.xcworkspace
+!default.xcworkspace
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/xcshareddata/xcschemes/
+*.xcworkspace/xcuserdata
+DerivedData/
+*.hmap
+.swiftpm/xcode
+*.swiftpm/xcode
+user_interface_state.xcuserstate
+
 # Xcode
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
