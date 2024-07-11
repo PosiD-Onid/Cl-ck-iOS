@@ -71,9 +71,8 @@ struct MainCalendarView: View {
                     }
                 }
             }
-            .navigationBarBackButtonHidden(true)
         }
-        
+        .navigationBarBackButtonHidden(true)
     }
     
     
