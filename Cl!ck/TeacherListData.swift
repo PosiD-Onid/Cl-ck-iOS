@@ -1,53 +1,14 @@
 //
-//  TPage.swift
-//  Click01
+//  Teacher.swift
+//  Cl!ck
 //
-//  Created by 이다경 on 4/10/24.
+//  Created by Junha on 6/27/24.
 //
 
+import Foundation
 import SwiftUI
 
-
-struct TPage: View {
-    @Environment(\.dismiss) var dismiss
-    
-    var body: some View {
-        NavigationView {
-            VStack {
-                TPageheadView
-                TPageList()
-            }
-        }
-        .navigationBarBackButtonHidden(true)
-    }
-    
-    private var TPageheadView: some View {
-        VStack {
-            HStack(spacing: 100) {
-                Button(action: {
-                    dismiss()
-                }) {
-                    Image(systemName: "xmark")
-                        .resizable()
-                        .frame(width: 15.87, height: 15.87)
-                }
-                Image("ClickLogo")
-                    .resizable()
-                    .frame(width: 100, height: 45)
-                NavigationLink(destination: MainCalendarView()) {
-                    Image(systemName: "checkmark")
-                        .resizable()
-                        .frame(width: 21.5, height: 15.5)
-                }
-            }
-            
-            .foregroundColor(.accentColor)
-        }
-    }
-}
-
-
-struct TPageList: View {
+struct TeacherList: View {
     @Environment(\.presentationMode) var presentationMode
     
     let grades = ["1", "2", "3"]
@@ -129,8 +90,3 @@ struct TPageList: View {
         }
     }
 }
-
-#Preview {
-    TPage()
-}
-
