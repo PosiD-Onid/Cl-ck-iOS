@@ -154,7 +154,7 @@ struct CalendarGridView: View {
                             selectedDate = cell.date
                         }
                     }(),
-                    isTapSideMenu: false
+                    isTapSideMenu: false,;
                 )
             }
         }
