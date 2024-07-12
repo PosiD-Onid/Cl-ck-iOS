@@ -15,20 +15,20 @@ struct SideMenu: View {
         VStack {
             Divider()
             if onClick {
-//                Detailedschedule(onClick: $onClick)
+                Detailedschedule(onClick: $onClick)
             } else {
                 RoundedRectangle(cornerRadius: 10)
                     .frame(width: 50, height: 3)
                     .foregroundColor(Color.gray400)
                     .padding()
                 TodayData()
-//                scheduleView2(onClick: $onClick)
+                scheduleView2(onClick: $onClick)
             }
             Spacer()
             HStack {
-//                ButtonView()
-//                    .frame(width:100, height:100)
-//                    .padding(.leading, 270)
+                ButtonView()
+                    .frame(width:100, height:100)
+                    .padding(.leading, 270)
             }
         }
         .background(.white)
