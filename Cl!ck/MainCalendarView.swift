@@ -170,7 +170,7 @@ struct MainCalendarView: View {
                                 .resizable()
                                 .frame(width: 20, height: 20)
                                 .padding(.trailing)
-                            Text("3월 19일 화요일")
+                            Text("7월 12일 금요일")
                                 .font(.system(size: 20))
                         }
                         HStack {
