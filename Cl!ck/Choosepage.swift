@@ -78,7 +78,7 @@ struct Choosepage: View {
                 if Student {
                     return AnyView(STLogin())
                 } else if Teacher {
-                    return AnyView(TLogin())
+                    return AnyView(TeacherSignIn())
                 } else {
                     return AnyView(EmptyView())
                 }
