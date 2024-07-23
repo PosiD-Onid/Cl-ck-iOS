@@ -27,9 +27,6 @@ struct AlarmCell: View {
             .foregroundColor(.black)
             Spacer()
         }
-        .padding(.bottom)
-        Rectangle()
-            .frame(height: 1)
     }
 }
 
