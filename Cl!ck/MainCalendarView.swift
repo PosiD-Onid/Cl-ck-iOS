@@ -291,7 +291,7 @@ struct MainCalendarView: View {
             .disabled(!canMoveToNextMonth())
             .padding(.trailing)
             
-            NavigationLink(destination: Alarm()) {
+            NavigationLink(destination: AlarmView()) {
                 RoundedRectangle(cornerRadius: 10)
                     .frame(width: 36, height: 35)
                     .foregroundColor(Color.gray.opacity(0))

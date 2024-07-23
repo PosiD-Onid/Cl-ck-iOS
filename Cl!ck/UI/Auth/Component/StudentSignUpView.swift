@@ -1,28 +1,34 @@
-//
-//  StudentSignIn.swift
-//  Cl!ck
-//
-//  Created by 이다경 on 7/23/24.
-//
-
 import SwiftUI
 
-struct StudentSignIn: View {
+struct StudentSignUpView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
+    @State private var name = ""
     @State private var username = ""
     @State private var password = ""
+    @State private var checkpassword = ""
+    @State private var checkPassword = false
     @State private var showPassword = false
     
     @State private var isTextFieldFilled = false
     @State private var isPasswordFilled = false
+    @State private var passwordsMatch = true
     
     var body: some View {
         NavigationStack {
             VStack {
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("C!ick계정으로 로그인 해주세요")
+                    Text("C!ick 학생 회원가입 페이지 입니다")
                         .font(.system(size: 23))
+                    TextField("이름", text: $name)
+                        .autocapitalization(.none)
+                        .padding(.all)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 6)
+                                .stroke(Color.gray, lineWidth: 1)
+                        )
+                        .onChange(of: name) { _ in checkTextFields() }
+                    
                     TextField("아이디", text: $username)
                         .autocapitalization(.none)
                         .padding(.all)
@@ -30,9 +36,7 @@ struct StudentSignIn: View {
                             RoundedRectangle(cornerRadius: 6)
                                 .stroke(Color.gray, lineWidth: 1)
                         )
-                        .onChange(of: username) { newValue in
-                            isTextFieldFilled = !newValue.isEmpty
-                        }
+                        .onChange(of: username) { _ in checkTextFields() }
                     
                     HStack {
                         Group {
@@ -56,28 +60,56 @@ struct StudentSignIn: View {
                         RoundedRectangle(cornerRadius: 6)
                             .stroke(Color.gray, lineWidth: 1)
                     )
-                    .onChange(of: password) { newValue in
-                        isPasswordFilled = !newValue.isEmpty
+                    .onChange(of: password) { _ in checkPasswordMatch() }
+                    
+                    HStack {
+                        Group {
+                            if checkPassword {
+                                TextField("비밀번호 확인", text: $checkpassword)
+                            } else {
+                                SecureField("비밀번호 확인", text: $checkpassword)
+                            }
+                        }
+                        .autocapitalization(.none)
+                        .frame(minHeight: 22.5)
+                        Button(action: {
+                            self.checkPassword.toggle()
+                        }, label: {
+                            Image(systemName: checkPassword ? "eye" : "eye.slash")
+                                .foregroundColor(.gray)
+                        })
+                    }
+                    .padding(.all)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 6)
+                            .stroke(Color.gray, lineWidth: 1)
+                    )
+                    .onChange(of: checkpassword) { _ in checkPasswordMatch() }
+                    
+                    if !passwordsMatch {
+                        Text("비밀번호가 일치하지 않습니다.")
+                            .foregroundColor(.red)
+                            .font(.system(size: 13))
                     }
                 }
-                .padding(.top, 45)
+                .padding(.top, 40)
                 .padding(.horizontal)
                 
                 Spacer()
                 
-                NavigationLink(destination: MainView()) {
+                NavigationLink(destination: OnBoardingView()) {
                     Text("확인")
                         .font(.system(size: 20, weight: .semibold))
                         .padding(.horizontal, 170)
                         .padding(.vertical)
                         .foregroundColor(.white)
-                        .background(isTextFieldFilled && isPasswordFilled ? Color("MainColor") : Color("MainColor").opacity(0.5))
+                        .background(isTextFieldFilled && isPasswordFilled && passwordsMatch ? Color("MainColor") : Color("MainColor").opacity(0.5))
                         .cornerRadius(6)
                 }
-                .disabled(!isTextFieldFilled || !isPasswordFilled)
+                .disabled(!isTextFieldFilled || !isPasswordFilled || !passwordsMatch)
                 
-                NavigationLink(destination: StudentSignUp()) {
-                    Text("C!ick에 처음온 학생인가요?")
+                NavigationLink(destination: EntireSignInView()) {
+                    Text("이미 회원가입을 진행했나요?")
                         .font(.system(size: 13))
                         .underline()
                 }
@@ -95,7 +127,7 @@ struct StudentSignIn: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 15, height: 27)
                                 .foregroundColor(.black)
-                            Text("로그인")
+                            Text("회원가입")
                                 .font(.system(size: 25, weight: .bold))
                                 .foregroundColor(.black)
                                 .padding(.leading)
@@ -105,8 +137,17 @@ struct StudentSignIn: View {
             }
         }
     }
+    
+    private func checkTextFields() {
+        isTextFieldFilled = !name.isEmpty && !username.isEmpty
+    }
+    
+    private func checkPasswordMatch() {
+        isPasswordFilled = !password.isEmpty && !checkpassword.isEmpty
+        passwordsMatch = password == checkpassword
+    }
 }
 
 #Preview {
-    StudentSignIn()
+    StudentSignUpView()
 }

@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct TeacherSignUp: View {
+struct TeacherSignUpView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @State private var name = ""
@@ -19,7 +19,7 @@ struct TeacherSignUp: View {
         NavigationStack {
             VStack {
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("C!ick 회원가입 페이지 입니다")
+                    Text("C!ick 선생님 회원가입 페이지 입니다")
                         .font(.system(size: 23))
                     TextField("이름", text: $name)
                         .autocapitalization(.none)
@@ -110,11 +110,11 @@ struct TeacherSignUp: View {
                             .font(.system(size: 13))
                     }
                 }
-                .padding(.top, 45)
+                .padding(.top, 40)
                 .padding(.horizontal)
                 
                 Spacer()
-                NavigationLink(destination: ContentView()) {
+                NavigationLink(destination: OnBoardingView()) {
                     Text("확인")
                         .font(.system(size: 20, weight: .semibold))
                         .padding(.horizontal, 170)
@@ -125,7 +125,7 @@ struct TeacherSignUp: View {
                 }
                 .disabled(!isTextFieldFilled || !isPasswordFilled || !passwordsMatch)
                 
-                NavigationLink(destination: TeacherSignIn()) {
+                NavigationLink(destination: EntireSignInView()) {
                     Text("이미 회원가입을 진행하셨나요?")
                         .font(.system(size: 13))
                         .underline()
@@ -166,5 +166,5 @@ struct TeacherSignUp: View {
 }
 
 #Preview {
-    TeacherSignUp()
+    TeacherSignUpView()
 }
