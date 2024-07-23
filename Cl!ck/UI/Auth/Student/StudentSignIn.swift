@@ -1,6 +1,13 @@
+//
+//  StudentSignIn.swift
+//  Cl!ck
+//
+//  Created by 이다경 on 7/23/24.
+//
+
 import SwiftUI
 
-struct TeacherSignIn: View {
+struct StudentSignIn: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @State private var username = ""
@@ -69,8 +76,8 @@ struct TeacherSignIn: View {
                 }
                 .disabled(!isTextFieldFilled || !isPasswordFilled)
                 
-                NavigationLink(destination: TeacherSignUp()) {
-                    Text("C!ick에 처음오신 선생님이신가요?")
+                NavigationLink(destination: StudentSignUp()) {
+                    Text("C!ick에 처음온 학생인가요?")
                         .font(.system(size: 13))
                         .underline()
                 }
@@ -101,5 +108,5 @@ struct TeacherSignIn: View {
 }
 
 #Preview {
-    TeacherSignIn()
+    StudentSignIn()
 }

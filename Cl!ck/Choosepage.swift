@@ -76,7 +76,7 @@ struct Choosepage: View {
         NavigationLink(
             destination: {
                 if Student {
-                    return AnyView(STLogin())
+                    return AnyView(StudentSignIn())
                 } else if Teacher {
                     return AnyView(TeacherSignIn())
                 } else {

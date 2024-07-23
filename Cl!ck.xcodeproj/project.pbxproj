@@ -11,11 +11,12 @@
 		7C7E59432BAC1FC300D39E2C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7E59422BAC1FC300D39E2C /* ContentView.swift */; };
 		7C7E59452BAC1FC500D39E2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C7E59442BAC1FC500D39E2C /* Assets.xcassets */; };
 		7C7E59482BAC1FC500D39E2C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C7E59472BAC1FC500D39E2C /* Preview Assets.xcassets */; };
-		AF333BC32C23DBFA00FF7B43 /* STSignup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF333BC22C23DBFA00FF7B43 /* STSignup.swift */; };
-		AF333BC52C2442C300FF7B43 /* TSignup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF333BC42C2442C300FF7B43 /* TSignup.swift */; };
+		AF282DB52C4F4BD4008A467C /* StudentSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF282DB42C4F4BD4008A467C /* StudentSignIn.swift */; };
+		AF282DB72C4F4C73008A467C /* StudentSignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF282DB62C4F4C73008A467C /* StudentSignUp.swift */; };
+		AF32DC272C4F47590026F88C /* TeacherSignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF32DC262C4F47590026F88C /* TeacherSignUp.swift */; };
+		AF32DC2A2C4F47CD0026F88C /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF32DC292C4F47CD0026F88C /* OnBoardingView.swift */; };
 		AF333BC72C244C1600FF7B43 /* Choosepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF333BC62C244C1600FF7B43 /* Choosepage.swift */; };
 		AF46F3212BD01602007353A4 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF46F3202BD01602007353A4 /* MainView.swift */; };
-		AF656F892BF25C0A00829BF4 /* STLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF656F882BF25C0A00829BF4 /* STLogin.swift */; };
 		AF67182B2C4E8E15009E9AA0 /* TeacherSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF67182A2C4E8E15009E9AA0 /* TeacherSignIn.swift */; };
 		AFD3D5C22C4E6CB20033C661 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFD3D5C12C4E6CB20033C661 /* Launch Screen.storyboard */; };
 		AFDD3D2A2BC82CC9002B4B98 /* MainCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD3D292BC82CC8002B4B98 /* MainCalendarView.swift */; };
@@ -30,11 +31,12 @@
 		7C7E59422BAC1FC300D39E2C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7C7E59442BAC1FC500D39E2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C7E59472BAC1FC500D39E2C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		AF333BC22C23DBFA00FF7B43 /* STSignup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STSignup.swift; sourceTree = "<group>"; };
-		AF333BC42C2442C300FF7B43 /* TSignup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSignup.swift; sourceTree = "<group>"; };
+		AF282DB42C4F4BD4008A467C /* StudentSignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSignIn.swift; sourceTree = "<group>"; };
+		AF282DB62C4F4C73008A467C /* StudentSignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSignUp.swift; sourceTree = "<group>"; };
+		AF32DC262C4F47590026F88C /* TeacherSignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherSignUp.swift; sourceTree = "<group>"; };
+		AF32DC292C4F47CD0026F88C /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		AF333BC62C244C1600FF7B43 /* Choosepage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Choosepage.swift; sourceTree = "<group>"; };
 		AF46F3202BD01602007353A4 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		AF656F882BF25C0A00829BF4 /* STLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STLogin.swift; sourceTree = "<group>"; };
 		AF67182A2C4E8E15009E9AA0 /* TeacherSignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherSignIn.swift; sourceTree = "<group>"; };
 		AFC320292BCABA6E0086482E /* Cl-ck-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Cl-ck-Info.plist"; sourceTree = SOURCE_ROOT; };
 		AFD3D5C12C4E6CB20033C661 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -83,8 +85,6 @@
 				AFDD3D2D2BC969DB002B4B98 /* CalenderView.swift */,
 				AFDD3D2F2BC96A74002B4B98 /* TPage.swift */,
 				AF46F3202BD01602007353A4 /* MainView.swift */,
-				AF656F882BF25C0A00829BF4 /* STLogin.swift */,
-				AF333BC22C23DBFA00FF7B43 /* STSignup.swift */,
 				AF333BC62C244C1600FF7B43 /* Choosepage.swift */,
 				7C7E59442BAC1FC500D39E2C /* Assets.xcassets */,
 				7C7E59462BAC1FC500D39E2C /* Preview Content */,
@@ -100,27 +100,37 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		AF32DC282C4F47C40026F88C /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				AF32DC292C4F47CD0026F88C /* OnBoardingView.swift */,
+			);
+			path = OnBoarding;
+			sourceTree = "<group>";
+		};
 		AF6718272C4E8C2E009E9AA0 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
 				AF6718292C4E8C4D009E9AA0 /* Teacher */,
-				AF6718282C4E8C33009E9AA0 /* S */,
+				AF6718282C4E8C33009E9AA0 /* Student */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
 		};
-		AF6718282C4E8C33009E9AA0 /* S */ = {
+		AF6718282C4E8C33009E9AA0 /* Student */ = {
 			isa = PBXGroup;
 			children = (
+				AF282DB42C4F4BD4008A467C /* StudentSignIn.swift */,
+				AF282DB62C4F4C73008A467C /* StudentSignUp.swift */,
 			);
-			path = S;
+			path = Student;
 			sourceTree = "<group>";
 		};
 		AF6718292C4E8C4D009E9AA0 /* Teacher */ = {
 			isa = PBXGroup;
 			children = (
 				AF67182A2C4E8E15009E9AA0 /* TeacherSignIn.swift */,
-				AF333BC42C2442C300FF7B43 /* TSignup.swift */,
+				AF32DC262C4F47590026F88C /* TeacherSignUp.swift */,
 			);
 			path = Teacher;
 			sourceTree = "<group>";
@@ -136,6 +146,7 @@
 		AFF7F2622C4E6A6B0007F652 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				AF32DC282C4F47C40026F88C /* OnBoarding */,
 				AF6718272C4E8C2E009E9AA0 /* Auth */,
 				AFD3D5C02C4E6CAB0033C661 /* LaunchScreen */,
 			);
@@ -213,7 +224,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF333BC32C23DBFA00FF7B43 /* STSignup.swift in Sources */,
 				AF333BC72C244C1600FF7B43 /* Choosepage.swift in Sources */,
 				AF67182B2C4E8E15009E9AA0 /* TeacherSignIn.swift in Sources */,
 				AFDD3D2A2BC82CC9002B4B98 /* MainCalendarView.swift in Sources */,
@@ -221,10 +231,12 @@
 				AFDD3D302BC96A74002B4B98 /* TPage.swift in Sources */,
 				7C7E59432BAC1FC300D39E2C /* ContentView.swift in Sources */,
 				7C7E59412BAC1FC300D39E2C /* Cl_ckApp.swift in Sources */,
+				AF32DC272C4F47590026F88C /* TeacherSignUp.swift in Sources */,
 				AFDD3D2E2BC969DC002B4B98 /* CalenderView.swift in Sources */,
+				AF282DB52C4F4BD4008A467C /* StudentSignIn.swift in Sources */,
 				AFDD3D2C2BC82D6B002B4B98 /* Alarm.swift in Sources */,
-				AF656F892BF25C0A00829BF4 /* STLogin.swift in Sources */,
-				AF333BC52C2442C300FF7B43 /* TSignup.swift in Sources */,
+				AF32DC2A2C4F47CD0026F88C /* OnBoardingView.swift in Sources */,
+				AF282DB72C4F4C73008A467C /* StudentSignUp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

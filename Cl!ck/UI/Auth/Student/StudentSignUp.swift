@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct STSignup: View {
+struct StudentSignUp: View {
     @Environment(\.dismiss) var dismiss
     
     @State private var name = ""
@@ -24,7 +24,7 @@ struct STSignup: View {
                         .disabled(!isTextFieldFilled || !isPasswordFilled)
                     Spacer()
                         .frame(height: 0)
-                    NavigationLink(destination: STLogin()) {
+                    NavigationLink(destination: StudentSignIn()) {
                         Text("이미 회원가입을 진행했나요?")
                             .underline()
                             .font(.system(size: 13))
@@ -170,5 +170,5 @@ struct STSignup: View {
 }
 
 #Preview {
-    STSignup()
+    StudentSignUp()
 }
