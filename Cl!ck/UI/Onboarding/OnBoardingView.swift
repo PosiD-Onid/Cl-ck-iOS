@@ -22,7 +22,6 @@ struct OnBoardingView: View {
                         .overlay(Color("gray400"))
                         .padding(.horizontal, 50)
                         .padding(.bottom)
-
                     
                     VStack(spacing: 4) {
                         Text("오직 학생들에 의한, 학생들을 위한")
@@ -37,26 +36,39 @@ struct OnBoardingView: View {
                     Text("로그인")
                         .foregroundStyle(.white)
                         .font(.system(size: 20, weight: .heavy))
+                        .frame(maxWidth: .infinity)
                         .padding(.vertical, 18)
-                        .padding(.horizontal, 155)
                         .background(Color("MainColor"))
                         .cornerRadius(10)
                 }
+                .padding(.horizontal, 30)
                 NavigationLink(destination: ChoosePageView()) {
                     Text("회원가입")
                         .foregroundStyle(Color.main)
                         .font(.system(size: 20, weight: .heavy))
+                        .frame(maxWidth: .infinity)
                         .padding(.vertical, 18)
-                        .padding(.horizontal, 147)
                         .background(
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke(Color.main, lineWidth: 2)
                         )
                         .cornerRadius(10)
                 }
+                .padding(.horizontal, 31)
                 .padding(.bottom)
             }
         }
+    }
+}
+
+extension UINavigationController: UIGestureRecognizerDelegate {
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+        interactivePopGestureRecognizer?.delegate = self
+    }
+
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return viewControllers.count > 1
     }
 }
 

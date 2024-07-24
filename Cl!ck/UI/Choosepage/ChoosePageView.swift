@@ -2,17 +2,18 @@ import SwiftUI
 
 struct ChoosePageView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     
     @State private var Teacher = false
     @State private var Student = false
     
     var body: some View {
         NavigationStack {
-            VStack {
                 VStack {
                     Spacer()
                     ChooseRoleView(Teacher: $Teacher, Student: $Student)
                     Spacer()
+                        .frame(maxHeight: 140)
                     NavigationLink(
                         destination: {
                             if Student {
@@ -31,12 +32,11 @@ struct ChoosePageView: View {
                                 .frame(height: 56)
                                 .background((Teacher || Student) ? Color("MainColor") : Color("MainColor").opacity(0.5))
                                 .cornerRadius(10)
-                                .padding(.horizontal, 40)
+                                .padding(.horizontal, 31)
                         }
                     )
                     .disabled(!(Teacher || Student))
                     .padding(.bottom)
-                }
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -56,7 +56,9 @@ struct ChoosePageView: View {
                         }
                     }
                 }
+                
             }
+            
         }
         .navigationBarBackButtonHidden()
     }

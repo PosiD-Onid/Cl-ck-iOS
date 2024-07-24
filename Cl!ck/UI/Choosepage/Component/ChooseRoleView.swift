@@ -6,9 +6,9 @@ struct ChooseRoleView: View {
     @Binding var Student: Bool
     
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 12) {
             Text("선생님입니다")
-                .font(.system(size: 20, weight: .semibold))
+                .font(.system(size: 20, weight: .heavy))
                 .foregroundColor(Teacher ? .white : .black)
                 .padding(.vertical, 77)
                 .padding(.horizontal, 110)
@@ -21,7 +21,7 @@ struct ChooseRoleView: View {
                     }
                 }
             Text("학생입니다")
-                .font(.system(size: 20, weight: .semibold))
+                .font(.system(size: 20, weight: .heavy))
                 .foregroundColor(Student ? .white : .black)
                 .padding(.vertical, 77)
                 .padding(.horizontal, 120)

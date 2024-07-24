@@ -160,6 +160,13 @@
 			path = Component;
 			sourceTree = "<group>";
 		};
+		AF87784E2C50E545001EAE38 /* Teacherpage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Teacherpage;
+			sourceTree = "<group>";
+		};
 		AFD3D5C02C4E6CAB0033C661 /* launchscreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +178,7 @@
 		AFF7F2622C4E6A6B0007F652 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				AF87784E2C50E545001EAE38 /* Teacherpage */,
 				AF1D59C02C4F8CAF0074FD0E /* Alarm */,
 				AF38BF372C4F7368003BF9FD /* Choosepage */,
 				AF32DC282C4F47C40026F88C /* Onboarding */,
@@ -412,7 +420,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "kr.hs.dgsw.click.Cl-ck";
+				PRODUCT_BUNDLE_IDENTIFIER = "kr.hs.dgsw.click.Ci-ck";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -442,7 +450,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "kr.hs.dgsw.click.Cl-ck";
+				PRODUCT_BUNDLE_IDENTIFIER = "kr.hs.dgsw.click.Ci-ck";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

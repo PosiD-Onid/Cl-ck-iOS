@@ -54,7 +54,7 @@ struct TPageList: View {
     
     let grades = ["1", "2", "3"]
     let classes = ["1", "2", "3", "4"]
-    let subjects = ["국어", "수학", "사회", "과학", "한국사", "기술가정", "웹프로그래밍", "자바", "도덕", "음악"]
+    let subjects = ["국어", "수학", "사회", "과학", "한국사", "영어", "웹프로그래밍", "자바", "도덕", "음악"]
     let places = ["교실", "국어실", "수학실", "음악실", "과학실", "임베디드실", "체육관"]
     
     @State private var constant = false

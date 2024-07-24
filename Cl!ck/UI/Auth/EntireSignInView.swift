@@ -60,20 +60,20 @@ struct EntireSignInView: View {
                         isPasswordFilled = !newValue.isEmpty
                     }
                 }
-                .padding(.top, 40)
                 .padding(.horizontal)
                 
                 Spacer()
                 
                 NavigationLink(destination: MainView()) {
                     Text("확인")
-                        .font(.system(size: 20, weight: .semibold))
-                        .padding(.horizontal, 170)
-                        .padding(.vertical)
+                        .font(.system(size: 18, weight: .heavy))
                         .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 56)
                         .background(isTextFieldFilled && isPasswordFilled ? Color("MainColor") : Color("MainColor").opacity(0.5))
                         .cornerRadius(6)
                 }
+                .padding(.horizontal, 29)
                 .disabled(!isTextFieldFilled || !isPasswordFilled)
                 
                 NavigationLink(destination: ChoosePageView()) {
