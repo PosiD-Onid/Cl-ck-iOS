@@ -1,10 +1,3 @@
-//
-//  StudentSignIn.swift
-//  Cl!ck
-//
-//  Created by 이다경 on 7/23/24.
-//
-
 import SwiftUI
 
 struct EntireSignInView: View {
@@ -17,12 +10,20 @@ struct EntireSignInView: View {
     @State private var isTextFieldFilled = false
     @State private var isPasswordFilled = false
     
+    @FocusState private var focusedField: Field?
+    
+    enum Field {
+        case username
+        case password
+    }
+    
     var body: some View {
         NavigationStack {
             VStack {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("C!ick계정으로 로그인 해주세요")
                         .font(.system(size: 23))
+                    
                     TextField("아이디", text: $username)
                         .autocapitalization(.none)
                         .padding(.all)
@@ -33,17 +34,27 @@ struct EntireSignInView: View {
                         .onChange(of: username) { newValue in
                             isTextFieldFilled = !newValue.isEmpty
                         }
+                        .focused($focusedField, equals: .username)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            focusedField = .password
+                        }
                     
                     HStack {
                         Group {
                             if showPassword {
                                 TextField("비밀번호", text: $password)
+                                    .focused($focusedField, equals: .password)
+                                    .submitLabel(.done)
                             } else {
                                 SecureField("비밀번호", text: $password)
+                                    .focused($focusedField, equals: .password)
+                                    .submitLabel(.done)
                             }
                         }
                         .autocapitalization(.none)
                         .frame(minHeight: 22.2)
+                        
                         Button(action: {
                             self.showPassword.toggle()
                         }, label: {
@@ -64,7 +75,7 @@ struct EntireSignInView: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: MainView()) {
+                NavigationLink(destination: HomeView()) {
                     Text("확인")
                         .font(.system(size: 18, weight: .heavy))
                         .foregroundColor(.white)
@@ -106,6 +117,8 @@ struct EntireSignInView: View {
         .navigationBarBackButtonHidden()
     }
 }
+
+
 
 #Preview {
     EntireSignInView()

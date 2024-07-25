@@ -15,12 +15,23 @@ struct TeacherSignUpView: View {
     @State private var isPasswordFilled = false
     @State private var passwordsMatch = true
     
+    @FocusState private var focusedField: Field?
+    
+    enum Field {
+        case name
+        case subject
+        case username
+        case password
+        case checkPassword
+    }
+    
     var body: some View {
         NavigationStack {
             VStack {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("C!ick 선생님 회원가입 페이지 입니다")
                         .font(.system(size: 23))
+                    
                     TextField("이름", text: $name)
                         .autocapitalization(.none)
                         .padding(.all)
@@ -31,6 +42,12 @@ struct TeacherSignUpView: View {
                         .onChange(of: name) { _ in
                             checkTextFields()
                         }
+                        .focused($focusedField, equals: .name)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            focusedField = .subject
+                        }
+                    
                     TextField("담당 과목명", text: $subject)
                         .autocapitalization(.none)
                         .padding(.all)
@@ -41,6 +58,12 @@ struct TeacherSignUpView: View {
                         .onChange(of: subject) { _ in
                             checkTextFields()
                         }
+                        .focused($focusedField, equals: .subject)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            focusedField = .username
+                        }
+                    
                     TextField("아이디", text: $username)
                         .autocapitalization(.none)
                         .padding(.all)
@@ -50,6 +73,11 @@ struct TeacherSignUpView: View {
                         )
                         .onChange(of: username) { _ in
                             checkTextFields()
+                        }
+                        .focused($focusedField, equals: .username)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            focusedField = .password
                         }
                     
                     HStack {
@@ -61,7 +89,9 @@ struct TeacherSignUpView: View {
                             }
                         }
                         .autocapitalization(.none)
+                        .textContentType(.newPassword)
                         .frame(minHeight: 22.2)
+                        
                         Button(action: {
                             self.showPassword.toggle()
                         }, label: {
@@ -77,6 +107,11 @@ struct TeacherSignUpView: View {
                     .onChange(of: password) { _ in
                         checkPasswordMatch()
                     }
+                    .focused($focusedField, equals: .password)
+                    .submitLabel(.next)
+                    .onSubmit {
+                        focusedField = .checkPassword
+                    }
                     
                     HStack {
                         Group {
@@ -87,7 +122,9 @@ struct TeacherSignUpView: View {
                             }
                         }
                         .autocapitalization(.none)
+                        .textContentType(.newPassword)
                         .frame(minHeight: 22.5)
+                        
                         Button(action: {
                             self.checkPassword.toggle()
                         }, label: {
@@ -95,6 +132,8 @@ struct TeacherSignUpView: View {
                                 .foregroundColor(.gray)
                         })
                     }
+                    .focused($focusedField, equals: .checkPassword)
+                    .submitLabel(.done)
                     .padding(.all)
                     .overlay(
                         RoundedRectangle(cornerRadius: 6)
@@ -113,6 +152,7 @@ struct TeacherSignUpView: View {
                 .padding(.horizontal)
                 
                 Spacer()
+                
                 NavigationLink(destination: OnBoardingView()) {
                     Text("확인")
                         .font(.system(size: 18, weight: .heavy))

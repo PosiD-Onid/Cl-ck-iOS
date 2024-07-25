@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct MainView: View {
+struct HomeView: View {
     @State private var SelectedMonth: Date = Date()
     @State private var SelectedDate: Date?
     let currentDate = Date()
@@ -50,7 +50,7 @@ struct MainView: View {
         var body: some View {
             VStack {
                 Spacer()
-                NavigationLink(destination: TPage()) {
+                NavigationLink(destination: TeacherPageView()) {
                     HStack {
                         Spacer()
                         ZStack{
@@ -262,15 +262,11 @@ private struct CalendarCellView: View {
             }
         )
         .onTapGesture(count: 2) {
-//            SideMenu(onClick: $onClick, isTapSideMenu: $isTapSideMenu)
-//                .transition(.move(edge: .bottom))
-//                .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
-//                .padding(.top, 425)
         }
     }
 }
 
-private extension MainView {
+private extension HomeView {
     var today: Date {
         let now = Date()
         let components = Calendar.current.dateComponents([.year, .month, .day], from: now)
@@ -286,7 +282,7 @@ private extension MainView {
     static let weekdaySymbols: [String] = ["일", "월", "화", "수", "목", "금", "토"]
 }
 
-private extension MainView {
+private extension HomeView {
     /// Get date for a specific index
     func getDate(for index: Int) -> Date {
         let calendar = Calendar.current
@@ -385,5 +381,5 @@ extension Date {
 }
 
 #Preview {
-    MainView()
+    HomeView()
 }

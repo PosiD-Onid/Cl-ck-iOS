@@ -60,7 +60,7 @@ struct MainCalendarView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                MainView()
+                HomeView()
                 VStack {
                     Spacer()
                     if isTapSideMenu {
@@ -80,7 +80,7 @@ struct MainCalendarView: View {
         var body: some View {
             VStack {
                 Spacer()
-                NavigationLink(destination: TPage()) {
+                NavigationLink(destination: TeacherPageView()) {
                     HStack {
                         Spacer()
                         ZStack{

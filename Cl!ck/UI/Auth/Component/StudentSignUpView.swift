@@ -14,12 +14,22 @@ struct StudentSignUpView: View {
     @State private var isPasswordFilled = false
     @State private var passwordsMatch = true
     
+    @FocusState private var focusedField: Field?
+    
+    enum Field {
+        case name
+        case username
+        case password
+        case checkPassword
+    }
+    
     var body: some View {
         NavigationStack {
             VStack {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("C!ick 학생 회원가입 페이지 입니다")
                         .font(.system(size: 23))
+                    
                     TextField("이름", text: $name)
                         .autocapitalization(.none)
                         .padding(.all)
@@ -28,6 +38,11 @@ struct StudentSignUpView: View {
                                 .stroke(Color.gray, lineWidth: 1)
                         )
                         .onChange(of: name) { _ in checkTextFields() }
+                        .focused($focusedField, equals: .name)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            focusedField = .username
+                        }
                     
                     TextField("아이디", text: $username)
                         .autocapitalization(.none)
@@ -37,6 +52,11 @@ struct StudentSignUpView: View {
                                 .stroke(Color.gray, lineWidth: 1)
                         )
                         .onChange(of: username) { _ in checkTextFields() }
+                        .focused($focusedField, equals: .username)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            focusedField = .password
+                        }
                     
                     HStack {
                         Group {
@@ -47,7 +67,9 @@ struct StudentSignUpView: View {
                             }
                         }
                         .autocapitalization(.none)
+                        .textContentType(.newPassword)
                         .frame(minHeight: 22.2)
+                        
                         Button(action: {
                             self.showPassword.toggle()
                         }, label: {
@@ -61,6 +83,11 @@ struct StudentSignUpView: View {
                             .stroke(Color.gray, lineWidth: 1)
                     )
                     .onChange(of: password) { _ in checkPasswordMatch() }
+                    .focused($focusedField, equals: .password)
+                    .submitLabel(.next)
+                    .onSubmit {
+                        focusedField = .checkPassword
+                    }
                     
                     HStack {
                         Group {
@@ -71,6 +98,7 @@ struct StudentSignUpView: View {
                             }
                         }
                         .autocapitalization(.none)
+                        .textContentType(.newPassword)
                         .frame(minHeight: 22.5)
                         Button(action: {
                             self.checkPassword.toggle()
@@ -79,6 +107,8 @@ struct StudentSignUpView: View {
                                 .foregroundColor(.gray)
                         })
                     }
+                    .focused($focusedField, equals: .checkPassword)
+                    .submitLabel(.done)
                     .padding(.all)
                     .overlay(
                         RoundedRectangle(cornerRadius: 6)
