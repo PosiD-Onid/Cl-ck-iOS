@@ -56,9 +56,7 @@ struct ChoosePageView: View {
                         }
                     }
                 }
-                
             }
-            
         }
         .navigationBarBackButtonHidden()
     }

@@ -75,7 +75,7 @@ struct EntireSignInView: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: HomeView()) {
+                NavigationLink(destination: TeacherPageView()) {
                     Text("확인")
                         .font(.system(size: 18, weight: .heavy))
                         .foregroundColor(.white)

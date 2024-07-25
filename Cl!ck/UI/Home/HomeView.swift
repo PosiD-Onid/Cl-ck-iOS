@@ -1,82 +1,52 @@
-//
-//  MainCalendarView.swift
-//  C!ick
-//
-//  Created by 이다경 on 4/11/24.
-//
-
 import Foundation
 import SwiftUI
 
 struct HomeView: View {
-    @State private var SelectedMonth: Date = Date()
-    @State private var SelectedDate: Date?
-    let currentDate = Date()
-    
+    @State private var selectedMonth: Date = Date() // 현재 선택된 월
+    @State private var selectedDate: Date? // 현재 선택된 날짜
+
+    // 초기값을 설정할 수 있는 사용자 정의 이니셜라이저
     init(
-        SelectedMonth: Date = Date(),
-        SelectedDate: Date? = nil
+        selectedMonth: Date = Date(),
+        selectedDate: Date? = nil
     ) {
-        _SelectedMonth = State(initialValue: SelectedMonth)
-        _SelectedDate = State(initialValue: SelectedDate)
+        _selectedMonth = State(initialValue: selectedMonth)
+        _selectedDate = State(initialValue: selectedDate)
     }
     
     var body: some View {
         NavigationView {
             ZStack {
-                DividerView
+                DividerView // 구분선 뷰
                 VStack {
                     Spacer()
-                        .frame(height: 10)
+                        .frame(height: 10) // 상단 여백
                     VStack(spacing: -15) {
-                        headerView
-                        calendarGridView
+                        headerView // 년도와 월, 요일 헤더를 표시하는 뷰
+                        calendarGridView // 달력 그리드 뷰
                             .padding(.horizontal)
                     }
                     Spacer()
                     HStack {
                         Spacer()
                             .frame(width: 270)
-                        ButtonView()
+                        // ButtonView() // 추가 기능 버튼 뷰 (주석 처리됨)
                         Spacer()
                     }
                 }
             }
         }
-        .navigationBarBackButtonHidden(true)
+        .navigationBarBackButtonHidden(true) // 내비게이션 바의 뒤로가기 버튼 숨기기
     }
     
-    private struct ButtonView: View {
-        var body: some View {
-            VStack {
-                Spacer()
-                NavigationLink(destination: TeacherPageView()) {
-                    HStack {
-                        Spacer()
-                        ZStack{
-                            Circle()
-                                .frame(width: 70)
-                                .foregroundColor(.black.opacity(0.8))
-                            Image(systemName: "plus")
-                                .resizable()
-                                .frame(width: 25, height: 25)
-                                .foregroundColor(.white)
-                        }
-                        .shadow(radius: 10)
-                        Spacer()
-                    }
-                }
-            }
-        }
-    }
-    // MARK: - Header View
+    // MARK: - 헤더 뷰
     private var headerView: some View {
         VStack {
-            yearMonthView
+            yearMonthView // 현재 년도와 월을 표시하고, 내비게이션 버튼 포함
                 .padding(.bottom, 20)
             HStack {
                 ForEach(Self.weekdaySymbols.indices, id: \.self) { index in
-                    Text(Self.weekdaySymbols[index].uppercased())
+                    Text(Self.weekdaySymbols[index].uppercased()) // 요일 헤더 표시
                         .foregroundColor(.black)
                         .frame(maxWidth: .infinity)
                         .font(.subheadline)
@@ -86,13 +56,13 @@ struct HomeView: View {
         }
     }
     
-    // MARK: - DividerView
+    // MARK: - 구분선 뷰
     private var DividerView: some View {
         VStack {
             Spacer()
-                .frame(height: 200)
+                .frame(height: 200) // 상단 여백
             VStack(spacing: 110) {
-                Divider()
+                Divider() // 구분선
                 Divider()
                 Divider()
                 Divider()
@@ -101,16 +71,18 @@ struct HomeView: View {
             Spacer()
         }
     }
-    // MARK: - Year Month View
+    
+    // MARK: - 년도와 월 뷰
     private var yearMonthView: some View {
         HStack(alignment: .center) {
-            
-            Text(SelectedMonth, formatter: Self.calendarHeaderDateFormatter)
+            // 현재 선택된 월과 년도를 표시
+            Text(selectedMonth, formatter: Self.calendarHeaderDateFormatter)
                 .font(.title .bold())
             
             Spacer()
                 .frame(width: 130)
             
+            // 이전 월로 이동하는 버튼
             Button(
                 action: {
                     changeMonth(by: -1)
@@ -121,8 +93,8 @@ struct HomeView: View {
                         .foregroundColor(.black)
                 }
             )
-            .disabled(!canMoveToPreviousMonth())
             
+            // 다음 월로 이동하는 버튼
             Button(
                 action: {
                     changeMonth(by: 1)
@@ -133,9 +105,9 @@ struct HomeView: View {
                         .foregroundColor(.black)
                 }
             )
-            .disabled(!canMoveToNextMonth())
             .padding(.trailing)
             
+            // AlarmView로의 네비게이션 링크
             NavigationLink(destination: AlarmView()) {
                 RoundedRectangle(cornerRadius: 10)
                     .frame(width: 36, height: 35)
@@ -154,24 +126,24 @@ struct HomeView: View {
         }
     }
     
-    // MARK: - Calendar Grid View
+    // MARK: - 달력 그리드 뷰
     private var calendarGridView: some View {
-        let daysMonth: Int = numberOfDays(in: SelectedMonth)
-        let firstday: Int = firstWeekdayOfMonth(in: SelectedMonth) - 1
-        let lastDayMonthBefore = numberOfDays(in: previousMonth())
-        let numberOfRows = Int(ceil(Double(daysMonth + firstday) / 7.0))
-        let visibleDaysOfNextMonth = numberOfRows * 7 - (daysMonth + firstday)
+        let daysMonth: Int = numberOfDays(in: selectedMonth) // 선택된 월의 일 수
+        let firstDay: Int = firstWeekdayOfMonth(in: selectedMonth) - 1 // 월의 첫 번째 날의 요일
+        let lastDayMonthBefore = numberOfDays(in: previousMonth()) // 이전 월의 일 수
+        let numberOfRows = Int(ceil(Double(daysMonth + firstDay) / 7.0)) // 그리드의 행 수
+        let visibleDaysOfNextMonth = numberOfRows * 7 - (daysMonth + firstDay) // 표시할 다음 월의 일 수
         
         return LazyVGrid(columns: Array(repeating: GridItem(), count: 7)) {
-            ForEach(-firstday ..< daysMonth + visibleDaysOfNextMonth, id: \.self) { index in
+            ForEach(-firstDay ..< daysMonth + visibleDaysOfNextMonth, id: \.self) { index in
                 Group {
                     if index > -1 && index < daysMonth {
-                        let date = getDate(for: index)
+                        let date = getDate(for: index) // 현재 인덱스에 대한 날짜
                         let day = Calendar.current.component(.day, from: date)
-                        let clicked = SelectedDate == date
+                        let clicked = selectedDate == date
                         let isToday = date.formattedDay == today.formattedDay
                         
-                        CalendarCellView(day: day, clicked: clicked, isToday: isToday)
+                        CalendarCellView(day: day, clicked: clicked, isToday: isToday) // 각 날짜 셀 뷰
                         
                     } else if let prevMonthDate = Calendar.current.date(
                         byAdding: .day,
@@ -179,13 +151,13 @@ struct HomeView: View {
                         to: previousMonth()
                     ) {
                         let day = Calendar.current.component(.day, from: prevMonthDate)
-                        CalendarCellView(day: day, isCurrentMonthDay: false)
+                        CalendarCellView(day: day, isCurrentMonthDay: false) // 이전 월의 날짜 셀
                     }
                 }
                 .onTapGesture {
                     if 0 <= index && index < daysMonth {
                         let date = getDate(for: index)
-                        SelectedDate = date
+                        selectedDate = date // 선택된 날짜 업데이트
                     }
                 }
             }
@@ -193,12 +165,14 @@ struct HomeView: View {
     }
 }
 
-// MARK: - Cell View
+// MARK: - 셀 뷰
 private struct CalendarCellView: View {
-    private var day: Int
-    private var clicked: Bool
-    private var isToday: Bool
-    private var isCurrentMonthDay: Bool
+    private var day: Int // 일자
+    private var clicked: Bool // 클릭된 상태
+    private var isToday: Bool // 오늘 날짜 여부
+    private var isCurrentMonthDay: Bool // 현재 월의 날짜 여부
+    
+    // 텍스트 색상을 상태에 따라 결정
     private var textColor: Color {
         if isToday {
             return Color.white
@@ -210,7 +184,8 @@ private struct CalendarCellView: View {
             return Color.clear
         }
     }
-    //숫자 배경색 코드
+    
+    // 배경 색상을 상태에 따라 결정
     private var backgroundColor: Color {
         if isToday {
             return Color.black.opacity(0.7)
@@ -220,7 +195,8 @@ private struct CalendarCellView: View {
             return Color.clear
         }
     }
-    //오늘 날짜 배경색 코드
+    
+    // 오늘 날짜 배경 색상
     private var rectangleColor: Color {
         if isToday {
             return Color.gray.opacity(0.2)
@@ -242,13 +218,11 @@ private struct CalendarCellView: View {
     }
     
     fileprivate var body: some View {
-//        var onClick: Bool = true
-//        let isTapSideMenu: Bool = false
         VStack {
             RoundedRectangle(cornerRadius: 10)
                 .fill(backgroundColor)
                 .frame(width: 35, height: 35)
-                .overlay(Text(String(day)))
+                .overlay(Text(String(day))) // 날짜 숫자 표시
                 .foregroundColor(textColor)
         }
         .frame(height: 100)
@@ -257,11 +231,12 @@ private struct CalendarCellView: View {
                 Spacer()
                     .frame(height: 52)
                 Rectangle()
-                    .frame(width: 52.7,height: 110)
+                    .frame(width: 52.7, height: 110)
                     .foregroundColor(rectangleColor)
             }
         )
         .onTapGesture(count: 2) {
+            // 이중 탭 제스처
         }
     }
 }
@@ -273,23 +248,25 @@ private extension HomeView {
         return Calendar.current.date(from: components)!
     }
     
+    // 날짜 포맷터: 년도와 월을 표시하는 포맷
     static let calendarHeaderDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY. MM"
         return formatter
     }()
     
+    // 요일 심볼
     static let weekdaySymbols: [String] = ["일", "월", "화", "수", "목", "금", "토"]
 }
 
 private extension HomeView {
-    /// Get date for a specific index
+    /// 특정 인덱스에 대한 날짜를 반환합니다.
     func getDate(for index: Int) -> Date {
         let calendar = Calendar.current
         guard let firstDayOfMonth = calendar.date(
             from: DateComponents(
-                year: calendar.component(.year, from: SelectedMonth),
-                month: calendar.component(.month, from: SelectedMonth),
+                year: calendar.component(.year, from: selectedMonth),
+                month: calendar.component(.month, from: selectedMonth),
                 day: 1
             )
         ) else {
@@ -307,12 +284,12 @@ private extension HomeView {
         return date
     }
     
-    /// Get the number of days in a month
+    /// 특정 날짜의 월에 포함된 일 수를 반환합니다.
     func numberOfDays(in date: Date) -> Int {
         return Calendar.current.range(of: .day, in: .month, for: date)?.count ?? 0
     }
     
-    /// Get the weekday of the first day of a month
+    /// 특정 날짜의 월의 첫 번째 날의 요일을 반환합니다.
     func firstWeekdayOfMonth(in date: Date) -> Int {
         let components = Calendar.current.dateComponents([.year, .month], from: date)
         let firstDayOfMonth = Calendar.current.date(from: components)!
@@ -320,54 +297,30 @@ private extension HomeView {
         return Calendar.current.component(.weekday, from: firstDayOfMonth)
     }
     
-    /// Get the date of the previous month
+    /// 이전 달의 첫 번째 날짜를 반환합니다.
     func previousMonth() -> Date {
-        let components = Calendar.current.dateComponents([.year, .month], from: SelectedMonth)
+        let components = Calendar.current.dateComponents([.year, .month], from: selectedMonth)
         let firstDayOfMonth = Calendar.current.date(from: components)!
         let previousMonth = Calendar.current.date(byAdding: .month, value: -1, to: firstDayOfMonth)!
         
         return previousMonth
     }
     
-    /// Change the selected month
+    /// 월을 변경합니다. (기본적으로 현재 선택된 월에 월 수를 추가 또는 빼기)
     func changeMonth(by value: Int) {
-        self.SelectedMonth = adjustedMonth(by: value)
+        self.selectedMonth = adjustedMonth(by: value)
     }
     
-    /// Check if moving to the previous month is possible
-    func canMoveToPreviousMonth() -> Bool {
-        let currentDate = Date()
-        let calendar = Calendar.current
-        let targetDate = calendar.date(byAdding: .month, value: -3, to: currentDate) ?? currentDate
-        
-        if adjustedMonth(by: -1) < targetDate {
-            return false
-        }
-        return true
-    }
-    
-    /// Check if moving to the next month is possible
-    func canMoveToNextMonth() -> Bool {
-        let currentDate = Date()
-        let calendar = Calendar.current
-        let targetDate = calendar.date(byAdding: .month, value: 3, to: currentDate) ?? currentDate
-        
-        if adjustedMonth(by: 1) > targetDate {
-            return false
-        }
-        return true
-    }
-    
-    /// Get the adjusted month after adding or subtracting months
+    /// 월을 조정한 날짜를 반환합니다. (월을 추가하거나 빼기)
     func adjustedMonth(by value: Int) -> Date {
-        if let newMonth = Calendar.current.date(byAdding: .month, value: value, to: SelectedMonth) {
+        if let newMonth = Calendar.current.date(byAdding: .month, value: value, to: selectedMonth) {
             return newMonth
         }
-        return SelectedMonth
+        return selectedMonth
     }
 }
 
-// MARK: - Extension for Date
+// MARK: - Date 확장
 extension Date {
     static let calendarDate: DateFormatter = {
         let formatter = DateFormatter()
@@ -375,8 +328,9 @@ extension Date {
         return formatter
     }()
     
+    // 날짜를 문자열 형식으로 반환합니다.
     var formattedDay: String {
-        return Date.calendarDayDate.string(from: self)
+        return Date.calendarDate.string(from: self)
     }
 }
 
