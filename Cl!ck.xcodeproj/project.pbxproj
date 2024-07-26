@@ -19,11 +19,14 @@
 		AF38BF432C4F7518003BF9FD /* StudentSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF38BF422C4F7518003BF9FD /* StudentSignUpView.swift */; };
 		AF38BF462C4F766D003BF9FD /* ChooseRoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF38BF452C4F766D003BF9FD /* ChooseRoleView.swift */; };
 		AF38BF482C4F7E9E003BF9FD /* EntireSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF38BF472C4F7E9E003BF9FD /* EntireSignInView.swift */; };
+		AF5594872C53229A00D1133F /* ㅓ.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5594862C53229A00D1133F /* ㅓ.swift */; };
 		AFD3D5C22C4E6CB20033C661 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFD3D5C12C4E6CB20033C661 /* Launch Screen.storyboard */; };
 		AFDD3D2A2BC82CC9002B4B98 /* MainCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD3D292BC82CC8002B4B98 /* MainCalendarView.swift */; };
 		AFDD3D2E2BC969DC002B4B98 /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD3D2D2BC969DB002B4B98 /* CalenderView.swift */; };
 		AFF0D1492C5269EB00E2B4B2 /* NavigationControllerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF0D1482C5269EB00E2B4B2 /* NavigationControllerWrapper.swift */; };
 		AFF0D14B2C526A6E00E2B4B2 /* ScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF0D14A2C526A6E00E2B4B2 /* ScheduleCell.swift */; };
+		AFF7A92F2C527D4700F4582B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF7A92E2C527D4700F4582B /* ProfileView.swift */; };
+		AFF7A9322C527DD100F4582B /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF7A9312C527DD100F4582B /* ProfileImage.swift */; };
 		AFFED3A02C514091001DB112 /* TeacherPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFED39F2C514091001DB112 /* TeacherPageView.swift */; };
 		AFFED3A22C51448D001DB112 /* TeacherPageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFED3A12C51448D001DB112 /* TeacherPageHeader.swift */; };
 		AFFED3A62C51D0E4001DB112 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFED3A52C51D0E4001DB112 /* HomeView.swift */; };
@@ -49,12 +52,15 @@
 		AF38BF422C4F7518003BF9FD /* StudentSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSignUpView.swift; sourceTree = "<group>"; };
 		AF38BF452C4F766D003BF9FD /* ChooseRoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseRoleView.swift; sourceTree = "<group>"; };
 		AF38BF472C4F7E9E003BF9FD /* EntireSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntireSignInView.swift; sourceTree = "<group>"; };
+		AF5594862C53229A00D1133F /* ㅓ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ㅓ.swift"; sourceTree = "<group>"; };
 		AFC320292BCABA6E0086482E /* Cl-ck-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Cl-ck-Info.plist"; sourceTree = SOURCE_ROOT; };
 		AFD3D5C12C4E6CB20033C661 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		AFDD3D292BC82CC8002B4B98 /* MainCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCalendarView.swift; sourceTree = "<group>"; };
 		AFDD3D2D2BC969DB002B4B98 /* CalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
 		AFF0D1482C5269EB00E2B4B2 /* NavigationControllerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerWrapper.swift; sourceTree = "<group>"; };
 		AFF0D14A2C526A6E00E2B4B2 /* ScheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCell.swift; sourceTree = "<group>"; };
+		AFF7A92E2C527D4700F4582B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		AFF7A9312C527DD100F4582B /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 		AFFED39F2C514091001DB112 /* TeacherPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherPageView.swift; sourceTree = "<group>"; };
 		AFFED3A12C51448D001DB112 /* TeacherPageHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherPageHeader.swift; sourceTree = "<group>"; };
 		AFFED3A52C51D0E4001DB112 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -104,6 +110,7 @@
 				AFDD3D292BC82CC8002B4B98 /* MainCalendarView.swift */,
 				AFDD3D2D2BC969DB002B4B98 /* CalenderView.swift */,
 				AFFED3C82C524F97001DB112 /* ㅁㄹㄹㄹ.swift */,
+				AF5594862C53229A00D1133F /* ㅓ.swift */,
 				7C7E59442BAC1FC500D39E2C /* Assets.xcassets */,
 				7C7E59462BAC1FC500D39E2C /* Preview Content */,
 			);
@@ -197,9 +204,27 @@
 			path = launchscreen;
 			sourceTree = "<group>";
 		};
+		AFF7A92D2C527D2900F4582B /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				AFF7A9302C527D6400F4582B /* Component */,
+				AFF7A92E2C527D4700F4582B /* ProfileView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		AFF7A9302C527D6400F4582B /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				AFF7A9312C527DD100F4582B /* ProfileImage.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		AFF7F2622C4E6A6B0007F652 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				AFF7A92D2C527D2900F4582B /* Profile */,
 				AFFED3A32C51D0C2001DB112 /* Home */,
 				AF87784E2C50E545001EAE38 /* Teacherpage */,
 				AF1D59C02C4F8CAF0074FD0E /* Alarm */,
@@ -326,6 +351,7 @@
 				AFFED3A02C514091001DB112 /* TeacherPageView.swift in Sources */,
 				AF1D59C52C4F8D110074FD0E /* AlarmCell.swift in Sources */,
 				AFF0D14B2C526A6E00E2B4B2 /* ScheduleCell.swift in Sources */,
+				AFF7A9322C527DD100F4582B /* ProfileImage.swift in Sources */,
 				AF38BF3F2C4F7428003BF9FD /* TeacherSignUpView.swift in Sources */,
 				AFFED3C72C520FFF001DB112 /* ㅇ.swift in Sources */,
 				AFFED3AA2C51D425001DB112 /* da.swift in Sources */,
@@ -334,6 +360,7 @@
 				AFFED3C52C51F5BE001DB112 /* OnBoardingScreenContent.swift in Sources */,
 				AF38BF482C4F7E9E003BF9FD /* EntireSignInView.swift in Sources */,
 				7C7E59412BAC1FC300D39E2C /* Cl_ckApp.swift in Sources */,
+				AFF7A92F2C527D4700F4582B /* ProfileView.swift in Sources */,
 				AFDD3D2E2BC969DC002B4B98 /* CalenderView.swift in Sources */,
 				AFFED3CF2C52515E001DB112 /* InformationDetailView.swift in Sources */,
 				AFFED3C92C524F97001DB112 /* ㅁㄹㄹㄹ.swift in Sources */,
@@ -341,6 +368,7 @@
 				AFF0D1492C5269EB00E2B4B2 /* NavigationControllerWrapper.swift in Sources */,
 				AF32DC2A2C4F47CD0026F88C /* OnBoardingView.swift in Sources */,
 				AF38BF462C4F766D003BF9FD /* ChooseRoleView.swift in Sources */,
+				AF5594872C53229A00D1133F /* ㅓ.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
