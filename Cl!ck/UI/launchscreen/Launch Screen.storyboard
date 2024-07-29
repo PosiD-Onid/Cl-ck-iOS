@@ -23,19 +23,18 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="ClickLogo.white" translatesAutoresizingMaskIntoConstraints="NO" id="RTJ-rb-45e">
-                                <rect key="frame" x="71.666666666666686" y="365" width="250" height="122"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="C_ickLogo.white" translatesAutoresizingMaskIntoConstraints="NO" id="Y5Z-q6-8in">
+                                <rect key="frame" x="71" y="365" width="250" height="122"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" name="MainColor"/>
                         <color key="tintColor" systemColor="labelColor"/>
                         <constraints>
-                            <constraint firstItem="RTJ-rb-45e" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="0Fi-mc-H8G"/>
                             <constraint firstItem="Bcu-3y-fUS" firstAttribute="centerX" secondItem="obG-Y5-kRd" secondAttribute="centerX" id="5cz-MP-9tL"/>
                             <constraint firstItem="obG-Y5-kRd" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="20" symbolic="YES" id="SfN-ll-jLj"/>
                             <constraint firstAttribute="bottom" secondItem="obG-Y5-kRd" secondAttribute="bottom" constant="20" id="Y44-ml-fuU"/>
-                            <constraint firstItem="RTJ-rb-45e" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="sj8-VJ-vDl"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -45,7 +44,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ClickLogo.white" width="250" height="122"/>
+        <image name="C_ickLogo.white" width="250" height="122"/>
         <namedColor name="MainColor">
             <color red="0.43900001049041748" green="0.84299999475479126" blue="0.77999997138977051" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

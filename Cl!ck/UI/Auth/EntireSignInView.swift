@@ -75,7 +75,7 @@ struct EntireSignInView: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: TeacherPageView()) {
+                NavigationLink(destination: C_ickTabView()) {
                     Text("확인")
                         .font(.system(size: 18, weight: .heavy))
                         .foregroundColor(.white)
@@ -94,6 +94,7 @@ struct EntireSignInView: View {
                 }
                 .padding(.bottom)
             }
+            .padding(.top)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {

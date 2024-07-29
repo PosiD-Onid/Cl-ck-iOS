@@ -24,19 +24,17 @@ struct ScheduleCell: View {
     
     var body: some View {
         HStack {
-            HStack {
-                Rectangle()
-                    .foregroundColor(CircleColor)
-                    .frame(maxWidth: 5, maxHeight: 50)
-                    .cornerRadius(10)
-                VStack(alignment: .leading, spacing: 5) {
-                    Text(Title)
-                        .font(.system(size: 17))
-                        .foregroundStyle(.black)
-                    Text("\(formattedTime), \(Location)")
-                        .font(.system(size: 14))
-                        .foregroundStyle(.gray)
-                }
+            Rectangle()
+                .foregroundColor(CircleColor)
+                .frame(maxWidth: 5, maxHeight: 50)
+                .cornerRadius(10)
+            VStack(alignment: .leading, spacing: 5) {
+                Text(Title)
+                    .font(.system(size: 17))
+                    .foregroundStyle(.black)
+                Text("\(formattedTime), \(Location)")
+                    .font(.system(size: 14))
+                    .foregroundStyle(.gray)
             }
         }
     }

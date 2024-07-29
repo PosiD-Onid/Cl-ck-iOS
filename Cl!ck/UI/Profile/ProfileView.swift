@@ -8,12 +8,17 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @State private var showAlert = false
+    @State private var navigateToOnboarding = false
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     let Name: String
     let Grade: Int
     let Class: Int
     let Number: Int
     
     var body: some View {
+        NavigationStack {
             VStack {
                 ZStack {
                     VStack {
@@ -54,6 +59,7 @@ struct ProfileView: View {
                 .padding(.horizontal)
                 
                 Button {
+                    self.showAlert.toggle()
                 } label: {
                     HStack {
                         Image(systemName: "nosign")
@@ -68,19 +74,33 @@ struct ProfileView: View {
                     .cornerRadius(10)
                 }
                 .padding(.horizontal)
+                .alert(isPresented: $showAlert) {
+                    Alert(
+                        title: Text("정말 회원탈퇴를 진행하시겠습니까?"),
+                        message: Text("한번 진행하면 되돌릴수 없습니다."),
+                        primaryButton: .default(
+                            Text("예"),
+                            action: {
+                                navigateToOnboarding = true
+                            }
+                        ),
+                        secondaryButton: .destructive(
+                            Text("아니요"),
+                            action: {
+                                self.presentationMode.wrappedValue.dismiss()
+                            }
+                        )
+                    )
+                }
+                
+                NavigationLink(destination: OnBoardingView(), isActive: $navigateToOnboarding) {
+                    EmptyView()
+                }
                 Spacer()
             }
-            .background(
-                VStack {
-                    Rectangle()
-                        .fill(Color.gray800.opacity(0.5))
-                        .edgesIgnoringSafeArea(.top)
-                        .frame(maxHeight: 300)
-                    Rectangle()
-                        .fill(Color.buttongary)
-                        .edgesIgnoringSafeArea(.bottom)
-                }
-            )
+            .background(Color.background)
+        }
+        .navigationBarBackButtonHidden(true)
     }
 }
 

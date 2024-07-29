@@ -9,11 +9,11 @@ import SwiftUI
 
 struct OnBoardingScreenContent: View {
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 Spacer()
                 VStack {
-                    Image("ClickLogo")
+                    Image("C_ickLogo")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(height: 100)
@@ -58,6 +58,7 @@ struct OnBoardingScreenContent: View {
                 .padding(.bottom)
             }
         }
+        .toolbar(.hidden, for: .tabBar)
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
     }

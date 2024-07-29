@@ -33,6 +33,7 @@ struct ScheduleListView: View {
             .frame(maxWidth: .infinity, maxHeight: 430)
             .background(Color.yellow)
         }
+        .toolbar(.hidden, for: .tabBar)
     }
 }
 

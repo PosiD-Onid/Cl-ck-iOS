@@ -172,6 +172,7 @@ struct TeacherSignUpView: View {
                 }
                 .padding(.bottom)
             }
+            .padding(.top)
             .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {

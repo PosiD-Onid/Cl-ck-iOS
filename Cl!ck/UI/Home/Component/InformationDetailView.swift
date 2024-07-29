@@ -36,57 +36,60 @@ struct InformationDetailView: View {
     }
     
     var body: some View {
-        VStack {
-            HStack {
-                Spacer()
-                Button {
-                    self.presentationMode.wrappedValue.dismiss()
-                } label: {
-                    Image(systemName: "xmark")
-                        .resizable()
-                        .frame(width: 20, height: 20)
-                        .foregroundColor(.black)
-                        .padding(.trailing, 20)
+        NavigationView {
+            VStack {
+                HStack {
+                    Spacer()
+                    Button {
+                        self.presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                            .foregroundColor(.black)
+                            .padding(.trailing, 20)
+                    }
+                    
                 }
-                
+                HStack {
+                    VStack(spacing: 16) {
+                        Circle()
+                            .frame(maxWidth: 25)
+                            .foregroundColor(CircleColor)
+                        Image(systemName: "calendar")
+                            .resizable()
+                            .frame(maxWidth: 23, maxHeight: 20)
+                        Image(systemName: "location")
+                            .resizable()
+                            .frame(maxWidth: 23, maxHeight: 23)
+                        Image(systemName: "bell")
+                            .resizable()
+                            .frame(maxWidth: 23, maxHeight: 23)
+                        Image(systemName: "text.alignleft")
+                            .resizable()
+                            .frame(maxWidth: 23, maxHeight: 23)
+                    }
+                    .padding(.horizontal, 30)
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text(Title)
+                            .font(.system(size: 23, weight: .semibold))
+                        Text(formattedDate)
+                            .font(.system(size: 23))
+                        Text(Location)
+                            .font(.system(size: 23))
+                        Text(formattedTime)
+                            .font(.system(size: 23))
+                        Text(Content)
+                            .font(.system(size: 23))
+                    }
+                    Spacer()
+                }
             }
-            HStack {
-                VStack(spacing: 16) {
-                    Circle()
-                        .frame(maxWidth: 25)
-                        .foregroundColor(CircleColor)
-                    Image(systemName: "calendar")
-                        .resizable()
-                        .frame(maxWidth: 23, maxHeight: 20)
-                    Image(systemName: "location")
-                        .resizable()
-                        .frame(maxWidth: 23, maxHeight: 23)
-                    Image(systemName: "bell")
-                        .resizable()
-                        .frame(maxWidth: 23, maxHeight: 23)
-                    Image(systemName: "text.alignleft")
-                        .resizable()
-                        .frame(maxWidth: 23, maxHeight: 23)
-                }
-                .padding(.horizontal, 30)
-                VStack(alignment: .leading, spacing: 12) {
-                    Text(Title)
-                        .font(.system(size: 23, weight: .semibold))
-                    Text(formattedDate)
-                        .font(.system(size: 23))
-                    Text(Location)
-                        .font(.system(size: 23))
-                    Text(formattedTime)
-                        .font(.system(size: 23))
-                    Text(Content)
-                        .font(.system(size: 23))
-                }
-                Spacer()
-            }
+            .padding(.top, 30)
+            .padding(.bottom, 100)
+            .background(Color.red)
         }
-        .padding(.top, 30)
-        .padding(.bottom, 100)
-        .background(Color.red)
+        .toolbar(.hidden, for: .tabBar)
         .navigationBarBackButtonHidden(true)
     }
 }
