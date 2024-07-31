@@ -24,7 +24,7 @@ struct TeacherTabView: View {
                     .tabItem {
                         Image(systemName: "tray")
                     }
-                ChoosePageView()
+                ProcessingResultsView()
                     .tabItem {
                         Image(systemName: "book")
                     }
