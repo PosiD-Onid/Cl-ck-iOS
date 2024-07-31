@@ -11,23 +11,14 @@ import SwiftUI
 struct AlarmView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    @State var alarmtitle = [
-        "웹프 수행평가 제출 3시간전",
-        "국어 수행평가 하루전",
-        "ㅋㅋㄹㅃㅃ",
-    ]
-    
-    @State var alarmContents = [
-        "웹프 수행평가 제출이 오후 11시 59분에 마감됩니다.",
-        "국어 수행평가가 8월 19일에 있습니다.",
-        "ㅋㅋㄹㅃㅃ 내용입니다.",
-    ]
+    let title: String = "국어 수행평가 하루전"
+    let content: String = "국어 수행평가가 8월 19일에 있습니다."
     
     var body: some View {
         NavigationView {
             List {
-                ForEach(alarmtitle.indices, id: \.self) { index in
-                    AlarmCell(title: alarmtitle[index], content: alarmContents[index])
+                ForEach(1..<10) { index in
+                    AlarmCell(title: title, content: content)
                 }
                 .onDelete(perform: deleteAlarm)
             }
@@ -57,8 +48,7 @@ struct AlarmView: View {
     }
     
     func deleteAlarm(at offsets: IndexSet) {
-        alarmtitle.remove(atOffsets: offsets)
-        alarmContents.remove(atOffsets: offsets)
+        print("delete alarm")
     }
 }
 

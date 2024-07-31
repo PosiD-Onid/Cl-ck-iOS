@@ -16,7 +16,6 @@ struct AlarmCell: View {
             Circle()
                 .frame(width: 14)
                 .foregroundColor(Color.main)
-                .padding(.leading, 20)
                 .padding(.trailing, 7)
             VStack(alignment: .leading) {
                 Text(title)
@@ -25,7 +24,6 @@ struct AlarmCell: View {
                     .font(.system(size: 15))
             }
             .foregroundColor(.black)
-            Spacer()
         }
     }
 }

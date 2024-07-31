@@ -99,6 +99,13 @@ struct ProfileView: View {
                 Spacer()
             }
             .background(Color.background)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                            Text("프로필")
+                                .font(.system(size: 25, weight: .bold))
+                                .foregroundColor(.black)
+                }
+            }
         }
         .navigationBarBackButtonHidden(true)
     }

@@ -13,14 +13,17 @@
 		7C7E59482BAC1FC500D39E2C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C7E59472BAC1FC500D39E2C /* Preview Assets.xcassets */; };
 		AF1D59C22C4F8CCC0074FD0E /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1D59C12C4F8CCC0074FD0E /* AlarmView.swift */; };
 		AF1D59C52C4F8D110074FD0E /* AlarmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1D59C42C4F8D110074FD0E /* AlarmCell.swift */; };
-		AF2D84032C5766A100C34AF5 /* C!ickTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2D84022C5766A100C34AF5 /* C!ickTabView.swift */; };
 		AF32DC2A2C4F47CD0026F88C /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF32DC292C4F47CD0026F88C /* OnBoardingView.swift */; };
 		AF38BF3B2C4F73D7003BF9FD /* ChoosePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF38BF3A2C4F73D7003BF9FD /* ChoosePageView.swift */; };
 		AF38BF3F2C4F7428003BF9FD /* TeacherSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF38BF3E2C4F7428003BF9FD /* TeacherSignUpView.swift */; };
 		AF38BF432C4F7518003BF9FD /* StudentSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF38BF422C4F7518003BF9FD /* StudentSignUpView.swift */; };
 		AF38BF462C4F766D003BF9FD /* ChooseRoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF38BF452C4F766D003BF9FD /* ChooseRoleView.swift */; };
 		AF38BF482C4F7E9E003BF9FD /* EntireSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF38BF472C4F7E9E003BF9FD /* EntireSignInView.swift */; };
+		AF4D439F2C593D4D00CDEA41 /* WrittenScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4D439E2C593D4D00CDEA41 /* WrittenScheduleView.swift */; };
+		AF4D43A22C593D5A00CDEA41 /* WrittenScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4D43A12C593D5A00CDEA41 /* WrittenScheduleCell.swift */; };
 		AF735B072C57898B009010A9 /* 캘린더.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF735B062C57898B009010A9 /* 캘린더.swift */; };
+		AF8665BE2C59BDC80031ED95 /* TeacherTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8665BD2C59BDC80031ED95 /* TeacherTabView.swift */; };
+		AF8665C12C59C43B0031ED95 /* ProcessingGradesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8665C02C59C43B0031ED95 /* ProcessingGradesView.swift */; };
 		AFD3D5C22C4E6CB20033C661 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFD3D5C12C4E6CB20033C661 /* Launch Screen.storyboard */; };
 		AFDD3D2A2BC82CC9002B4B98 /* MainCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD3D292BC82CC8002B4B98 /* MainCalendarView.swift */; };
 		AFDD3D2E2BC969DC002B4B98 /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD3D2D2BC969DB002B4B98 /* CalenderView.swift */; };
@@ -47,14 +50,17 @@
 		7C7E59472BAC1FC500D39E2C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AF1D59C12C4F8CCC0074FD0E /* AlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
 		AF1D59C42C4F8D110074FD0E /* AlarmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmCell.swift; sourceTree = "<group>"; };
-		AF2D84022C5766A100C34AF5 /* C!ickTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "C!ickTabView.swift"; sourceTree = "<group>"; };
 		AF32DC292C4F47CD0026F88C /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		AF38BF3A2C4F73D7003BF9FD /* ChoosePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosePageView.swift; sourceTree = "<group>"; };
 		AF38BF3E2C4F7428003BF9FD /* TeacherSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherSignUpView.swift; sourceTree = "<group>"; };
 		AF38BF422C4F7518003BF9FD /* StudentSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSignUpView.swift; sourceTree = "<group>"; };
 		AF38BF452C4F766D003BF9FD /* ChooseRoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseRoleView.swift; sourceTree = "<group>"; };
 		AF38BF472C4F7E9E003BF9FD /* EntireSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntireSignInView.swift; sourceTree = "<group>"; };
+		AF4D439E2C593D4D00CDEA41 /* WrittenScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrittenScheduleView.swift; sourceTree = "<group>"; };
+		AF4D43A12C593D5A00CDEA41 /* WrittenScheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrittenScheduleCell.swift; sourceTree = "<group>"; };
 		AF735B062C57898B009010A9 /* 캘린더.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "캘린더.swift"; sourceTree = "<group>"; };
+		AF8665BD2C59BDC80031ED95 /* TeacherTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherTabView.swift; sourceTree = "<group>"; };
+		AF8665C02C59C43B0031ED95 /* ProcessingGradesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingGradesView.swift; sourceTree = "<group>"; };
 		AFC320292BCABA6E0086482E /* Cl-ck-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Cl-ck-Info.plist"; sourceTree = SOURCE_ROOT; };
 		AFD3D5C12C4E6CB20033C661 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		AFDD3D292BC82CC8002B4B98 /* MainCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCalendarView.swift; sourceTree = "<group>"; };
@@ -170,6 +176,23 @@
 			path = Component;
 			sourceTree = "<group>";
 		};
+		AF4D439D2C593D4000CDEA41 /* Writtenschedule */ = {
+			isa = PBXGroup;
+			children = (
+				AF4D43A02C593D5200CDEA41 /* Component */,
+				AF4D439E2C593D4D00CDEA41 /* WrittenScheduleView.swift */,
+			);
+			path = Writtenschedule;
+			sourceTree = "<group>";
+		};
+		AF4D43A02C593D5200CDEA41 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				AF4D43A12C593D5A00CDEA41 /* WrittenScheduleCell.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		AF6718272C4E8C2E009E9AA0 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +207,30 @@
 			children = (
 				AF38BF422C4F7518003BF9FD /* StudentSignUpView.swift */,
 				AF38BF3E2C4F7428003BF9FD /* TeacherSignUpView.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		AF8665BC2C59BD9E0031ED95 /* Tabview */ = {
+			isa = PBXGroup;
+			children = (
+				AF8665BD2C59BDC80031ED95 /* TeacherTabView.swift */,
+			);
+			path = Tabview;
+			sourceTree = "<group>";
+		};
+		AF8665BF2C59C4250031ED95 /* Processinggrades */ = {
+			isa = PBXGroup;
+			children = (
+				AF8665C22C59C4410031ED95 /* Component */,
+				AF8665C02C59C43B0031ED95 /* ProcessingGradesView.swift */,
+			);
+			path = Processinggrades;
+			sourceTree = "<group>";
+		};
+		AF8665C22C59C4410031ED95 /* Component */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -226,6 +273,9 @@
 		AFF7F2622C4E6A6B0007F652 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				AF8665BF2C59C4250031ED95 /* Processinggrades */,
+				AF8665BC2C59BD9E0031ED95 /* Tabview */,
+				AF4D439D2C593D4000CDEA41 /* Writtenschedule */,
 				AFF7A92D2C527D2900F4582B /* Profile */,
 				AFFED3A32C51D0C2001DB112 /* Home */,
 				AF87784E2C50E545001EAE38 /* Teacherpage */,
@@ -262,7 +312,6 @@
 				AFFED3CE2C52515E001DB112 /* InformationDetailView.swift */,
 				AFFED3D02C525695001DB112 /* ScheduleListView.swift */,
 				AFF0D14A2C526A6E00E2B4B2 /* ScheduleCell.swift */,
-				AF2D84022C5766A100C34AF5 /* C!ickTabView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -346,23 +395,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF2D84032C5766A100C34AF5 /* C!ickTabView.swift in Sources */,
 				AFFED3A22C51448D001DB112 /* TeacherPageHeader.swift in Sources */,
 				AFDD3D2A2BC82CC9002B4B98 /* MainCalendarView.swift in Sources */,
 				AF38BF432C4F7518003BF9FD /* StudentSignUpView.swift in Sources */,
 				AFFED3A62C51D0E4001DB112 /* HomeView.swift in Sources */,
+				AF8665BE2C59BDC80031ED95 /* TeacherTabView.swift in Sources */,
 				AF38BF3B2C4F73D7003BF9FD /* ChoosePageView.swift in Sources */,
 				AFFED3A02C514091001DB112 /* TeacherPageView.swift in Sources */,
 				AF1D59C52C4F8D110074FD0E /* AlarmCell.swift in Sources */,
 				AFF0D14B2C526A6E00E2B4B2 /* ScheduleCell.swift in Sources */,
 				AFF7A9322C527DD100F4582B /* ProfileImage.swift in Sources */,
 				AF735B072C57898B009010A9 /* 캘린더.swift in Sources */,
+				AF8665C12C59C43B0031ED95 /* ProcessingGradesView.swift in Sources */,
 				AF38BF3F2C4F7428003BF9FD /* TeacherSignUpView.swift in Sources */,
+				AF4D43A22C593D5A00CDEA41 /* WrittenScheduleCell.swift in Sources */,
 				AFFED3C72C520FFF001DB112 /* ㅇ.swift in Sources */,
 				AFFED3AA2C51D425001DB112 /* da.swift in Sources */,
 				AF1D59C22C4F8CCC0074FD0E /* AlarmView.swift in Sources */,
 				7C7E59432BAC1FC300D39E2C /* ContentView.swift in Sources */,
 				AFFED3C52C51F5BE001DB112 /* OnBoardingScreenContent.swift in Sources */,
+				AF4D439F2C593D4D00CDEA41 /* WrittenScheduleView.swift in Sources */,
 				AF38BF482C4F7E9E003BF9FD /* EntireSignInView.swift in Sources */,
 				7C7E59412BAC1FC300D39E2C /* Cl_ckApp.swift in Sources */,
 				AFF7A92F2C527D4700F4582B /* ProfileView.swift in Sources */,

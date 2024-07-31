@@ -75,7 +75,7 @@ struct EntireSignInView: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: C_ickTabView()) {
+                NavigationLink(destination: TeacherTabView()) {
                     Text("확인")
                         .font(.system(size: 18, weight: .heavy))
                         .foregroundColor(.white)
