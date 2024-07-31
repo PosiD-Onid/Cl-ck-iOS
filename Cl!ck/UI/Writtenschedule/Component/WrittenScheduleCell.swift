@@ -1,18 +1,14 @@
-//
-//  WrittenScheduleCell.swift
-//  Cl!ck
-//
-//  Created by 이다경 on 7/31/24.
-//
-
 import SwiftUI
 
 struct WrittenScheduleCell: View {
-    let title: String = "내가 읽은 책 소개하기 1회차"
-    let data: String = "2099년 13월 45일 15교시"
-    let grade: Int = 2
-    let group: Int = 6
-    
+    let id: UUID // 고유 식별자
+    let title: String
+    let data: String
+    let grade: Int
+    let group: Int
+    var onEdit: (UUID) -> Void // 수정 요청을 전달할 클로저
+    var onDelete: (UUID) -> Void // 삭제 요청을 전달할 클로저
+
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
@@ -26,16 +22,31 @@ struct WrittenScheduleCell: View {
                 .font(.system(size: 15))
                 .padding(.bottom)
         }
-        .padding(.horizontal, 30)
         .padding(.vertical, 23)
+        .padding(.horizontal, 35)
         .background(
             RoundedRectangle(cornerRadius: 10)
                 .foregroundColor(.white)
                 .padding(.horizontal)
         )
+        .contextMenu {
+            NavigationLink(destination: TeacherPageView(schedule: Schedule(id: id, title: title, data: data, grade: grade, group: group))) {
+                            Button(action: {
+                                onEdit(id) // 수정 요청을 전달
+                            }) {
+                                Label("수정", systemImage: "pencil")
+                            }
+                        }
+            Button(action: {
+                onDelete(id) // 삭제 요청을 전달
+            }) {
+                Label("삭제", systemImage: "trash")
+                    .foregroundColor(.red)
+            }
+        }
     }
 }
 
 #Preview {
-    WrittenScheduleCell()
+    WrittenScheduleView()
 }

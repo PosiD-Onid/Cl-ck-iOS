@@ -23,7 +23,7 @@ struct MyResultsCell: View {
                         .background(Color.white)
                 }
                 .frame(maxWidth: .infinity, alignment: .trailing)
-                .padding(.trailing, 55)
+                .padding(.trailing, 60)
             }
             .font(.system(size: 15))
             .padding(.vertical)

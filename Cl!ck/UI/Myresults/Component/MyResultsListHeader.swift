@@ -31,9 +31,6 @@ struct MyResultsListHeader: View {
     }
 }
 
-//#Preview {
-//    MyResultsListHeader()
-//}
 #Preview {
-    MyResultsList()
+    MyResultsListHeader()
 }
