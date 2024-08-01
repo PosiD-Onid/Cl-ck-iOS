@@ -23,6 +23,7 @@
 		AF38BF432C4F7518003BF9FD /* StudentSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF38BF422C4F7518003BF9FD /* StudentSignUpView.swift */; };
 		AF38BF462C4F766D003BF9FD /* ChooseRoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF38BF452C4F766D003BF9FD /* ChooseRoleView.swift */; };
 		AF38BF482C4F7E9E003BF9FD /* EntireSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF38BF472C4F7E9E003BF9FD /* EntireSignInView.swift */; };
+		AF3A975A2C5B054D0008A136 /* dustmq.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3A97592C5B054D0008A136 /* dustmq.swift */; };
 		AF4D439F2C593D4D00CDEA41 /* WrittenScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4D439E2C593D4D00CDEA41 /* WrittenScheduleView.swift */; };
 		AF4D43A22C593D5A00CDEA41 /* WrittenScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4D43A12C593D5A00CDEA41 /* WrittenScheduleCell.swift */; };
 		AF735B072C57898B009010A9 /* 캘린더.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF735B062C57898B009010A9 /* 캘린더.swift */; };
@@ -65,6 +66,7 @@
 		AF38BF422C4F7518003BF9FD /* StudentSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSignUpView.swift; sourceTree = "<group>"; };
 		AF38BF452C4F766D003BF9FD /* ChooseRoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseRoleView.swift; sourceTree = "<group>"; };
 		AF38BF472C4F7E9E003BF9FD /* EntireSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntireSignInView.swift; sourceTree = "<group>"; };
+		AF3A97592C5B054D0008A136 /* dustmq.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dustmq.swift; sourceTree = "<group>"; };
 		AF4D439E2C593D4D00CDEA41 /* WrittenScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrittenScheduleView.swift; sourceTree = "<group>"; };
 		AF4D43A12C593D5A00CDEA41 /* WrittenScheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrittenScheduleCell.swift; sourceTree = "<group>"; };
 		AF735B062C57898B009010A9 /* 캘린더.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "캘린더.swift"; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				7C7E59422BAC1FC300D39E2C /* ContentView.swift */,
 				AFF0D1482C5269EB00E2B4B2 /* NavigationControllerWrapper.swift */,
 				AFDD3D292BC82CC8002B4B98 /* MainCalendarView.swift */,
+				AF3A97592C5B054D0008A136 /* dustmq.swift */,
 				AFDD3D2D2BC969DB002B4B98 /* CalenderView.swift */,
 				AF735B062C57898B009010A9 /* 캘린더.swift */,
 				AFFED3C82C524F97001DB112 /* ㅁㄹㄹㄹ.swift */,
@@ -424,6 +427,7 @@
 				AFFED3A62C51D0E4001DB112 /* HomeView.swift in Sources */,
 				AF8665BE2C59BDC80031ED95 /* TeacherTabView.swift in Sources */,
 				AF38BF3B2C4F73D7003BF9FD /* ChoosePageView.swift in Sources */,
+				AF3A975A2C5B054D0008A136 /* dustmq.swift in Sources */,
 				AFFED3A02C514091001DB112 /* TeacherPageView.swift in Sources */,
 				AF1B19092C5A084F0035747B /* MyResultsListHeader.swift in Sources */,
 				AF1D59C52C4F8D110074FD0E /* AlarmCell.swift in Sources */,

@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct TeacherTabView: View {
-    @State private var selectedTab = 0
     
-//    init() {
-//        UITabBar.appearance().backgroundColor = UIColor.white
-//    }
+    //    init() {
+    //        UITabBar.appearance().backgroundColor = UIColor.white
+    //    }
     var body: some View {
-        NavigationView {
+        NavigationStack {
             TabView {
                 ProfileView(Name: "d", Grade: 2, Class: 2, Number: 4)
                     .tabItem {
@@ -41,5 +40,5 @@ struct TeacherTabView: View {
 }
 
 #Preview {
-    TeacherTabView() // No arguments are needed here
+    TeacherTabView()
 }

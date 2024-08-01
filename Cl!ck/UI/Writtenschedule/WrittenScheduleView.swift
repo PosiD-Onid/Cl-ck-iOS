@@ -26,7 +26,7 @@ struct WrittenScheduleView: View {
     @State private var selectedSchedule: Schedule? // 수정할 항목을 저장
     
     var body: some View {
-        NavigationStack {
+        NavigationView {
             ZStack {
                 Color.background
                     .edgesIgnoringSafeArea(.all)

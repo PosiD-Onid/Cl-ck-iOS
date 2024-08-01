@@ -18,7 +18,7 @@ struct ProfileView: View {
     let Number: Int
     
     var body: some View {
-        NavigationStack {
+        NavigationView {
             VStack {
                 ZStack {
                     VStack {

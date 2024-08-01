@@ -68,6 +68,7 @@ struct ProcessingResultsView: View {
         NavigationView {
             ZStack {
                 Color.background.edgesIgnoringSafeArea(.all)
+                    .ignoresSafeArea(.all)
                 VStack {
                     CustomScrollTabView(
                         views: [
