@@ -17,7 +17,7 @@ struct StudentTabView: View {
     var body: some View {
         NavigationView {
             TabView {
-                ProfileView(Name: "d", Grade: 2, Class: 2, Number: 4)
+                HomeView()
                     .tabItem {
                         Image(systemName: "house")
                     }

@@ -15,7 +15,7 @@ struct TeacherTabView: View {
     var body: some View {
         NavigationStack {
             TabView {
-                ProfileView(Name: "d", Grade: 2, Class: 2, Number: 4)
+                HomeView()
                     .tabItem {
                         Image(systemName: "house")
                     }
@@ -32,7 +32,7 @@ struct TeacherTabView: View {
                         Image(systemName: "person")
                     }
             }
-            .font(.headline)
+//            .font(.headline)
             .tint(Color.main)
         }
         .navigationBarBackButtonHidden(true)

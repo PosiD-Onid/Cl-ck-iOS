@@ -60,7 +60,7 @@ struct WrittenScheduleView: View {
                     NavigationLink(destination: TeacherPageView()) {
                         Image(systemName: "plus.square")
                             .resizable()
-                            .frame(width: 25, height: 25)
+                            .frame(width: 30, height: 30)
                             .foregroundColor(.black)
                     }
                 }

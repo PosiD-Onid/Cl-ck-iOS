@@ -105,7 +105,7 @@ struct ProcessingResultsView: View {
                         }) {
                             Image(systemName: "line.3.horizontal")
                                 .resizable()
-                                .frame(width: 22, height: 17)
+                                .frame(width: 30, height: 20)
                                 .foregroundColor(.black)
                         }
                     }
