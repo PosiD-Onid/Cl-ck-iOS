@@ -17,6 +17,10 @@
 		AF1B190B2C5A09B30035747B /* MyResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1B190A2C5A09B30035747B /* MyResultsCell.swift */; };
 		AF1D59C22C4F8CCC0074FD0E /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1D59C12C4F8CCC0074FD0E /* AlarmView.swift */; };
 		AF1D59C52C4F8D110074FD0E /* AlarmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1D59C42C4F8D110074FD0E /* AlarmCell.swift */; };
+		AF30B45C2C84559D00325B94 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B45B2C84559D00325B94 /* APIConstants.swift */; };
+		AF30B45E2C84571300325B94 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B45D2C84571300325B94 /* NetworkResult.swift */; };
+		AF30B4612C8458F000325B94 /* authModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B4602C8458F000325B94 /* authModel.swift */; };
+		AF30B4632C845EFB00325B94 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B4622C845EFB00325B94 /* Service.swift */; };
 		AF32DC2A2C4F47CD0026F88C /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF32DC292C4F47CD0026F88C /* OnBoardingView.swift */; };
 		AF38BF3B2C4F73D7003BF9FD /* ChoosePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF38BF3A2C4F73D7003BF9FD /* ChoosePageView.swift */; };
 		AF38BF3F2C4F7428003BF9FD /* TeacherSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF38BF3E2C4F7428003BF9FD /* TeacherSignUpView.swift */; };
@@ -59,6 +63,10 @@
 		AF1B190A2C5A09B30035747B /* MyResultsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyResultsCell.swift; sourceTree = "<group>"; };
 		AF1D59C12C4F8CCC0074FD0E /* AlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
 		AF1D59C42C4F8D110074FD0E /* AlarmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmCell.swift; sourceTree = "<group>"; };
+		AF30B45B2C84559D00325B94 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIConstants.swift; path = ../../APIConstants.swift; sourceTree = "<group>"; };
+		AF30B45D2C84571300325B94 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		AF30B4602C8458F000325B94 /* authModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = authModel.swift; sourceTree = "<group>"; };
+		AF30B4622C845EFB00325B94 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		AF32DC292C4F47CD0026F88C /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		AF38BF3A2C4F73D7003BF9FD /* ChoosePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosePageView.swift; sourceTree = "<group>"; };
 		AF38BF3E2C4F7428003BF9FD /* TeacherSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherSignUpView.swift; sourceTree = "<group>"; };
@@ -124,6 +132,10 @@
 				AFC320292BCABA6E0086482E /* Cl-ck-Info.plist */,
 				7C7E59402BAC1FC300D39E2C /* Cl_ckApp.swift */,
 				7C7E59422BAC1FC300D39E2C /* ContentView.swift */,
+				AF30B45B2C84559D00325B94 /* APIConstants.swift */,
+				AF30B4622C845EFB00325B94 /* Service.swift */,
+				AF30B45D2C84571300325B94 /* NetworkResult.swift */,
+				AF30B45F2C84585400325B94 /* Model */,
 				AFF0D1482C5269EB00E2B4B2 /* NavigationControllerWrapper.swift */,
 				AFDD3D2D2BC969DB002B4B98 /* CalenderView.swift */,
 				7C7E59442BAC1FC500D39E2C /* Assets.xcassets */,
@@ -173,6 +185,14 @@
 				AF1D59C42C4F8D110074FD0E /* AlarmCell.swift */,
 			);
 			path = Component;
+			sourceTree = "<group>";
+		};
+		AF30B45F2C84585400325B94 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AF30B4602C8458F000325B94 /* authModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		AF32DC282C4F47C40026F88C /* Onboarding */ = {
@@ -433,16 +453,19 @@
 				AF9952362C59F78100F1DD9A /* ProcessingResultsList.swift in Sources */,
 				AF4D43A22C593D5A00CDEA41 /* WrittenScheduleCell.swift in Sources */,
 				AF9952342C59F3BE00F1DD9A /* ProcessingResultsListHeader.swift in Sources */,
+				AF30B4632C845EFB00325B94 /* Service.swift in Sources */,
 				AF1D59C22C4F8CCC0074FD0E /* AlarmView.swift in Sources */,
 				7C7E59432BAC1FC300D39E2C /* ContentView.swift in Sources */,
 				AFFED3C52C51F5BE001DB112 /* OnBoardingScreenContent.swift in Sources */,
 				AF4D439F2C593D4D00CDEA41 /* WrittenScheduleView.swift in Sources */,
 				AF38BF482C4F7E9E003BF9FD /* EntireSignInView.swift in Sources */,
 				7C7E59412BAC1FC300D39E2C /* Cl_ckApp.swift in Sources */,
+				AF30B45E2C84571300325B94 /* NetworkResult.swift in Sources */,
 				AF0E2D492C5A265D0018D3F0 /* StudentTabView.swift in Sources */,
 				AF63D4272C5B888900CA374B /* DateFormatter.swift in Sources */,
 				AFF7A92F2C527D4700F4582B /* ProfileView.swift in Sources */,
 				AFDD3D2E2BC969DC002B4B98 /* CalenderView.swift in Sources */,
+				AF30B4612C8458F000325B94 /* authModel.swift in Sources */,
 				AF63D4252C5B887400CA374B /* WeekdaySymbolsView.swift in Sources */,
 				AFFED3CF2C52515E001DB112 /* InformationDetailView.swift in Sources */,
 				AF9952322C59D7AE00F1DD9A /* ProcessingResultsView.swift in Sources */,
@@ -451,6 +474,7 @@
 				AF63D4232C5B886600CA374B /* CalendarCellView.swift in Sources */,
 				AF32DC2A2C4F47CD0026F88C /* OnBoardingView.swift in Sources */,
 				AF0E2D472C5A24D40018D3F0 /* MyResultsView.swift in Sources */,
+				AF30B45C2C84559D00325B94 /* APIConstants.swift in Sources */,
 				AF1B190B2C5A09B30035747B /* MyResultsCell.swift in Sources */,
 				AF63D4212C5B884D00CA374B /* CalendarGridView.swift in Sources */,
 				AF38BF462C4F766D003BF9FD /* ChooseRoleView.swift in Sources */,
