@@ -1,44 +1,20 @@
 //
-//  SfidaTabView.swift
-//  sfida
+//  OnBoardingView.swift
+//  Cl!ck
 //
-//  Created by dgsw8th61 on 7/16/24.
+//  Created by 이다경 on 7/23/24.
 //
 
 import SwiftUI
 
 struct TeacherTabView: View {
-    
-    //    init() {
-    //        UITabBar.appearance().backgroundColor = UIColor.white
-    //    }
     var body: some View {
-        NavigationStack {
-            TabView {
-                HomeView()
-                    .tabItem {
-                        Image(systemName: "house")
-                    }
-                WrittenScheduleView()
-                    .tabItem {
-                        Image(systemName: "tray")
-                    }
-                ProcessingResultsView()
-                    .tabItem {
-                        Image(systemName: "book")
-                    }
-                ProfileView(Name: "d", Grade: 2, Class: 2, Number: 4)
-                    .tabItem {
-                        Image(systemName: "person")
-                    }
-            }
-//            .font(.headline)
-            .tint(Color.main)
-        }
-        .navigationBarBackButtonHidden(true)
+        NavigationControllerWrapper(viewController: UIHostingController(rootView: TeacherTabScreenCotent()))
     }
 }
 
+
+
 #Preview {
-    TeacherTabView()
+    OnBoardingView()
 }

@@ -2,7 +2,6 @@ import SwiftUI
 
 struct StudentSignUpView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
     @State private var name = ""
     @State private var username = ""
     @State private var password = ""
@@ -13,8 +12,11 @@ struct StudentSignUpView: View {
     @State private var isTextFieldFilled = false
     @State private var isPasswordFilled = false
     @State private var passwordsMatch = true
+    @State private var showAlert = false
+    @State private var errorMessage = ""
     
     @FocusState private var focusedField: Field?
+    @State private var navigateToOnBoarding = false
     
     enum Field {
         case name
@@ -126,7 +128,34 @@ struct StudentSignUpView: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: OnBoardingView()) {
+                Button(action: {
+                    UIApplication.shared.endEditing()
+                    if isTextFieldFilled && isPasswordFilled && passwordsMatch {
+                        AuthService.shared.s_signup(s_id: username, s_name: name, s_pass: password) { result in
+                            switch result {
+                            case .success:
+                                DispatchQueue.main.async {
+                                    navigateToOnBoarding = true
+                                }
+                            case .requestErr(let err):
+                                errorMessage = err as? String ?? "요청 에러 발생"
+                                showAlert = true
+                            case .pathErr:
+                                errorMessage = "잘못된 경로"
+                                showAlert = true
+                            case .serverErr:
+                                errorMessage = "서버 오류"
+                                showAlert = true
+                            case .networkFail:
+                                errorMessage = "네트워크 실패"
+                                showAlert = true
+                            }
+                        }
+                    } else {
+                        errorMessage = "모든 필드를 정확히 입력하세요."
+                        showAlert = true
+                    }
+                }) {
                     Text("확인")
                         .font(.system(size: 18, weight: .heavy))
                         .foregroundColor(.white)
@@ -137,6 +166,13 @@ struct StudentSignUpView: View {
                 }
                 .padding(.horizontal, 29)
                 .disabled(!isTextFieldFilled || !isPasswordFilled || !passwordsMatch)
+                .alert(isPresented: $showAlert) {
+                    Alert(title: Text("오류"), message: Text(errorMessage), dismissButton: .default(Text("확인")))
+                }
+                
+                NavigationLink(destination: OnBoardingView(), isActive: $navigateToOnBoarding) {
+                    EmptyView()
+                }
                 
                 NavigationLink(destination: EntireSignInView()) {
                     Text("이미 회원가입을 진행했나요?")
@@ -177,8 +213,4 @@ struct StudentSignUpView: View {
         isPasswordFilled = !password.isEmpty && !checkpassword.isEmpty
         passwordsMatch = password == checkpassword
     }
-}
-
-#Preview {
-    StudentSignUpView()
 }

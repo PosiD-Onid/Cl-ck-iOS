@@ -1,42 +1,20 @@
 //
-//  StudentTabView.swift
+//  OnBoardingView.swift
 //  Cl!ck
 //
-//  Created by 이다경 on 7/31/24.
+//  Created by 이다경 on 7/23/24.
 //
-
 
 import SwiftUI
 
 struct StudentTabView: View {
-    @State private var selectedTab = 0
-    
-//    init() {
-//        UITabBar.appearance().backgroundColor = UIColor.white
-//    }
     var body: some View {
-        NavigationView {
-            TabView {
-                HomeView()
-                    .tabItem {
-                        Image(systemName: "house")
-                    }
-                MyResultsView()
-                    .tabItem {
-                        Image(systemName: "book")
-                    }
-                ProfileView(Name: "d", Grade: 2, Class: 2, Number: 4)
-                    .tabItem {
-                        Image(systemName: "person")
-                    }
-            }
-            .font(.headline)
-            .tint(Color.main)
-        }
-        .navigationBarBackButtonHidden(true)
+        NavigationControllerWrapper(viewController: UIHostingController(rootView: StudentTabScreenContent()))
     }
 }
 
+
+
 #Preview {
-    StudentTabView()
+    OnBoardingView()
 }

@@ -14,8 +14,11 @@ struct TeacherSignUpView: View {
     @State private var isTextFieldFilled = false
     @State private var isPasswordFilled = false
     @State private var passwordsMatch = true
+    @State private var showAlert = false
+    @State private var errorMessage = ""
     
     @FocusState private var focusedField: Field?
+    @State private var navigateToOnBoarding = false
     
     enum Field {
         case name
@@ -39,9 +42,7 @@ struct TeacherSignUpView: View {
                             RoundedRectangle(cornerRadius: 6)
                                 .stroke(Color.gray, lineWidth: 1)
                         )
-                        .onChange(of: name) { _ in
-                            checkTextFields()
-                        }
+                        .onChange(of: name) { _ in checkTextFields() }
                         .focused($focusedField, equals: .name)
                         .submitLabel(.next)
                         .onSubmit {
@@ -55,9 +56,7 @@ struct TeacherSignUpView: View {
                             RoundedRectangle(cornerRadius: 6)
                                 .stroke(Color.gray, lineWidth: 1)
                         )
-                        .onChange(of: subject) { _ in
-                            checkTextFields()
-                        }
+                        .onChange(of: subject) { _ in checkTextFields() }
                         .focused($focusedField, equals: .subject)
                         .submitLabel(.next)
                         .onSubmit {
@@ -71,9 +70,7 @@ struct TeacherSignUpView: View {
                             RoundedRectangle(cornerRadius: 6)
                                 .stroke(Color.gray, lineWidth: 1)
                         )
-                        .onChange(of: username) { _ in
-                            checkTextFields()
-                        }
+                        .onChange(of: username) { _ in checkTextFields() }
                         .focused($focusedField, equals: .username)
                         .submitLabel(.next)
                         .onSubmit {
@@ -104,9 +101,7 @@ struct TeacherSignUpView: View {
                         RoundedRectangle(cornerRadius: 6)
                             .stroke(Color.gray, lineWidth: 1)
                     )
-                    .onChange(of: password) { _ in
-                        checkPasswordMatch()
-                    }
+                    .onChange(of: password) { _ in checkPasswordMatch() }
                     .focused($focusedField, equals: .password)
                     .submitLabel(.next)
                     .onSubmit {
@@ -139,9 +134,7 @@ struct TeacherSignUpView: View {
                         RoundedRectangle(cornerRadius: 6)
                             .stroke(Color.gray, lineWidth: 1)
                     )
-                    .onChange(of: checkpassword) { _ in
-                        checkPasswordMatch()
-                    }
+                    .onChange(of: checkpassword) { _ in checkPasswordMatch() }
                     
                     if !passwordsMatch {
                         Text("비밀번호가 일치하지 않습니다.")
@@ -153,7 +146,29 @@ struct TeacherSignUpView: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: OnBoardingView()) {
+                Button(action: {
+                    UIApplication.shared.endEditing()
+                    AuthService.shared.t_signup(t_id: username, t_name: name, t_pass: password, t_subject: subject) { result in
+                        switch result {
+                        case .success:
+                            DispatchQueue.main.async {
+                                navigateToOnBoarding = true
+                            }
+                        case .requestErr(let err):
+                            errorMessage = err as? String ?? "요청 에러 발생"
+                            showAlert = true
+                        case .pathErr:
+                            errorMessage = "잘못된 경로"
+                            showAlert = true
+                        case .serverErr:
+                            errorMessage = "서버 오류"
+                            showAlert = true
+                        case .networkFail:
+                            errorMessage = "네트워크 실패"
+                            showAlert = true
+                        }
+                    }
+                }) {
                     Text("확인")
                         .font(.system(size: 18, weight: .heavy))
                         .foregroundColor(.white)
@@ -164,6 +179,13 @@ struct TeacherSignUpView: View {
                 }
                 .padding(.horizontal, 29)
                 .disabled(!isTextFieldFilled || !isPasswordFilled || !passwordsMatch)
+                .alert(isPresented: $showAlert) {
+                    Alert(title: Text("오류"), message: Text(errorMessage), dismissButton: .default(Text("확인")))
+                }
+                
+                NavigationLink(destination: OnBoardingView(), isActive: $navigateToOnBoarding) {
+                    EmptyView()
+                }
                 
                 NavigationLink(destination: EntireSignInView()) {
                     Text("이미 회원가입을 진행하셨나요?")
