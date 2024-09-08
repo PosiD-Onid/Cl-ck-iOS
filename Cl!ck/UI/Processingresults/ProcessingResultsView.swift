@@ -19,12 +19,12 @@ public struct CustomScrollTabView<Selection>: View where Selection: Hashable & I
     @Binding var selection: Selection
     @State private var barXOffset: CGFloat = 0
     @State private var barIsActive = false
-
+    
     public init(views: [Selection: AnyView], selection: Binding<Selection>) {
         self.views = views
         self._selection = selection
     }
-
+    
     public var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 5) {
@@ -66,32 +66,29 @@ struct ProcessingResultsView: View {
     
     var body: some View {
         NavigationView {
-            ZStack {
-                Color.background.edgesIgnoringSafeArea(.all)
-                    .ignoresSafeArea(.all)
-                VStack {
-                    CustomScrollTabView(
-                        views: [
-                            Tab(id: 1, title: "1-1"): AnyView(Text("1-1")),
-                            Tab(id: 2, title: "1-2"): AnyView(Text("1-2")),
-                            Tab(id: 3, title: "1-3"): AnyView(Text("1-3")),
-                            Tab(id: 4, title: "1-4"): AnyView(Text("1-4")),
-                            Tab(id: 5, title: "2-1"): AnyView(Text("2-1")),
-                            Tab(id: 6, title: "2-2"): AnyView(Text("2-2")),
-                            Tab(id: 7, title: "2-3"): AnyView(Text("2-3")),
-                            Tab(id: 8, title: "2-4"): AnyView(Text("2-4")),
-                            Tab(id: 9, title: "3-1"): AnyView(Text("3-1")),
-                            Tab(id: 10, title: "3-2"): AnyView(Text("3-2")),
-                            Tab(id: 11, title: "3-3"): AnyView(Text("3-3")),
-                            Tab(id: 12, title: "3-4"): AnyView(Text("3-4"))
-                        ],
-                        selection: $selectedTab
-                    )
-                    .padding(.horizontal)
-                    selectedTabView(for: selectedTab)
-                    Spacer()
-                }
+            VStack {
+                CustomScrollTabView(
+                    views: [
+                        Tab(id: 1, title: "1-1"): AnyView(Text("1-1")),
+                        Tab(id: 2, title: "1-2"): AnyView(Text("1-2")),
+                        Tab(id: 3, title: "1-3"): AnyView(Text("1-3")),
+                        Tab(id: 4, title: "1-4"): AnyView(Text("1-4")),
+                        Tab(id: 5, title: "2-1"): AnyView(Text("2-1")),
+                        Tab(id: 6, title: "2-2"): AnyView(Text("2-2")),
+                        Tab(id: 7, title: "2-3"): AnyView(Text("2-3")),
+                        Tab(id: 8, title: "2-4"): AnyView(Text("2-4")),
+                        Tab(id: 9, title: "3-1"): AnyView(Text("3-1")),
+                        Tab(id: 10, title: "3-2"): AnyView(Text("3-2")),
+                        Tab(id: 11, title: "3-3"): AnyView(Text("3-3")),
+                        Tab(id: 12, title: "3-4"): AnyView(Text("3-4"))
+                    ],
+                    selection: $selectedTab
+                )
+                .padding(.horizontal)
+                selectedTabView(for: selectedTab)
+                Spacer()
             }
+            .background(Color.background)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Text("성적 처리")
@@ -167,6 +164,7 @@ struct TabMenuView: View {
                     }
                 }
             }
+            .foregroundColor(.black)
             .navigationTitle("탭 선택")
             .navigationBarItems(trailing: Button("닫기") {
                 presentationMode.wrappedValue.dismiss()

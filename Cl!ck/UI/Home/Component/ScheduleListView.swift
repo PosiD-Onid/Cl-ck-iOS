@@ -17,6 +17,7 @@ struct ScheduleListView: View {
 
     var body: some View {
         VStack {
+            Divider()
             RoundedRectangle(cornerRadius: 10)
                 .frame(width: 50, height: 3)
                 .foregroundColor(.gray)

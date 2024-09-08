@@ -17,7 +17,6 @@ struct HomeView: View {
                         .frame(maxHeight: .infinity)
                     
                     if isBViewVisible {
-                        Divider()
                         ScheduleListView(selectedDate: selectedDate)
                             .frame(height: UIScreen.main.bounds.height / 2.5)
                             .offset(y: bViewOffset)

@@ -27,28 +27,25 @@ struct WrittenScheduleView: View {
     
     var body: some View {
         NavigationView {
-            ZStack {
-                Color.background
-                    .edgesIgnoringSafeArea(.all)
-                ScrollView {
-                    ForEach(viewModel.schedules) { schedule in
-                        WrittenScheduleCell(id: schedule.id,
-                                            title: schedule.title,
-                                            data: schedule.data,
-                                            grade: schedule.grade,
-                                            group: schedule.group,
-                                            onEdit: { id in
-                                                if let selected = viewModel.schedules.first(where: { $0.id == id }) {
-                                                    selectedSchedule = selected
-                                                }
-                                            },
-                                            onDelete: { id in
-                                                viewModel.deleteSchedule(id: id)
-                                            })
-                    }
-                    .padding(.top)
+            ScrollView {
+                ForEach(viewModel.schedules) { schedule in
+                    WrittenScheduleCell(id: schedule.id,
+                                        title: schedule.title,
+                                        data: schedule.data,
+                                        grade: schedule.grade,
+                                        group: schedule.group,
+                                        onEdit: { id in
+                        if let selected = viewModel.schedules.first(where: { $0.id == id }) {
+                            selectedSchedule = selected
+                        }
+                    },
+                                        onDelete: { id in
+                        viewModel.deleteSchedule(id: id)
+                    })
                 }
+                .padding(.top)
             }
+            .background(Color.background)
             .navigationBarBackButtonHidden()
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {

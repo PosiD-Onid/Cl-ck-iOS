@@ -58,40 +58,6 @@ struct ProfileView: View {
                 }
                 .padding(.horizontal)
                 
-                Button {
-                    self.showAlert.toggle()
-                } label: {
-                    HStack {
-                        Image(systemName: "nosign")
-                        Text("회원탈퇴")
-                        Spacer()
-                    }
-                    .padding(.leading)
-                    .font(.system(size: 20))
-                    .foregroundColor(.red)
-                    .frame(maxWidth: .infinity, maxHeight: 60)
-                    .background(.white)
-                    .cornerRadius(10)
-                }
-                .padding(.horizontal)
-                .alert(isPresented: $showAlert) {
-                    Alert(
-                        title: Text("정말 회원탈퇴를 진행하시겠습니까?"),
-                        message: Text("한번 진행하면 되돌릴수 없습니다."),
-                        primaryButton: .default(
-                            Text("예"),
-                            action: {
-                                navigateToOnboarding = true
-                            }
-                        ),
-                        secondaryButton: .destructive(
-                            Text("아니요"),
-                            action: {
-                                self.presentationMode.wrappedValue.dismiss()
-                            }
-                        )
-                    )
-                }
                 
                 NavigationLink(destination: OnBoardingView(), isActive: $navigateToOnboarding) {
                     EmptyView()

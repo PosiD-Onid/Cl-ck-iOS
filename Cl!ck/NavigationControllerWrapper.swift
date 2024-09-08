@@ -14,8 +14,7 @@ struct NavigationControllerWrapper: UIViewControllerRepresentable {
 
     class Coordinator: NSObject, UIGestureRecognizerDelegate {
         func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-            // Disable swipe back gesture on certain conditions
-            return true // or false based on your condition
+            return true // 적절한 조건을 설정하여 제스처 인식 여부를 결정할 수 있습니다.
         }
     }
 
