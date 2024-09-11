@@ -24,7 +24,7 @@ struct TeacherTabView: View {
                     .tabItem {
                         Image(systemName: "book")
                     }
-                ProfileView(Name: "d", Grade: 2, Class: 2, Number: 4)
+                TeachersProfileView(Name: "d", Subject: "국어국문학")
                     .tabItem {
                         Image(systemName: "person")
                     }

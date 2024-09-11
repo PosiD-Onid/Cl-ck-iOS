@@ -20,7 +20,7 @@ struct StudentTabView: View {
                     .tabItem {
                         Image(systemName: "book")
                     }
-                ProfileView(Name: "d", Grade: 2, Class: 2, Number: 4)
+                StudentsProfileView(Name: "d", Grade: 2, Class: 2, Number: 4)
                     .tabItem {
                         Image(systemName: "person")
                     }

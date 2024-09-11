@@ -7,15 +7,13 @@
 
 import SwiftUI
 
-struct ProfileView: View {
+struct TeachersProfileView: View {
     @State private var showAlert = false
     @State private var navigateToOnboarding = false
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     let Name: String
-    let Grade: Int
-    let Class: Int
-    let Number: Int
+    let Subject: String
     
     var body: some View {
         NavigationView {
@@ -37,7 +35,7 @@ struct ProfileView: View {
                         
                         Text(Name)
                             .font(.system(size: 30, weight: .heavy))
-                        Text("\(Grade)학년 \(Class)반 \(Number)번")
+                        Text("\(Subject)")
                             .font(.system(size: 18, weight: .regular))
                     }
                     .padding(.horizontal, 35)
@@ -79,5 +77,5 @@ struct ProfileView: View {
 
 
 #Preview {
-    ProfileView(Name: "이다경", Grade: 2, Class: 2, Number: 4)
+    TeachersProfileView(Name: "이다경", Subject: "국어국문학")
 }

@@ -113,26 +113,33 @@ class AuthService {
                 guard let statusCode = response.response?.statusCode else { return }
                 
                 if (200...299).contains(statusCode) {
-                    // 로그인 성공 시 데이터 확인
-                    if let responseString = String(data: data, encoding: .utf8) {
-                        if responseString.contains("사용자 유형: student") {
-                            completion(.success("student"))
-                        } else if responseString.contains("사용자 유형: teacher") {
-                            completion(.success("teacher"))
+                    do {
+                        // JSON 데이터를 파싱
+                        if let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                           let userType = jsonObject["userType"] as? String {
+                            if userType == "student" {
+                                completion(.success("student"))
+                            } else if userType == "teacher" {
+                                completion(.success("teacher"))
+                            } else {
+                                completion(.pathErr)
+                            }
                         } else {
                             completion(.pathErr)
                         }
-                    } else {
+                    } catch {
                         completion(.pathErr)
                     }
                 } else {
-                    if let responseString = String(data: data, encoding: .utf8) {
-                        if responseString.contains("비밀번호가 일치하지 않습니다.") {
+                    if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                       let message = jsonObject["message"] as? String {
+                        // 서버에서 반환된 오류 메시지 처리
+                        if message == "비밀번호가 일치하지 않습니다." {
                             completion(.requestErr("비밀번호가 일치하지 않습니다."))
-                        } else if responseString.contains("가입되지 않은 회원입니다.") {
+                        } else if message == "가입되지 않은 회원입니다." {
                             completion(.requestErr("가입되지 않은 회원입니다."))
                         } else {
-                            completion(.requestErr(responseString))
+                            completion(.requestErr(message))
                         }
                     } else {
                         completion(.pathErr)
