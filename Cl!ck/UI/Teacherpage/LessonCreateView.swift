@@ -3,130 +3,118 @@ import Alamofire
 
 struct LessonCreateView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
-    @State private var title: String = ""
-    @State private var content: String = ""
-    @State private var grade: String = ""
-    @State private var `class`: String = ""
-    @State private var semester: String = ""
-    @State private var place: String = ""
-    @State private var year: String = ""
-
     @State private var isSubmitting = false
     @State private var submissionMessage: String? = nil
     @State private var showAlert = false
+    @State private var isLessonCreated = false // 수업 생성 상태를 관리
     
-    @FocusState private var focusedField: Field?
-
-    enum Field {
-        case title
-        case content
-        case grade
-        case `class`
-        case semester
-        case place
-        case year
-    }
+    let grades = ["1", "2", "3"]
+    let classes = ["1", "2", "3", "4"]
+    let semesters = ["1", "2"]
+    let places = ["교실", "국어실", "수학실", "음악실", "과학실", "임베디드실", "체육관"]
     
-    var teacherId: String = "teacherID" // 실제 사용자 ID로 교체 필요
+    @State private var title: String = ""
+    @State private var content: String = ""
+    @State private var selectedGrade = "1"
+    @State private var selectedClass = "1"
+    @State private var selectedSemester = "1"
+    @State private var selectedPlace = "교실"
+    @State private var year: String = ""
+    
+    var teacherId: String = "qwe" // 실제 사용자 ID로 교체 필요
 
     var body: some View {
-        NavigationStack {
-            VStack(alignment: .leading, spacing: 16) {
-                Text("수업 생성하기")
-                    .font(.system(size: 23, weight: .bold))
-
-                Group {
-                    TextField("수업 제목", text: $title)
-                        .focused($focusedField, equals: .title)
-                        .submitLabel(.next)
-                        .onSubmit { focusedField = .content }
-                        .padding()
-                        .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.gray, lineWidth: 1))
-
-                    TextField("수업 내용", text: $content)
-                        .focused($focusedField, equals: .content)
-                        .submitLabel(.next)
-                        .onSubmit { focusedField = .grade }
-                        .padding()
-                        .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.gray, lineWidth: 1))
-
-                    TextField("학년", text: $grade)
-                        .keyboardType(.numberPad)
-                        .focused($focusedField, equals: .grade)
-                        .submitLabel(.next)
-                        .onSubmit { focusedField = .class }
-                        .padding()
-                        .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.gray, lineWidth: 1))
-
-                    TextField("반", text: $class)
-                        .keyboardType(.numberPad)
-                        .focused($focusedField, equals: .class)
-                        .submitLabel(.next)
-                        .onSubmit { focusedField = .semester }
-                        .padding()
-                        .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.gray, lineWidth: 1))
-
-                    TextField("학기", text: $semester)
-                        .keyboardType(.numberPad)
-                        .focused($focusedField, equals: .semester)
-                        .submitLabel(.next)
-                        .onSubmit { focusedField = .place }
-                        .padding()
-                        .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.gray, lineWidth: 1))
-
-                    TextField("수업 장소", text: $place)
-                        .focused($focusedField, equals: .place)
-                        .submitLabel(.next)
-                        .onSubmit { focusedField = .year }
-                        .padding()
-                        .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.gray, lineWidth: 1))
-
-                    TextField("연도", text: $year)
-                        .keyboardType(.numberPad)
-                        .focused($focusedField, equals: .year)
-                        .submitLabel(.done)
-                        .padding()
-                        .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.gray, lineWidth: 1))
-                }
-                .padding(.horizontal)
-
-                Spacer()
-                
-                Button(action: createLesson) {
-                    if isSubmitting {
-                        ProgressView()
-                    } else {
-                        Text("저장")
-                            .font(.system(size: 18, weight: .heavy))
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 56)
-                            .background(isTextFieldFilled ? Color("MainColor") : Color("MainColor").opacity(0.5))
-                            .cornerRadius(6)
+        NavigationView {
+            VStack {
+                HStack(spacing: 100) {
+                    Button(action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Image(systemName: "xmark")
+                            .resizable()
+                            .frame(width: 15.87, height: 15.87)
+                            .foregroundColor(Color("MainColor"))
+                    }
+                    Image("C_ickLogo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 100, height: 45)
+                    Button(action: createLesson) {
+                        if isSubmitting {
+                            ProgressView()
+                        } else {
+                            Image(systemName: "checkmark")
+                                .resizable()
+                                .frame(width: 21.5, height: 15.5)
+                                .foregroundColor(Color("MainColor"))
+                        }
+                    }
+                    .disabled(!isTextFieldFilled)
+                    .alert(isPresented: $showAlert) {
+                        Alert(title: Text("오류"), message: Text(submissionMessage ?? "알 수 없는 오류 발생"), dismissButton: .default(Text("확인")))
                     }
                 }
-                .padding(.horizontal, 29)
-                .disabled(!isTextFieldFilled)
-                .alert(isPresented: $showAlert) {
-                    Alert(title: Text("오류"), message: Text(submissionMessage ?? "알 수 없는 오류 발생"), dismissButton: .default(Text("확인")))
+                
+                Form {
+                    Section {
+                        TextField("수업 제목", text: $title)
+                        
+                        HStack {
+                            Picker("학년", selection: $selectedGrade) {
+                                ForEach(grades, id: \.self) {
+                                    Text($0)
+                                }
+                            }
+                            .pickerStyle(MenuPickerStyle())
+                            
+                            Picker("반", selection: $selectedClass) {
+                                ForEach(classes, id: \.self) {
+                                    Text($0)
+                                }
+                            }
+                            .pickerStyle(MenuPickerStyle())
+                        }
+                    }
+                    
+                    Section(header: Text("수업 정보")) {
+                        TextField("연도", text: $year)
+                            .keyboardType(.numberPad)
+                        Picker("학기", selection: $selectedSemester) {
+                            ForEach(semesters, id: \.self) {
+                                Text($0)
+                            }
+                        }
+                        .pickerStyle(MenuPickerStyle())
+                        
+                        Picker("장소", selection: $selectedPlace) {
+                            ForEach(places, id: \.self) {
+                                Text($0)
+                            }
+                        }
+                        .pickerStyle(MenuPickerStyle())
+                        
+                    }
+                    
+                    Section(header: Text("수업 내용")) {
+                        TextEditor(text: $content)
+                            .frame(minHeight: 100)
+                    }
                 }
+                
+                // NavigationLink 추가
+                NavigationLink(
+                    destination: LessonListView(),
+                    isActive: $isLessonCreated,
+                    label: { EmptyView() }
+                )
             }
-            .padding(.top)
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Text("수업 생성하기")
-                        .font(.system(size: 25, weight: .bold))
-                        .foregroundColor(.black)
-                }
-            }
+            .toolbar(.hidden, for: .tabBar)
         }
-        .navigationBarBackButtonHidden(true)
+        .navigationBarBackButtonHidden()
     }
 
     private func createLesson() {
-        guard !title.isEmpty, !content.isEmpty, !grade.isEmpty, !`class`.isEmpty, !semester.isEmpty, !place.isEmpty, !year.isEmpty else {
+        guard !title.isEmpty, !content.isEmpty, !selectedGrade.isEmpty, !selectedClass.isEmpty, !selectedSemester.isEmpty, !selectedPlace.isEmpty, !year.isEmpty else {
             submissionMessage = "모든 필드를 입력해주세요."
             showAlert = true
             return
@@ -134,19 +122,23 @@ struct LessonCreateView: View {
 
         isSubmitting = true
 
-        Service.shared.createLesson(title: title, content: content, grade: grade, class: `class`, semester: semester, place: place, year: year, teacherId: teacherId) { result in
+        Service.shared.createLesson(
+            title: title,
+            content: content,
+            grade: selectedGrade,
+            class: selectedClass,
+            semester: selectedSemester,
+            place: selectedPlace,
+            year: year,
+            teacherId: teacherId
+        ) { result in
             DispatchQueue.main.async {
                 isSubmitting = false
                 switch result {
                 case .success(let lesson):
                     submissionMessage = "수업 생성 완료: \(lesson.l_title)"
-                    title = ""
-                    content = ""
-                    grade = ""
-                    `class` = ""
-                    semester = ""
-                    place = ""
-                    year = ""
+                    clearFields()
+                    isLessonCreated = true // 수업 생성 후 navigation 트리거
                 case .failure(let error):
                     submissionMessage = "오류 발생: \(error.localizedDescription)"
                 }
@@ -155,8 +147,18 @@ struct LessonCreateView: View {
         }
     }
 
+    private func clearFields() {
+        title = ""
+        content = ""
+        selectedGrade = ""
+        selectedClass = ""
+        selectedSemester = ""
+        selectedPlace = ""
+        year = ""
+    }
+
     private var isTextFieldFilled: Bool {
-        !title.isEmpty && !content.isEmpty && !grade.isEmpty && !`class`.isEmpty && !semester.isEmpty && !place.isEmpty && !year.isEmpty
+        !title.isEmpty && !content.isEmpty && !selectedGrade.isEmpty && !selectedClass.isEmpty && !selectedSemester.isEmpty && !selectedPlace.isEmpty && !year.isEmpty
     }
 }
 

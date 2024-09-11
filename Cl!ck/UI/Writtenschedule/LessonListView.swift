@@ -1,6 +1,13 @@
+//
+//  OnBoardingView.swift
+//  Cl!ck
+//
+//  Created by 이다경 on 7/23/24.
+//
+
 import SwiftUI
 
-struct WrittenScheduleView: View {
+struct LessonListView: View {
     @StateObject private var viewModel = ScheduleViewModel()
     @State private var selectedLesson: Lesson? // 선택된 수업을 저장
     
@@ -35,7 +42,6 @@ struct WrittenScheduleView: View {
                     }
                 }
             }
-            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Text("수업목록")
@@ -52,13 +58,15 @@ struct WrittenScheduleView: View {
                 }
             }
             .sheet(item: $selectedLesson) { lesson in
-                LessonCell(lesson: lesson) // 선택한 수업의 수행평가 보기
+                LessonCell(lesson: lesson)
             }
         }
+        .navigationBarBackButtonHidden()
     }
 }
 
 
+
 #Preview {
-    WrittenScheduleView()
+    LessonListView()
 }

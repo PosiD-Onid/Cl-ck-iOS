@@ -8,13 +8,25 @@
 import Foundation
 
 struct Lesson: Identifiable, Decodable {
-    let id: UUID
+    let id: Int
     let l_title: String
     let l_content: String
-    let l_year: Int
-    let l_semester: Int
     let l_grade: Int
     let l_class: Int
+    let l_semester: Int
     let l_place: String
-    let t_id: String // 선생님 ID
+    let l_year: Int
+    let t_id: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "l_id"
+        case l_title
+        case l_content
+        case l_grade
+        case l_class
+        case l_semester
+        case l_place
+        case l_year
+        case t_id
+    }
 }

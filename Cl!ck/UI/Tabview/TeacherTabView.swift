@@ -16,7 +16,7 @@ struct TeacherTabView: View {
                     .tabItem {
                         Image(systemName: "house")
                     }
-                WrittenScheduleView()
+                LessonListView()
                     .tabItem {
                         Image(systemName: "tray")
                     }

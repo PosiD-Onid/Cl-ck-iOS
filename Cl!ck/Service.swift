@@ -1,4 +1,5 @@
 import Alamofire
+import Foundation
 
 class Service {
     static let shared = Service()
@@ -24,11 +25,30 @@ class Service {
                    parameters: body,
                    encoding: JSONEncoding.default,
                    headers: header)
-            .responseDecodable(of: Lesson.self) { response in
+            .responseJSON { response in
                 switch response.result {
-                case .success(let lesson):
-                    completion(.success(lesson))
+                case .success(let json):
+                    // 서버에서의 응답 JSON 데이터 로그 확인
+                    print("Response JSON: \(json)")
+
+                    // JSON에서 lesson 객체 추출
+                    if let jsonObject = json as? [String: Any],
+                       let lessonData = jsonObject["lesson"] as? [String: Any] {
+                        do {
+                            let jsonData = try JSONSerialization.data(withJSONObject: lessonData, options: [])
+                            let lesson = try JSONDecoder().decode(Lesson.self, from: jsonData)
+                            completion(.success(lesson))
+                        } catch {
+                            print("Failed to decode JSON: \(error)")
+                            completion(.failure(error))
+                        }
+                    } else {
+                        let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid response format"])
+                        completion(.failure(error))
+                    }
+
                 case .failure(let error):
+                    print("Failed to create lesson: \(error)")
                     completion(.failure(error))
                 }
             }

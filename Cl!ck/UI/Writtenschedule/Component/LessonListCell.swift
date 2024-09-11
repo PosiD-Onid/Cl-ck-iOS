@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct WrittenScheduleCell: View {
+struct LessonListCell: View {
     let id: UUID // 고유 식별자
     let title: String
     let data: String
@@ -48,5 +48,5 @@ struct WrittenScheduleCell: View {
 }
 
 #Preview {
-    WrittenScheduleView()
+    LessonListView()
 }

@@ -38,26 +38,7 @@ struct TeacherPageView: View {
     var body: some View {
         NavigationView {
             VStack {
-                HStack(spacing: 100) {
-                    Button(action: {
-                        self.presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Image(systemName: "xmark")
-                            .resizable()
-                            .frame(width: 15.87, height: 15.87)
-                            .foregroundColor(Color("MainColor"))
-                    }
-                    Image("C_ickLogo")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 100, height: 45)
-                    NavigationLink(destination: WrittenScheduleView()) {
-                        Image(systemName: "checkmark")
-                            .resizable()
-                            .frame(width: 21.5, height: 15.5)
-                            .foregroundColor(Color("MainColor"))
-                    }
-                }
+                PageHeader()
                 Form {
                     Section {
                         TextField("수행평가 제목", text: $title)
