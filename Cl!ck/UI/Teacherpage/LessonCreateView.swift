@@ -6,7 +6,7 @@ struct LessonCreateView: View {
     @State private var isSubmitting = false
     @State private var submissionMessage: String? = nil
     @State private var showAlert = false
-    @State private var isLessonCreated = false // 수업 생성 상태를 관리
+    @State private var navigateToTeacherTabView = false
     
     let grades = ["1", "2", "3"]
     let classes = ["1", "2", "3", "4"]
@@ -20,6 +20,8 @@ struct LessonCreateView: View {
     @State private var selectedSemester = "1"
     @State private var selectedPlace = "교실"
     @State private var year: String = ""
+    
+    @State private var selectTab = 1
     
     var teacherId: String = "qwe" // 실제 사용자 ID로 교체 필요
 
@@ -92,7 +94,6 @@ struct LessonCreateView: View {
                             }
                         }
                         .pickerStyle(MenuPickerStyle())
-                        
                     }
                     
                     Section(header: Text("수업 내용")) {
@@ -101,10 +102,9 @@ struct LessonCreateView: View {
                     }
                 }
                 
-                // NavigationLink 추가
                 NavigationLink(
-                    destination: LessonListView(),
-                    isActive: $isLessonCreated,
+                    destination: TeacherTabView(selectedTab: $selectTab),
+                    isActive: $navigateToTeacherTabView,
                     label: { EmptyView() }
                 )
             }
@@ -135,14 +135,13 @@ struct LessonCreateView: View {
             DispatchQueue.main.async {
                 isSubmitting = false
                 switch result {
-                case .success(let lesson):
-                    submissionMessage = "수업 생성 완료: \(lesson.l_title)"
+                case .success:
                     clearFields()
-                    isLessonCreated = true // 수업 생성 후 navigation 트리거
+                    navigateToTeacherTabView = true // TeacherTabView로 이동
                 case .failure(let error):
                     submissionMessage = "오류 발생: \(error.localizedDescription)"
+                    showAlert = true
                 }
-                showAlert = true
             }
         }
     }
@@ -150,10 +149,10 @@ struct LessonCreateView: View {
     private func clearFields() {
         title = ""
         content = ""
-        selectedGrade = ""
-        selectedClass = ""
-        selectedSemester = ""
-        selectedPlace = ""
+        selectedGrade = "1"
+        selectedClass = "1"
+        selectedSemester = "1"
+        selectedPlace = "교실"
         year = ""
     }
 

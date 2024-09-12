@@ -27,7 +27,7 @@
 		AF38BF432C4F7518003BF9FD /* StudentSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF38BF422C4F7518003BF9FD /* StudentSignUpView.swift */; };
 		AF38BF462C4F766D003BF9FD /* ChooseRoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF38BF452C4F766D003BF9FD /* ChooseRoleView.swift */; };
 		AF38BF482C4F7E9E003BF9FD /* EntireSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF38BF472C4F7E9E003BF9FD /* EntireSignInView.swift */; };
-		AF4D43A22C593D5A00CDEA41 /* LessonListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4D43A12C593D5A00CDEA41 /* LessonListCell.swift */; };
+		AF4D43A22C593D5A00CDEA41 /* PerformanceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4D43A12C593D5A00CDEA41 /* PerformanceListView.swift */; };
 		AF63D41F2C5B883400CA374B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF63D41E2C5B883400CA374B /* HomeView.swift */; };
 		AF63D4212C5B884D00CA374B /* CalendarGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF63D4202C5B884D00CA374B /* CalendarGridView.swift */; };
 		AF63D4232C5B886600CA374B /* CalendarCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF63D4222C5B886600CA374B /* CalendarCellView.swift */; };
@@ -84,7 +84,7 @@
 		AF38BF422C4F7518003BF9FD /* StudentSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSignUpView.swift; sourceTree = "<group>"; };
 		AF38BF452C4F766D003BF9FD /* ChooseRoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseRoleView.swift; sourceTree = "<group>"; };
 		AF38BF472C4F7E9E003BF9FD /* EntireSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntireSignInView.swift; sourceTree = "<group>"; };
-		AF4D43A12C593D5A00CDEA41 /* LessonListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonListCell.swift; sourceTree = "<group>"; };
+		AF4D43A12C593D5A00CDEA41 /* PerformanceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceListView.swift; sourceTree = "<group>"; };
 		AF63D41E2C5B883400CA374B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		AF63D4202C5B884D00CA374B /* CalendarGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarGridView.swift; sourceTree = "<group>"; };
 		AF63D4222C5B886600CA374B /* CalendarCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellView.swift; sourceTree = "<group>"; };
@@ -258,7 +258,7 @@
 		AF4D43A02C593D5200CDEA41 /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				AF4D43A12C593D5A00CDEA41 /* LessonListCell.swift */,
+				AF4D43A12C593D5A00CDEA41 /* PerformanceListView.swift */,
 				AFEB51D62C917CF800F6DB61 /* Lesson.swift */,
 				AFEB51D82C917D0B00F6DB61 /* Schedule.swift */,
 			);
@@ -502,7 +502,7 @@
 				AF38BF3F2C4F7428003BF9FD /* TeacherSignUpView.swift in Sources */,
 				AFEB51D12C9116AD00F6DB61 /* TeachersProfileView.swift in Sources */,
 				AF9952362C59F78100F1DD9A /* ProcessingResultsList.swift in Sources */,
-				AF4D43A22C593D5A00CDEA41 /* LessonListCell.swift in Sources */,
+				AF4D43A22C593D5A00CDEA41 /* PerformanceListView.swift in Sources */,
 				AF9952342C59F3BE00F1DD9A /* ProcessingResultsListHeader.swift in Sources */,
 				AF1D59C22C4F8CCC0074FD0E /* AlarmView.swift in Sources */,
 				7C7E59432BAC1FC300D39E2C /* ContentView.swift in Sources */,

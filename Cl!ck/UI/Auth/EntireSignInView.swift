@@ -17,6 +17,8 @@ struct EntireSignInView: View {
     
     @FocusState private var focusedField: Field?
     
+    @State private var selectedTab: Int = 0
+    
     enum Field {
         case username
         case password
@@ -129,7 +131,7 @@ struct EntireSignInView: View {
                 NavigationLink(destination: StudentTabView(), isActive: $navigateToStudentTab) {
                     EmptyView()
                 }
-                NavigationLink(destination: TeacherTabView(), isActive: $navigateToTeacherTab) {
+                NavigationLink(destination: TeacherTabView(selectedTab: $selectedTab), isActive: $navigateToTeacherTab) {
                     EmptyView()
                 }
 

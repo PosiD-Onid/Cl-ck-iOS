@@ -18,7 +18,7 @@ class ScheduleViewModel: ObservableObject {
             return
         }
         
-        let url = APIConstants.readLessonURL(teacherId: teacherId)
+        let url = APIConstants.readLessonsURL(teacherId: teacherId)
         
         AF.request(url, method: .get)
             .validate()

@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct Cl_ckApp: App {
+//    @State private var selectedTab: Int = 0
     var body: some Scene {
         WindowGroup {
             OnBoardingView()
+//            TeacherTabView(selectedTab: $selectedTab)
         }
     }
 }

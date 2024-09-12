@@ -25,11 +25,23 @@ struct APIConstants {
     // 로그 아웃
     static let signoutURL = authURL + "/signout"
     
-    // 수업 생성
-    static let createlessonURL = baseURL + "/lesson/create";
+    // 수업
+    static let LessonURL = baseURL + "/lesson"
     
-    // 수업 조회
-    static func readLessonURL(teacherId: String) -> String {
-            return baseURL + "/lesson/read/teacher=\(teacherId)"
+    // 수업 생성
+    static let createLessonURL = LessonURL + "/create";
+    
+    // 수업 조회 (전체 조회)
+    static func readLessonsURL(teacherId: String) -> String {
+            return LessonURL + "/teacher=\(teacherId)"
         }
+    // 수업 조회 (한개 조회)
+    static func readLessonURL(teacherId: String, id: String) -> String {
+        return LessonURL + "/teacher=\(teacherId)/\(id)"
+    }
+    
+    // 수업 업데이트
+    static func updateLessonURL(teacherId: String, id: String) -> String {
+        return LessonURL + "/teacher=\(teacherId)/update/\(id)"
+    }
 }
