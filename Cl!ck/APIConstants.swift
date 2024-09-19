@@ -8,7 +8,7 @@
 import Foundation
 
 struct APIConstants {
-    static let baseURL = "http://10.80.163.189:7221/api"
+    static let baseURL = "http://192.168.0.11:7221/api"
 
     // auth
     static let authURL = baseURL + "/auth"
@@ -29,7 +29,7 @@ struct APIConstants {
     static let LessonURL = baseURL + "/lesson"
     
     // 수업 생성
-    static let createLessonURL = LessonURL + "/create";
+    static let createLessonURL = LessonURL + "/create"
     
     // 수업 조회 (전체 조회)
     static func readLessonsURL(teacherId: String) -> String {
@@ -43,5 +43,26 @@ struct APIConstants {
     // 수업 업데이트
     static func updateLessonURL(teacherId: String, id: String) -> String {
         return LessonURL + "/teacher=\(teacherId)/update/\(id)"
+    }
+    
+    // 수행평가
+    static let PerformanceURL = baseURL + "/performance"
+    
+    // 수행평가 생성
+    static let createPerformanceURL = PerformanceURL + "/create"
+    
+    // 수행평가 조회 (전체 조회)
+    static func readPerformanceURL(lessonId: String) -> String {
+        return PerformanceURL + "/lesson=\(lessonId)"
+    }
+    
+    // 수행평가 조회 (한개 조회)
+    static func readPerformancesURL(lessonId: String, id: String) -> String {
+        return PerformanceURL + "/lesson=\(lessonId)/\(id)"
+    }
+    
+    // 수행평가 업데이트
+    static func updatePerformanceURL(lessonId: String, id: String) -> String {
+        return PerformanceURL + "/lesson=\(lessonId)/update/\(id)"
     }
 }

@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct TeacherPageView: View {
+struct PerformanceCreateView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     let grades = ["1", "2", "3"]
@@ -38,7 +38,7 @@ struct TeacherPageView: View {
     var body: some View {
         NavigationView {
             VStack {
-                PageHeader()
+//                PageHeader()
                 Form {
                     Section {
                         TextField("수행평가 제목", text: $title)
@@ -136,5 +136,5 @@ struct TeacherPageView: View {
 }
 
 #Preview {
-    TeacherPageView()
+    PerformanceCreateView()
 }

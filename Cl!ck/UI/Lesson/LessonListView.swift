@@ -7,7 +7,7 @@ struct LessonListView: View {
     @State private var selectedLesson: Lesson? // 선택된 수업을 저장
     @State private var showAlert = false
     @State private var errorMessage: String? // 에러 메시지 저장
-
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -20,20 +20,22 @@ struct LessonListView: View {
                 } else {
                     ScrollView {
                         ForEach(lessons) { lesson in
-                            PerformanceListView(
-                                id: UUID(uuidString: "\(lesson.id)") ?? UUID(),
-                                title: lesson.l_title,
-                                data: lesson.l_content,
-                                grade: Int(lesson.l_grade) ?? 0,
-                                group: Int(lesson.l_class) ?? 0,
-                                onEdit: { id in
-                                },
-                                onDelete: { id in
+                            NavigationLink(
+                                destination: PerformanceListView(lesson: lesson), // 네비게이션 링크로 LessonCell 이동
+                                label: {
+                                    LessonCell(
+                                        id: Int(lesson.id),
+                                        title: lesson.l_title,
+                                        data: lesson.l_content,
+                                        grade: Int(lesson.l_grade) ?? 0,
+                                        group: Int(lesson.l_class) ?? 0,
+                                        semester: Int(lesson.l_semester) ?? 1,
+                                        year: Int(lesson.l_year) ?? 0,
+                                        place: lesson.l_place,
+                                        onEdit: { id in }
+                                    )
                                 }
                             )
-                            .onTapGesture {
-                                selectedLesson = lesson
-                            }
                         }
                     }
                 }
@@ -53,9 +55,6 @@ struct LessonListView: View {
                             .foregroundColor(.black)
                     }
                 }
-            }
-            .sheet(item: $selectedLesson) { lesson in
-                LessonCell(lesson: lesson)
             }
             .alert(isPresented: $showAlert) {
                 Alert(title: Text("오류"), message: Text(errorMessage ?? "알 수 없는 오류 발생"), dismissButton: .default(Text("확인")))
