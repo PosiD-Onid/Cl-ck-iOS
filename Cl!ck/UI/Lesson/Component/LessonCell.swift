@@ -60,13 +60,15 @@ struct LessonCell: View {
                     .font(.system(size: 13))
             }
             Spacer()
-            Button(action: {
-                isEditing.toggle() // 편집 모드 전환
-            }) {
-                Image(systemName: "ellipsis")
-                    .frame(width: 13, height: 13)
+            VStack {
+                Button(action: {
+                    isEditing.toggle() // 편집 모드 전환
+                }) {
+                    Image(systemName: "ellipsis")
+                        .frame(width: 13, height: 13)
+                }
+                Spacer()
             }
-            .padding(.bottom, 35)
         }
         .foregroundColor(.black)
         .padding(.vertical, 23)

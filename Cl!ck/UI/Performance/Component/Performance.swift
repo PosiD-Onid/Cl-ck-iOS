@@ -9,25 +9,24 @@ import Foundation
 
 struct Performance: Codable, Identifiable {
     var id: Int
-    var title: String
-    var place: String?
-    var content: String
-    var startDate: String
-    var endDate: String
     var l_id: Int
-    var createdAt: String?
-    var updatedAt: String?
-
+    var p_title: String
+    var p_content: String
+    var p_place: String
+    var p_startdate: String
+    var p_enddate: String
+    var createdAt: String
+    var updatedAt: String
+    
     enum CodingKeys: String, CodingKey {
         case id = "p_id"
-        case title
-        case place
-        case content
-        case startDate
-        case endDate
-        case l_id
+        case l_id = "l_id"
+        case p_title
+        case p_content
+        case p_place
+        case p_startdate
+        case p_enddate
         case createdAt
         case updatedAt
     }
 }
-

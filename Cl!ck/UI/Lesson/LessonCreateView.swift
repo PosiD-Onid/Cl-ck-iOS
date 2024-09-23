@@ -28,35 +28,6 @@ struct LessonCreateView: View {
     var body: some View {
         NavigationView {
             VStack {
-                HStack(spacing: 100) {
-                    Button(action: {
-                        self.presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Image(systemName: "xmark")
-                            .resizable()
-                            .frame(width: 15.87, height: 15.87)
-                            .foregroundColor(Color("MainColor"))
-                    }
-                    Image("C_ickLogo")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 100, height: 45)
-                    Button(action: createLesson) {
-                        if isSubmitting {
-                            ProgressView()
-                        } else {
-                            Image(systemName: "checkmark")
-                                .resizable()
-                                .frame(width: 21.5, height: 15.5)
-                                .foregroundColor(Color("MainColor"))
-                        }
-                    }
-                    .disabled(!isTextFieldFilled)
-                    .alert(isPresented: $showAlert) {
-                        Alert(title: Text("오류"), message: Text(submissionMessage ?? "알 수 없는 오류 발생"), dismissButton: .default(Text("확인")))
-                    }
-                }
-                
                 Form {
                     Section {
                         TextField("수업 제목", text: $title)
@@ -102,13 +73,52 @@ struct LessonCreateView: View {
                     }
                 }
                 
+                Button(action: createLesson) {
+                    if isSubmitting {
+                        ProgressView()
+                    } else {
+                        Text("확인")
+                            .font(.system(size: 18, weight: .heavy))
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 56)
+                            .background(isTextFieldFilled ? Color("MainColor") : Color("MainColor").opacity(0.5))
+                            .cornerRadius(6)
+                    }
+                }
+                .padding(.horizontal, 29)
+                .disabled(!isTextFieldFilled)
+                .alert(isPresented: $showAlert) {
+                    Alert(title: Text("오류"), message: Text(submissionMessage ?? "알 수 없는 오류 발생"), dismissButton: .default(Text("확인")))
+                }
+                
                 NavigationLink(
                     destination: TeacherTabView(selectedTab: $selectTab),
                     isActive: $navigateToTeacherTabView,
                     label: { EmptyView() }
                 )
+
             }
-            .toolbar(.hidden, for: .tabBar)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        self.presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        HStack {
+                            Image(systemName: "chevron.backward")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 15, height: 27)
+                                .foregroundColor(.black)
+                            Text("수업 생성하기")
+                                .font(.system(size: 25, weight: .bold))
+                                .foregroundColor(.black)
+                                .padding(.leading)
+                        }
+                    }
+                }
+                
+            }
         }
         .navigationBarBackButtonHidden()
     }

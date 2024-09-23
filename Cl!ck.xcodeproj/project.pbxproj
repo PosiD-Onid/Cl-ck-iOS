@@ -17,6 +17,7 @@
 		AF1B190B2C5A09B30035747B /* MyResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1B190A2C5A09B30035747B /* MyResultsCell.swift */; };
 		AF1D59C22C4F8CCC0074FD0E /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1D59C12C4F8CCC0074FD0E /* AlarmView.swift */; };
 		AF1D59C52C4F8D110074FD0E /* AlarmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1D59C42C4F8D110074FD0E /* AlarmCell.swift */; };
+		AF1F4C472CA13CE700A64596 /* Evaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1F4C462CA13CE700A64596 /* Evaluation.swift */; };
 		AF2E88032C947CB000074F02 /* Performance.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2E88022C947CB000074F02 /* Performance.swift */; };
 		AF2E88052C947F5E00074F02 /* PerformanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2E88042C947F5E00074F02 /* PerformanceCell.swift */; };
 		AF30B45E2C84571300325B94 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B45D2C84571300325B94 /* NetworkResult.swift */; };
@@ -74,6 +75,7 @@
 		AF1B190A2C5A09B30035747B /* MyResultsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyResultsCell.swift; sourceTree = "<group>"; };
 		AF1D59C12C4F8CCC0074FD0E /* AlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
 		AF1D59C42C4F8D110074FD0E /* AlarmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmCell.swift; sourceTree = "<group>"; };
+		AF1F4C462CA13CE700A64596 /* Evaluation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Evaluation.swift; sourceTree = "<group>"; };
 		AF2E88022C947CB000074F02 /* Performance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Performance.swift; sourceTree = "<group>"; };
 		AF2E88042C947F5E00074F02 /* PerformanceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceCell.swift; sourceTree = "<group>"; };
 		AF30B45D2C84571300325B94 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
@@ -300,13 +302,13 @@
 			path = Tabview;
 			sourceTree = "<group>";
 		};
-		AF8665BF2C59C4250031ED95 /* Processingresults */ = {
+		AF8665BF2C59C4250031ED95 /* Evaluation */ = {
 			isa = PBXGroup;
 			children = (
 				AF8665C22C59C4410031ED95 /* Component */,
 				AF9952312C59D7AE00F1DD9A /* ProcessingResultsView.swift */,
 			);
-			path = Processingresults;
+			path = Evaluation;
 			sourceTree = "<group>";
 		};
 		AF8665C22C59C4410031ED95 /* Component */ = {
@@ -315,6 +317,7 @@
 				AFF4C6572C59D29F00AE67A1 /* ProcessingResultsCell.swift */,
 				AF9952332C59F3BE00F1DD9A /* ProcessingResultsListHeader.swift */,
 				AF9952352C59F78100F1DD9A /* ProcessingResultsList.swift */,
+				AF1F4C462CA13CE700A64596 /* Evaluation.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -369,7 +372,7 @@
 			children = (
 				AF2E88012C947C7200074F02 /* Schedule */,
 				AF1B19062C5A07AE0035747B /* Myresults */,
-				AF8665BF2C59C4250031ED95 /* Processingresults */,
+				AF8665BF2C59C4250031ED95 /* Evaluation */,
 				AF8665BC2C59BD9E0031ED95 /* Tabview */,
 				AFF7A92D2C527D2900F4582B /* Profile */,
 				AFFED3A32C51D0C2001DB112 /* Home */,
@@ -522,6 +525,7 @@
 				AF30B45E2C84571300325B94 /* NetworkResult.swift in Sources */,
 				AF63D4272C5B888900CA374B /* DateFormatter.swift in Sources */,
 				AFACD5582C8D74CB00798C93 /* StudentTabView.swift in Sources */,
+				AF1F4C472CA13CE700A64596 /* Evaluation.swift in Sources */,
 				AFEB51D52C917C7100F6DB61 /* ScheduleViewModel.swift in Sources */,
 				AF0976752C87F72900A1DD04 /* UIApplication.swift in Sources */,
 				AF2E88032C947CB000074F02 /* Performance.swift in Sources */,

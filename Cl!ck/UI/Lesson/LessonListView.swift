@@ -71,7 +71,7 @@ struct LessonListView: View {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let lessons):
-                    self.lessons = lessons // 서버에서 반환된 모든 수업 데이터를 배열로 저장
+                    self.lessons = lessons
                 case .failure(let error):
                     self.errorMessage = "수업을 가져오는 데 실패했습니다: \(error.localizedDescription)"
                     self.showAlert = true
