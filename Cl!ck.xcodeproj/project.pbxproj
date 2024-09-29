@@ -54,13 +54,13 @@
 		AFEB51E42C918E4100F6DB61 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEB51E32C918E4100F6DB61 /* Service.swift */; };
 		AFEB51E82C91AE0900F6DB61 /* LessonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEB51E72C91AE0900F6DB61 /* LessonListView.swift */; };
 		AFF0D1492C5269EB00E2B4B2 /* NavigationControllerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF0D1482C5269EB00E2B4B2 /* NavigationControllerWrapper.swift */; };
-		AFF0D14B2C526A6E00E2B4B2 /* ScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF0D14A2C526A6E00E2B4B2 /* ScheduleCell.swift */; };
+		AFF0D14B2C526A6E00E2B4B2 /* HomePerformanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF0D14A2C526A6E00E2B4B2 /* HomePerformanceCell.swift */; };
 		AFF4C6582C59D29F00AE67A1 /* ProcessingResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF4C6572C59D29F00AE67A1 /* ProcessingResultsCell.swift */; };
 		AFF7A9322C527DD100F4582B /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF7A9312C527DD100F4582B /* ProfileImage.swift */; };
 		AFFED3A02C514091001DB112 /* PerformanceCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFED39F2C514091001DB112 /* PerformanceCreateView.swift */; };
 		AFFED3C52C51F5BE001DB112 /* OnBoardingScreenContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFED3C42C51F5BE001DB112 /* OnBoardingScreenContent.swift */; };
 		AFFED3CF2C52515E001DB112 /* InformationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFED3CE2C52515E001DB112 /* InformationDetailView.swift */; };
-		AFFED3D12C525695001DB112 /* ScheduleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFED3D02C525695001DB112 /* ScheduleListView.swift */; };
+		AFFED3D12C525695001DB112 /* HomePerformanceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFED3D02C525695001DB112 /* HomePerformanceListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,13 +112,13 @@
 		AFEB51E32C918E4100F6DB61 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		AFEB51E72C91AE0900F6DB61 /* LessonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonListView.swift; sourceTree = "<group>"; };
 		AFF0D1482C5269EB00E2B4B2 /* NavigationControllerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerWrapper.swift; sourceTree = "<group>"; };
-		AFF0D14A2C526A6E00E2B4B2 /* ScheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCell.swift; sourceTree = "<group>"; };
+		AFF0D14A2C526A6E00E2B4B2 /* HomePerformanceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePerformanceCell.swift; sourceTree = "<group>"; };
 		AFF4C6572C59D29F00AE67A1 /* ProcessingResultsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingResultsCell.swift; sourceTree = "<group>"; };
 		AFF7A9312C527DD100F4582B /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 		AFFED39F2C514091001DB112 /* PerformanceCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceCreateView.swift; sourceTree = "<group>"; };
 		AFFED3C42C51F5BE001DB112 /* OnBoardingScreenContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingScreenContent.swift; sourceTree = "<group>"; };
 		AFFED3CE2C52515E001DB112 /* InformationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationDetailView.swift; sourceTree = "<group>"; };
-		AFFED3D02C525695001DB112 /* ScheduleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleListView.swift; sourceTree = "<group>"; };
+		AFFED3D02C525695001DB112 /* HomePerformanceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePerformanceListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -400,8 +400,8 @@
 			isa = PBXGroup;
 			children = (
 				AFFED3CE2C52515E001DB112 /* InformationDetailView.swift */,
-				AFFED3D02C525695001DB112 /* ScheduleListView.swift */,
-				AFF0D14A2C526A6E00E2B4B2 /* ScheduleCell.swift */,
+				AFFED3D02C525695001DB112 /* HomePerformanceListView.swift */,
+				AFF0D14A2C526A6E00E2B4B2 /* HomePerformanceCell.swift */,
 				AF63D4202C5B884D00CA374B /* CalendarGridView.swift */,
 				AF63D4222C5B886600CA374B /* CalendarCellView.swift */,
 				AF63D4242C5B887400CA374B /* WeekdaySymbolsView.swift */,
@@ -506,7 +506,7 @@
 				AF1B19092C5A084F0035747B /* MyResultsListHeader.swift in Sources */,
 				AF30B46A2C8461A400325B94 /* AuthService.swift in Sources */,
 				AF1D59C52C4F8D110074FD0E /* AlarmCell.swift in Sources */,
-				AFF0D14B2C526A6E00E2B4B2 /* ScheduleCell.swift in Sources */,
+				AFF0D14B2C526A6E00E2B4B2 /* HomePerformanceCell.swift in Sources */,
 				AF2E88052C947F5E00074F02 /* PerformanceCell.swift in Sources */,
 				AFF7A9322C527DD100F4582B /* ProfileImage.swift in Sources */,
 				AFF4C6582C59D29F00AE67A1 /* ProcessingResultsCell.swift in Sources */,
@@ -534,7 +534,7 @@
 				AF63D4252C5B887400CA374B /* WeekdaySymbolsView.swift in Sources */,
 				AFFED3CF2C52515E001DB112 /* InformationDetailView.swift in Sources */,
 				AF9952322C59D7AE00F1DD9A /* ProcessingResultsView.swift in Sources */,
-				AFFED3D12C525695001DB112 /* ScheduleListView.swift in Sources */,
+				AFFED3D12C525695001DB112 /* HomePerformanceListView.swift in Sources */,
 				AFF0D1492C5269EB00E2B4B2 /* NavigationControllerWrapper.swift in Sources */,
 				AFEB51E82C91AE0900F6DB61 /* LessonListView.swift in Sources */,
 				AF63D4232C5B886600CA374B /* CalendarCellView.swift in Sources */,

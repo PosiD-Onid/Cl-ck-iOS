@@ -92,15 +92,13 @@ class Service {
         let header: HTTPHeaders = ["Content-Type": "application/json"]
         
         let body: [String: Any] = [
-            "l_id": id,
             "l_title": title,
             "l_content": content,
             "l_year": year,
             "l_semester": semester,
             "l_grade": grade,
             "l_class": `class`,
-            "l_place": place,
-            "t_id": teacherId
+            "l_place": place
         ]
         
         AF.request(url, method: .put, parameters: body, encoding: JSONEncoding.default, headers: header)
@@ -109,6 +107,9 @@ class Service {
                 case .success(let json):
                     if let jsonObject = json as? [String: Any], let message = jsonObject["message"] as? String {
                         completion(.success(message))
+                    } else if let jsonObject = json as? [String: Any], let errorMessage = jsonObject["message"] as? String {
+                        let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: errorMessage])
+                        completion(.failure(error))
                     } else {
                         let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "응답 형식이 잘못되었습니다."])
                         completion(.failure(error))
@@ -120,22 +121,25 @@ class Service {
             }
     }
     
-    func createPerformance(title: String, place: String?, content: String, startDate: String, endDate: String, lessonId: String, completion: @escaping (Result<Performance, Error>) -> Void) {
+    func createPerformance(title: String, place: String?, content: String, startDate: String, endDate: String, lessonId: Int, completion: @escaping (Result<Performance, Error>) -> Void) {
         let url = APIConstants.createPerformanceURL
         let header: HTTPHeaders = ["Content-Type": "application/json"]
         
+        // params 객체를 포함하여 body를 수정합니다.
         let body: [String: Any] = [
-            "p_title": title,
-            "p_place": place ?? NSNull(),
-            "p_content": content,
-            "p_startdate": startDate,
-            "p_enddate": endDate,
-            "l_id": lessonId
+            "params": [
+                "p_title": title,
+                "p_place": place ?? "",
+                "p_content": content,
+                "p_startdate": startDate,
+                "p_enddate": endDate,
+                "l_id": lessonId // lessonId를 Int로 변경
+            ]
         ]
         
         AF.request(url,
                    method: .post,
-                   parameters: ["params": body],
+                   parameters: body,
                    encoding: JSONEncoding.default,
                    headers: header)
         .responseJSON { response in
@@ -168,6 +172,8 @@ class Service {
             }
         }
     }
+
+
     
     // 수행평가 전체 조회
     func readPerformances(lessonId: String, completion: @escaping (Result<[Performance], Error>) -> Void) {

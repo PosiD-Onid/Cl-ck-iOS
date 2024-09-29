@@ -10,19 +10,19 @@ struct LessonCell: View {
     let semester: Int
     let year: Int
     let place: String
+    let userId: String
     var onEdit: (UUID) -> Void
     
     @State private var isEditing = false
-    @State private var lessonId: Int
     @State private var newTitle: String
     @State private var newContent: String
     @State private var newGrade: String
-    @State private var newClass: String
+    @State private var newClassGroup: String
     @State private var newSemester: String
     @State private var newPlace: String
     @State private var newYear: String
     
-    init(id: Int, title: String, data: String, grade: Int, group: Int, semester: Int, year: Int, place: String, onEdit: @escaping (UUID) -> Void) {
+    init(id: Int, title: String, data: String, grade: Int, group: Int, semester: Int, year: Int, place: String, userId: String, onEdit: @escaping (UUID) -> Void) {
         self.id = id
         self.title = title
         self.data = data
@@ -31,13 +31,13 @@ struct LessonCell: View {
         self.semester = semester
         self.year = year
         self.place = place
+        self.userId = userId
         self.onEdit = onEdit
         
-        _lessonId = State(initialValue: id)
         _newTitle = State(initialValue: title)
         _newContent = State(initialValue: data)
         _newGrade = State(initialValue: "\(grade)")
-        _newClass = State(initialValue: "\(group)")
+        _newClassGroup = State(initialValue: "\(group)")
         _newSemester = State(initialValue: "\(semester)")
         _newPlace = State(initialValue: place)
         _newYear = State(initialValue: "\(year)")
@@ -47,8 +47,6 @@ struct LessonCell: View {
     let classes = ["1", "2", "3", "4"]
     let semesters = ["1", "2"]
     let places = ["교실", "국어실", "수학실", "음악실", "과학실", "임베디드실", "체육관"]
-    
-    var teacherId: String = "qwe"
     
     var body: some View {
         HStack {
@@ -62,7 +60,7 @@ struct LessonCell: View {
             Spacer()
             VStack {
                 Button(action: {
-                    isEditing.toggle() // 편집 모드 전환
+                    isEditing.toggle()
                 }) {
                     Image(systemName: "ellipsis")
                         .frame(width: 13, height: 13)
@@ -93,7 +91,7 @@ struct LessonCell: View {
                                 }
                                 .pickerStyle(MenuPickerStyle())
                                 
-                                Picker("반", selection: $newClass) {
+                                Picker("반", selection: $newClassGroup) {
                                     ForEach(classes, id: \.self) {
                                         Text($0)
                                     }
@@ -127,15 +125,15 @@ struct LessonCell: View {
                     }
                     
                     Button("Save") {
-                        Service.shared.updateLesson(id: String(lessonId),
+                        Service.shared.updateLesson(id: String(id),
                                                     title: newTitle,
                                                     content: newContent,
                                                     grade: newGrade,
-                                                    class: newClass,
+                                                    class: newClassGroup, // 예약어를 피하기 위해 수정됨
                                                     semester: newSemester,
                                                     place: newPlace,
                                                     year: newYear,
-                                                    teacherId: teacherId) { result in
+                                                    teacherId: userId) { result in
                             switch result {
                             case .success(let message):
                                 print("수업 업데이트 성공: \(message)")
@@ -158,8 +156,4 @@ struct LessonCell: View {
             }
         }
     }
-}
-
-#Preview {
-    LessonListView()
 }

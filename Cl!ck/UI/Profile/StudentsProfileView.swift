@@ -1,11 +1,5 @@
-//
-//  ProfileView.swift
-//  Cl!ck
-//
-//  Created by 이다경 on 7/25/24.
-//
-
 import SwiftUI
+import Alamofire
 
 struct StudentsProfileView: View {
     @State private var showAlert = false
@@ -43,7 +37,11 @@ struct StudentsProfileView: View {
                     .padding(.horizontal, 35)
                 }
                 .padding(.bottom, 20)
-                NavigationLink(destination: OnBoardingView()) {
+                
+                // 로그아웃 버튼
+                Button(action: {
+                    logout()
+                }) {
                     HStack {
                         Image(systemName: "rectangle.portrait.and.arrow.right")
                         Text("로그아웃")
@@ -58,25 +56,48 @@ struct StudentsProfileView: View {
                 }
                 .padding(.horizontal)
                 
-                
+                // 네비게이션 트리거
                 NavigationLink(destination: OnBoardingView(), isActive: $navigateToOnboarding) {
                     EmptyView()
                 }
+                
                 Spacer()
             }
             .background(Color.background)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                            Text("프로필")
-                                .font(.system(size: 25, weight: .bold))
-                                .foregroundColor(.black)
+                    Text("프로필")
+                        .font(.system(size: 25, weight: .bold))
+                        .foregroundColor(.black)
                 }
             }
         }
         .navigationBarBackButtonHidden(true)
     }
+    
+    // 로그아웃 함수
+    func logout() {
+        AuthService.shared.signout { result in
+            switch result {
+            case .success(let message):
+                print(message) // 로그아웃 성공 메시지 출력
+                self.navigateToOnboarding = true // OnBoardingView로 이동
+            case .requestErr(let message):
+                print("Request Error: \(message)") // 서버로부터 받은 에러 메시지
+                self.showAlert = true // 에러 알림 표시
+            case .pathErr:
+                print("Path Error")
+                self.showAlert = true
+            case .networkFail:
+                print("Network Failure")
+                self.showAlert = true
+            case .serverErr:
+                print("Server Error")
+                self.showAlert = true
+            }
+        }
+    }
 }
-
 
 #Preview {
     StudentsProfileView(Name: "이다경", Grade: 2, Class: 2, Number: 4)

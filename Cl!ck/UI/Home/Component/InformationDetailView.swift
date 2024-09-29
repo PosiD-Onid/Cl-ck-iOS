@@ -1,26 +1,27 @@
 import SwiftUI
 
 struct InformationDetailView: View {
-    let Title: String
-    let DetailDate: Date
-    let Location: String
-    let DetailTime: Date
-    let Content: String
-    let CircleColor: SwiftUI.Color
+    let title: String
+    let startDate: Date
+    let place: String
+    let endDate: Date
+    let content: String
     let dismissAction: () -> Void
 
-    private var formattedDate: String {
+    private var formattedstartDate: String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_KR")
         formatter.dateStyle = .medium
-        return formatter.string(from: DetailDate)
+        formatter.timeStyle = .short
+        return formatter.string(from: startDate)
     }
 
-    private var formattedTime: String {
+    private var formattedendDate: String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateStyle = .medium
         formatter.timeStyle = .short
-        return formatter.string(from: DetailTime)
+        return formatter.string(from: endDate)
     }
 
     var body: some View {
@@ -44,7 +45,7 @@ struct InformationDetailView: View {
                 VStack(spacing: 16) {
                     Circle()
                         .frame(maxWidth: 25)
-                        .foregroundColor(CircleColor)
+                        .foregroundColor(Color.main.opacity(0.7))
                     Image(systemName: "calendar")
                         .resizable()
                         .frame(maxWidth: 23, maxHeight: 20)
@@ -61,21 +62,22 @@ struct InformationDetailView: View {
                 .padding(.horizontal, 30)
                 
                 VStack(alignment: .leading, spacing: 12) {
-                    Text(Title)
+                    Text(title)
                         .font(.system(size: 23, weight: .semibold))
-                    Text(formattedDate)
-                        .font(.system(size: 23))
-                    Text(Location)
-                        .font(.system(size: 23))
-                    Text(formattedTime)
-                        .font(.system(size: 23))
-                    Text(Content)
-                        .font(.system(size: 23))
+                    Text(place)
+                    Text(formattedstartDate)
+                    Text(formattedendDate)
+                    Text(content)
                 }
+                .font(.system(size: 23))
                 Spacer()
             }
             .padding(.bottom, 120)
         }
-        .background(Color.white) // 배경색 추가
+        .background(Color.white)
     }
+}
+
+#Preview {
+    HomeView()
 }

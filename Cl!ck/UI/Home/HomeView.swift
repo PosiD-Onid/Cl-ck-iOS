@@ -17,7 +17,7 @@ struct HomeView: View {
                         .frame(maxHeight: .infinity)
                     
                     if isBViewVisible {
-                        ScheduleListView(selectedDate: selectedDate)
+                        HomePerformanceListView(selectedDate: selectedDate)
                             .frame(height: UIScreen.main.bounds.height / 2.5)
                             .offset(y: bViewOffset)
                             .transition(.move(edge: .bottom))
@@ -66,12 +66,6 @@ struct HomeView: View {
                     }
                     .font(.system(size: 17, weight: .semibold))
                     .foregroundColor(.black)
-                    NavigationLink(destination: AlarmView()) {
-                        Image(systemName: "bell.square")
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(.black)
-                    }
                 }
             }
             .gesture(DragGesture()

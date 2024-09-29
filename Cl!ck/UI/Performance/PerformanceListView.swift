@@ -6,7 +6,7 @@ struct PerformanceListView: View {
     @State private var showAlert = false
     @State private var errorMessage: String?
     
-    var lesson: Lesson? // 선택한 Lesson의 l_id를 사용하기 위해 var로 설정
+    var lesson: Lesson?
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
@@ -55,7 +55,7 @@ struct PerformanceListView: View {
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: PerformanceCreateView()) {
+                    NavigationLink(destination: PerformanceCreateView(lesson: lesson)) {
                         Image(systemName: "plus.square")
                             .resizable()
                             .frame(width: 30, height: 30)
@@ -93,7 +93,7 @@ struct PerformanceListView: View {
         }
     }
 }
-
-#Preview {
-    LessonListView()
-}
+//
+//#Preview {
+//    LessonListView()
+//}

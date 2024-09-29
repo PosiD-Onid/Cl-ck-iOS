@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TeacherTabView: View {
     @Binding var selectedTab: Int
+    var userId: String
 
     var body: some View {
         NavigationView {
@@ -19,7 +20,7 @@ struct TeacherTabView: View {
                     }
                     .tag(0) // HomeView의 탭 인덱스
                 
-                LessonListView()
+                LessonListView(userId: userId)
                     .tabItem {
                         Image(systemName: "tray")
                     }

@@ -112,40 +112,59 @@ class AuthService {
             case .success(let data):
                 guard let statusCode = response.response?.statusCode else { return }
                 
-                if (200...299).contains(statusCode) {
-                    do {
-                        // JSON 데이터를 파싱
-                        if let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-                           let userType = jsonObject["userType"] as? String {
-                            if userType == "student" {
-                                completion(.success("student"))
-                            } else if userType == "teacher" {
-                                completion(.success("teacher"))
+                do {
+                    // JSON 데이터를 파싱
+                    if let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                        if (200...299).contains(statusCode) {
+                            // 성공적인 로그인
+                            if let userType = jsonObject["userType"] as? String,
+                               let userId = jsonObject["userId"] as? String {
+                                completion(.success((userType, userId)))
                             } else {
                                 completion(.pathErr)
                             }
                         } else {
-                            completion(.pathErr)
-                        }
-                    } catch {
-                        completion(.pathErr)
-                    }
-                } else {
-                    if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-                       let message = jsonObject["message"] as? String {
-                        // 서버에서 반환된 오류 메시지 처리
-                        if message == "비밀번호가 일치하지 않습니다." {
-                            completion(.requestErr("비밀번호가 일치하지 않습니다."))
-                        } else if message == "가입되지 않은 회원입니다." {
-                            completion(.requestErr("가입되지 않은 회원입니다."))
-                        } else {
-                            completion(.requestErr(message))
+                            // 로그인 실패 처리
+                            let errorMessage = jsonObject["message"] as? String ?? "Unknown error"
+                            print("Error: \(errorMessage)")
+                            completion(.pathErr) // 여기에서 에러 처리 추가 가능
                         }
                     } else {
                         completion(.pathErr)
                     }
+                } catch {
+                    completion(.pathErr)
                 }
                 
+            case .failure:
+                completion(.networkFail)
+            }
+        }
+    }
+
+    
+    func signout(completion: @escaping (NetworkResult<Any>) -> Void) {
+        let url = APIConstants.signoutURL
+        let header: HTTPHeaders = ["Content-Type": "application/json"]
+        
+        let dataRequest = AF.request(url,
+                                     method: .post, // 로그아웃이 POST 요청이라 가정
+                                     headers: header)
+        
+        dataRequest.responseData { response in
+            switch response.result {
+            case .success(let data):
+                guard let statusCode = response.response?.statusCode else { return }
+                
+                if (200...299).contains(statusCode) {
+                    completion(.success("로그아웃 성공"))
+                } else {
+                    if let responseString = String(data: data, encoding: .utf8) {
+                        completion(.requestErr(responseString))
+                    } else {
+                        completion(.pathErr)
+                    }
+                }
             case .failure:
                 completion(.networkFail)
             }

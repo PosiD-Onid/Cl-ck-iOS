@@ -257,6 +257,6 @@ struct PerformanceCell: View {
 }
 
 
-#Preview {
-    LessonListView()
-}
+//#Preview {
+//    LessonListView()
+//}

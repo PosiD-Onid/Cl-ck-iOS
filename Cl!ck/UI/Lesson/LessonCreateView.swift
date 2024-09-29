@@ -23,7 +23,8 @@ struct LessonCreateView: View {
     
     @State private var selectTab = 1
     
-    var teacherId: String = "qwe" // 실제 사용자 ID로 교체 필요
+//    var teacherId: String = "qwe" // 실제 사용자 ID로 교체 필요
+    var userId: String
 
     var body: some View {
         NavigationView {
@@ -93,7 +94,7 @@ struct LessonCreateView: View {
                 }
                 
                 NavigationLink(
-                    destination: TeacherTabView(selectedTab: $selectTab),
+                    destination: TeacherTabView(selectedTab: $selectTab, userId: userId),
                     isActive: $navigateToTeacherTabView,
                     label: { EmptyView() }
                 )
@@ -140,7 +141,7 @@ struct LessonCreateView: View {
             semester: selectedSemester,
             place: selectedPlace,
             year: year,
-            teacherId: teacherId
+            teacherId: userId
         ) { result in
             DispatchQueue.main.async {
                 isSubmitting = false
@@ -170,7 +171,7 @@ struct LessonCreateView: View {
         !title.isEmpty && !content.isEmpty && !selectedGrade.isEmpty && !selectedClass.isEmpty && !selectedSemester.isEmpty && !selectedPlace.isEmpty && !year.isEmpty
     }
 }
-
-#Preview {
-    LessonCreateView()
-}
+//
+//#Preview {
+//    LessonCreateView()
+//}

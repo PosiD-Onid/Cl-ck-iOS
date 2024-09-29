@@ -4,6 +4,8 @@ import Alamofire
 struct PerformanceCreateView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
+    var lesson: Lesson?
+    
     let places = ["교실", "국어실", "수학실", "음악실", "과학실", "임베디드실", "체육관"]
     let periods = ["1교시", "2교시", "3교시", "4교시", "5교시", "6교시", "7교시"]
     
@@ -11,7 +13,7 @@ struct PerformanceCreateView: View {
     @State private var startDate = Date()
     @State private var selectedPlace = "교실"
     @State private var selectedStartPeriod = "1교시"
-    @State private var selectedEndPeriod = "1교시" // 종료 교시 선택 변수
+    @State private var selectedEndPeriod = "1교시"
     @State private var title: String = ""
     @State private var detail: String = ""
     @State private var showAlert = false
@@ -35,7 +37,7 @@ struct PerformanceCreateView: View {
                         .frame(width: 100, height: 45)
                     Button {
                         createPerformance()
-                    }  label: {
+                    } label: {
                         Image(systemName: "checkmark")
                             .resizable()
                             .frame(width: 21.5, height: 15.5)
@@ -101,7 +103,7 @@ struct PerformanceCreateView: View {
     }
     
     private func createPerformance() {
-        guard !title.isEmpty, !detail.isEmpty, !selectedPlace.isEmpty else {
+        guard !title.isEmpty, !detail.isEmpty else {
             submissionMessage = "모든 필드를 입력해주세요."
             showAlert = true
             return
@@ -120,18 +122,25 @@ struct PerformanceCreateView: View {
         let formattedStartDate = formatDate(fullStartDate)
         let formattedEndDate = formatDate(fullEndDate)
         
+        guard let lessonId = lesson?.id else {
+            submissionMessage = "수업 ID를 가져올 수 없습니다."
+            showAlert = true
+            return
+        }
         
+        // lessonId를 Int로 전달
         Service.shared.createPerformance(
             title: title,
             place: selectedPlace,
             content: detail,
             startDate: formattedStartDate,
-            endDate: formattedEndDate, // 이제 빈 문자열 대신 실제 종료 시간 전달
-            lessonId: "1"
+            endDate: formattedEndDate,
+            lessonId: lessonId // lessonId를 Int로 올바르게 전달
         ) { result in
             DispatchQueue.main.async {
                 switch result {
-                case .success:
+                case .success(let response):
+                    print("응답:", response)
                     presentationMode.wrappedValue.dismiss()
                 case .failure(let error):
                     submissionMessage = "오류 발생: \(error.localizedDescription)"
@@ -172,8 +181,4 @@ struct PerformanceCreateView: View {
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         return formatter.string(from: date)
     }
-}
-
-#Preview {
-    PerformanceCreateView()
 }

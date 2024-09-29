@@ -1,5 +1,19 @@
 import SwiftUI
 
+struct SignInResponse {
+    let userType: String
+    let userId: String
+    
+    // JSON 파싱을 위한 초기화
+    init?(json: [String: Any]) {
+        guard let userType = json["userType"] as? String,
+              let userId = json["userId"] as? String else { return nil }
+        
+        self.userType = userType
+        self.userId = userId
+    }
+}
+
 struct EntireSignInView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -18,6 +32,7 @@ struct EntireSignInView: View {
     @FocusState private var focusedField: Field?
     
     @State private var selectedTab: Int = 0
+    @State private var userId: String = ""
     
     enum Field {
         case username
@@ -83,34 +98,47 @@ struct EntireSignInView: View {
                 Spacer()
                 
                 Button(action: {
-                    UIApplication.shared.endEditing()
+                    UIApplication.shared.endEditing() // 키보드 내리기
+
+                    // 로그인 수행
                     AuthService.shared.signin(username: username, password: password) { result in
                         switch result {
-                        case .success(let userType):
-                            if let userType = userType as? String {
-                                if userType == "student" {
+                        case .success(let response):
+                            // response는 (userType, userId) 튜플
+                            if let userType = response as? (String, String) {
+                                let (type, id) = userType
+                                self.saveUserId(id) // userId 저장
+
+                                // 사용자 유형에 따라 적절한 탭으로 이동
+                                if type == "student" {
                                     navigateToStudentTab = true
-                                } else if userType == "teacher" {
+                                } else if type == "teacher" {
                                     navigateToTeacherTab = true
                                 }
                             } else {
                                 errorMessage = "유저 타입을 확인할 수 없습니다."
                                 showAlert = true
                             }
+
                         case .requestErr(let message):
                             errorMessage = message as? String ?? "요청 에러 발생"
                             showAlert = true
+
                         case .pathErr:
                             errorMessage = "잘못된 경로"
                             showAlert = true
+
                         case .serverErr:
                             errorMessage = "서버 오류"
                             showAlert = true
+
                         case .networkFail:
                             errorMessage = "네트워크 실패"
                             showAlert = true
+
                         default:
-                            break
+                            errorMessage = "알 수 없는 오류"
+                            showAlert = true
                         }
                     }
                 }) {
@@ -131,9 +159,11 @@ struct EntireSignInView: View {
                 NavigationLink(destination: StudentTabView(), isActive: $navigateToStudentTab) {
                     EmptyView()
                 }
-                NavigationLink(destination: TeacherTabView(selectedTab: $selectedTab), isActive: $navigateToTeacherTab) {
+                
+                NavigationLink(destination: TeacherTabView(selectedTab: $selectedTab, userId: userId), isActive: $navigateToTeacherTab) {
                     EmptyView()
                 }
+
 
                 NavigationLink(destination: ChoosePageView()) {
                     Text("회원가입을 아직 안하셨나요?")
@@ -164,6 +194,9 @@ struct EntireSignInView: View {
             }
         }
         .navigationBarBackButtonHidden()
+    }
+    private func saveUserId(_ userId: String) {
+        self.userId = userId
     }
 }
 

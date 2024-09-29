@@ -7,6 +7,8 @@ struct LessonListView: View {
     @State private var selectedLesson: Lesson? // 선택된 수업을 저장
     @State private var showAlert = false
     @State private var errorMessage: String? // 에러 메시지 저장
+//    @State private var userId: String?
+    var userId: String
     
     var body: some View {
         NavigationView {
@@ -32,6 +34,7 @@ struct LessonListView: View {
                                         semester: Int(lesson.l_semester) ?? 1,
                                         year: Int(lesson.l_year) ?? 0,
                                         place: lesson.l_place,
+                                        userId: userId,
                                         onEdit: { id in }
                                     )
                                 }
@@ -48,7 +51,7 @@ struct LessonListView: View {
                         .foregroundColor(.black)
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: LessonCreateView()) {
+                    NavigationLink(destination: LessonCreateView(userId: userId)) {
                         Image(systemName: "plus.square")
                             .resizable()
                             .frame(width: 30, height: 30)
@@ -64,24 +67,19 @@ struct LessonListView: View {
     }
 
     private func fetchLessons() {
-        // 실제 사용자 ID를 넣어야 합니다.
-        let teacherId = "qwe"
-
-        Service.shared.readLessons(teacherId: teacherId) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let lessons):
-                    self.lessons = lessons
-                case .failure(let error):
-                    self.errorMessage = "수업을 가져오는 데 실패했습니다: \(error.localizedDescription)"
-                    self.showAlert = true
-                }
-                self.isLoading = false
+        Service.shared.readLessons(teacherId: userId) { result in
+            switch result {
+            case .success(let lessons):
+                self.lessons = lessons
+            case .failure(let error):
+                self.errorMessage = "수업을 가져오는 데 실패했습니다: \(error.localizedDescription)"
+                self.showAlert = true
             }
+            self.isLoading = false
         }
     }
 }
 
 #Preview {
-    LessonListView()
+    LessonListView(userId: "sad")
 }
