@@ -30,12 +30,15 @@
 		AF38BF462C4F766D003BF9FD /* ChooseRoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF38BF452C4F766D003BF9FD /* ChooseRoleView.swift */; };
 		AF38BF482C4F7E9E003BF9FD /* EntireSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF38BF472C4F7E9E003BF9FD /* EntireSignInView.swift */; };
 		AF4D43A22C593D5A00CDEA41 /* LessonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4D43A12C593D5A00CDEA41 /* LessonCell.swift */; };
+		AF6161F52CB900EA00061C29 /* T_ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6161F42CB900EA00061C29 /* T_ProfileImage.swift */; };
+		AF6161F72CB9228F00061C29 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6161F62CB9228F00061C29 /* Profile.swift */; };
 		AF63D41F2C5B883400CA374B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF63D41E2C5B883400CA374B /* HomeView.swift */; };
 		AF63D4212C5B884D00CA374B /* CalendarGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF63D4202C5B884D00CA374B /* CalendarGridView.swift */; };
 		AF63D4232C5B886600CA374B /* CalendarCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF63D4222C5B886600CA374B /* CalendarCellView.swift */; };
 		AF63D4252C5B887400CA374B /* WeekdaySymbolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF63D4242C5B887400CA374B /* WeekdaySymbolsView.swift */; };
 		AF63D4272C5B888900CA374B /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF63D4262C5B888900CA374B /* DateFormatter.swift */; };
 		AF8665BE2C59BDC80031ED95 /* TeacherTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8665BD2C59BDC80031ED95 /* TeacherTabView.swift */; };
+		AF87C7262CBE5E9E0092F1EA /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF87C7252CBE5E9E0092F1EA /* ChangePasswordView.swift */; };
 		AF9952322C59D7AE00F1DD9A /* ProcessingResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9952312C59D7AE00F1DD9A /* ProcessingResultsView.swift */; };
 		AF9952342C59F3BE00F1DD9A /* ProcessingResultsListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9952332C59F3BE00F1DD9A /* ProcessingResultsListHeader.swift */; };
 		AF9952362C59F78100F1DD9A /* ProcessingResultsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9952352C59F78100F1DD9A /* ProcessingResultsList.swift */; };
@@ -56,7 +59,7 @@
 		AFF0D1492C5269EB00E2B4B2 /* NavigationControllerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF0D1482C5269EB00E2B4B2 /* NavigationControllerWrapper.swift */; };
 		AFF0D14B2C526A6E00E2B4B2 /* HomePerformanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF0D14A2C526A6E00E2B4B2 /* HomePerformanceCell.swift */; };
 		AFF4C6582C59D29F00AE67A1 /* ProcessingResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF4C6572C59D29F00AE67A1 /* ProcessingResultsCell.swift */; };
-		AFF7A9322C527DD100F4582B /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF7A9312C527DD100F4582B /* ProfileImage.swift */; };
+		AFF7A9322C527DD100F4582B /* S_ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF7A9312C527DD100F4582B /* S_ProfileImage.swift */; };
 		AFFED3A02C514091001DB112 /* PerformanceCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFED39F2C514091001DB112 /* PerformanceCreateView.swift */; };
 		AFFED3C52C51F5BE001DB112 /* OnBoardingScreenContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFED3C42C51F5BE001DB112 /* OnBoardingScreenContent.swift */; };
 		AFFED3CF2C52515E001DB112 /* InformationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFED3CE2C52515E001DB112 /* InformationDetailView.swift */; };
@@ -88,12 +91,15 @@
 		AF38BF452C4F766D003BF9FD /* ChooseRoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseRoleView.swift; sourceTree = "<group>"; };
 		AF38BF472C4F7E9E003BF9FD /* EntireSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntireSignInView.swift; sourceTree = "<group>"; };
 		AF4D43A12C593D5A00CDEA41 /* LessonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonCell.swift; sourceTree = "<group>"; };
+		AF6161F42CB900EA00061C29 /* T_ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T_ProfileImage.swift; sourceTree = "<group>"; };
+		AF6161F62CB9228F00061C29 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		AF63D41E2C5B883400CA374B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		AF63D4202C5B884D00CA374B /* CalendarGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarGridView.swift; sourceTree = "<group>"; };
 		AF63D4222C5B886600CA374B /* CalendarCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellView.swift; sourceTree = "<group>"; };
 		AF63D4242C5B887400CA374B /* WeekdaySymbolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdaySymbolsView.swift; sourceTree = "<group>"; };
 		AF63D4262C5B888900CA374B /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		AF8665BD2C59BDC80031ED95 /* TeacherTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherTabView.swift; sourceTree = "<group>"; };
+		AF87C7252CBE5E9E0092F1EA /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		AF9952312C59D7AE00F1DD9A /* ProcessingResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingResultsView.swift; sourceTree = "<group>"; };
 		AF9952332C59F3BE00F1DD9A /* ProcessingResultsListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingResultsListHeader.swift; sourceTree = "<group>"; };
 		AF9952352C59F78100F1DD9A /* ProcessingResultsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingResultsList.swift; sourceTree = "<group>"; };
@@ -114,7 +120,7 @@
 		AFF0D1482C5269EB00E2B4B2 /* NavigationControllerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerWrapper.swift; sourceTree = "<group>"; };
 		AFF0D14A2C526A6E00E2B4B2 /* HomePerformanceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePerformanceCell.swift; sourceTree = "<group>"; };
 		AFF4C6572C59D29F00AE67A1 /* ProcessingResultsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingResultsCell.swift; sourceTree = "<group>"; };
-		AFF7A9312C527DD100F4582B /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
+		AFF7A9312C527DD100F4582B /* S_ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S_ProfileImage.swift; sourceTree = "<group>"; };
 		AFFED39F2C514091001DB112 /* PerformanceCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceCreateView.swift; sourceTree = "<group>"; };
 		AFFED3C42C51F5BE001DB112 /* OnBoardingScreenContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingScreenContent.swift; sourceTree = "<group>"; };
 		AFFED3CE2C52515E001DB112 /* InformationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationDetailView.swift; sourceTree = "<group>"; };
@@ -362,7 +368,10 @@
 		AFF7A9302C527D6400F4582B /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				AFF7A9312C527DD100F4582B /* ProfileImage.swift */,
+				AF87C7252CBE5E9E0092F1EA /* ChangePasswordView.swift */,
+				AFF7A9312C527DD100F4582B /* S_ProfileImage.swift */,
+				AF6161F42CB900EA00061C29 /* T_ProfileImage.swift */,
+				AF6161F62CB9228F00061C29 /* Profile.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -508,12 +517,14 @@
 				AF1D59C52C4F8D110074FD0E /* AlarmCell.swift in Sources */,
 				AFF0D14B2C526A6E00E2B4B2 /* HomePerformanceCell.swift in Sources */,
 				AF2E88052C947F5E00074F02 /* PerformanceCell.swift in Sources */,
-				AFF7A9322C527DD100F4582B /* ProfileImage.swift in Sources */,
+				AFF7A9322C527DD100F4582B /* S_ProfileImage.swift in Sources */,
 				AFF4C6582C59D29F00AE67A1 /* ProcessingResultsCell.swift in Sources */,
 				AFEB51CF2C91167700F6DB61 /* StudentsProfileView.swift in Sources */,
 				AF38BF3F2C4F7428003BF9FD /* TeacherSignUpView.swift in Sources */,
 				AFEB51D12C9116AD00F6DB61 /* TeachersProfileView.swift in Sources */,
+				AF87C7262CBE5E9E0092F1EA /* ChangePasswordView.swift in Sources */,
 				AF9952362C59F78100F1DD9A /* ProcessingResultsList.swift in Sources */,
+				AF6161F52CB900EA00061C29 /* T_ProfileImage.swift in Sources */,
 				AF4D43A22C593D5A00CDEA41 /* LessonCell.swift in Sources */,
 				AF9952342C59F3BE00F1DD9A /* ProcessingResultsListHeader.swift in Sources */,
 				AF1D59C22C4F8CCC0074FD0E /* AlarmView.swift in Sources */,
@@ -524,6 +535,7 @@
 				7C7E59412BAC1FC300D39E2C /* Cl_ckApp.swift in Sources */,
 				AF30B45E2C84571300325B94 /* NetworkResult.swift in Sources */,
 				AF63D4272C5B888900CA374B /* DateFormatter.swift in Sources */,
+				AF6161F72CB9228F00061C29 /* Profile.swift in Sources */,
 				AFACD5582C8D74CB00798C93 /* StudentTabView.swift in Sources */,
 				AF1F4C472CA13CE700A64596 /* Evaluation.swift in Sources */,
 				AFEB51D52C917C7100F6DB61 /* ScheduleViewModel.swift in Sources */,

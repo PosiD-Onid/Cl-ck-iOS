@@ -4,12 +4,14 @@ import Alamofire
 struct StudentsProfileView: View {
     @State private var showAlert = false
     @State private var navigateToOnboarding = false
+    @State private var showChangePasswordSheet = false
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    let Name: String
-    let Grade: Int
-    let Class: Int
-    let Number: Int
+    @State private var password: String = ""
+    
+    let username: String
+    let userId: String
+    let classof: Int
     
     var body: some View {
         NavigationView {
@@ -24,39 +26,55 @@ struct StudentsProfileView: View {
                     .padding(.top, 100)
                     VStack(alignment: .leading, spacing: 1) {
                         HStack {
-                            ProfileImage()
+                            S_ProfileImage()
                             Spacer()
                         }
                         .padding(.bottom, 35)
                         
-                        Text(Name)
-                            .font(.system(size: 30, weight: .heavy))
-                        Text("\(Grade)학년 \(Class)반 \(Number)번")
-                            .font(.system(size: 18, weight: .regular))
+                        HStack {
+                            Text(username)
+                                .font(.system(size: 30, weight: .heavy))
+                            Text("/ "+userId)
+                                .font(.system(size: 18))
+                        }
+                        Text("\(classof)")
+                            .font(.system(size: 20, weight: .regular))
                     }
                     .padding(.horizontal, 35)
                 }
                 .padding(.bottom, 20)
                 
-                // 로그아웃 버튼
+                Button(action: {
+                    showChangePasswordSheet = true
+                }) {
+                    Text("비밀번호 변경")
+                        .font(.system(size: 20))
+                        .foregroundColor(.black)
+                        .frame(maxWidth: .infinity, maxHeight: 60)
+                        .background(.white)
+                        .cornerRadius(10)
+                }
+                .padding(.horizontal)
+                .sheet(isPresented: $showChangePasswordSheet) {
+                    ChangePasswordView(showSheet: $showChangePasswordSheet) {
+                        print("비밀번호가 성공적으로 변경되었습니다.")
+                    }
+                    .presentationDragIndicator(.visible)
+                    .presentationDetents([.fraction(0.5)])
+                }
+                
                 Button(action: {
                     logout()
                 }) {
-                    HStack {
-                        Image(systemName: "rectangle.portrait.and.arrow.right")
-                        Text("로그아웃")
-                        Spacer()
-                    }
-                    .font(.system(size: 20))
-                    .padding(.leading)
-                    .foregroundColor(.red)
-                    .frame(maxWidth: .infinity, maxHeight: 60)
-                    .background(.white)
-                    .cornerRadius(10)
+                    Text("로그아웃")
+                        .font(.system(size: 20))
+                        .foregroundColor(.red)
+                        .frame(maxWidth: .infinity, maxHeight: 60)
+                        .background(.white)
+                        .cornerRadius(10)
                 }
                 .padding(.horizontal)
                 
-                // 네비게이션 트리거
                 NavigationLink(destination: OnBoardingView(), isActive: $navigateToOnboarding) {
                     EmptyView()
                 }
@@ -75,16 +93,15 @@ struct StudentsProfileView: View {
         .navigationBarBackButtonHidden(true)
     }
     
-    // 로그아웃 함수
     func logout() {
         AuthService.shared.signout { result in
             switch result {
             case .success(let message):
-                print(message) // 로그아웃 성공 메시지 출력
-                self.navigateToOnboarding = true // OnBoardingView로 이동
+                print(message)
+                self.navigateToOnboarding = true
             case .requestErr(let message):
-                print("Request Error: \(message)") // 서버로부터 받은 에러 메시지
-                self.showAlert = true // 에러 알림 표시
+                print("Request Error: \(message)")
+                self.showAlert = true
             case .pathErr:
                 print("Path Error")
                 self.showAlert = true
@@ -99,6 +116,3 @@ struct StudentsProfileView: View {
     }
 }
 
-#Preview {
-    StudentsProfileView(Name: "이다경", Grade: 2, Class: 2, Number: 4)
-}

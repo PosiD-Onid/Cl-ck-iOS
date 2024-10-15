@@ -129,7 +129,7 @@ struct LessonCell: View {
                                                     title: newTitle,
                                                     content: newContent,
                                                     grade: newGrade,
-                                                    class: newClassGroup, // 예약어를 피하기 위해 수정됨
+                                                    class: newClassGroup,
                                                     semester: newSemester,
                                                     place: newPlace,
                                                     year: newYear,

@@ -98,18 +98,15 @@ struct EntireSignInView: View {
                 Spacer()
                 
                 Button(action: {
-                    UIApplication.shared.endEditing() // 키보드 내리기
+                    UIApplication.shared.endEditing()
 
-                    // 로그인 수행
                     AuthService.shared.signin(username: username, password: password) { result in
                         switch result {
                         case .success(let response):
-                            // response는 (userType, userId) 튜플
                             if let userType = response as? (String, String) {
                                 let (type, id) = userType
-                                self.saveUserId(id) // userId 저장
+                                self.saveUserId(id)
 
-                                // 사용자 유형에 따라 적절한 탭으로 이동
                                 if type == "student" {
                                     navigateToStudentTab = true
                                 } else if type == "teacher" {
@@ -119,25 +116,17 @@ struct EntireSignInView: View {
                                 errorMessage = "유저 타입을 확인할 수 없습니다."
                                 showAlert = true
                             }
-
-                        case .requestErr(let message):
-                            errorMessage = message as? String ?? "요청 에러 발생"
+                        case .requestErr(let err):
+                            errorMessage = err as? String ?? "요청 에러 발생"
                             showAlert = true
-
                         case .pathErr:
                             errorMessage = "잘못된 경로"
                             showAlert = true
-
                         case .serverErr:
                             errorMessage = "서버 오류"
                             showAlert = true
-
                         case .networkFail:
                             errorMessage = "네트워크 실패"
-                            showAlert = true
-
-                        default:
-                            errorMessage = "알 수 없는 오류"
                             showAlert = true
                         }
                     }
@@ -160,7 +149,7 @@ struct EntireSignInView: View {
                     EmptyView()
                 }
                 
-                NavigationLink(destination: TeacherTabView(selectedTab: $selectedTab, userId: userId), isActive: $navigateToTeacherTab) {
+                NavigationLink(destination: TeacherTabView(userId: userId), isActive: $navigateToTeacherTab) {
                     EmptyView()
                 }
 

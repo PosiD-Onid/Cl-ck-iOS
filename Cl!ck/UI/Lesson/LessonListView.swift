@@ -2,11 +2,11 @@ import SwiftUI
 import Alamofire
 
 struct LessonListView: View {
-    @State private var lessons: [Lesson] = []  // 여러 개의 수업 데이터를 저장하는 배열
+    @State private var lessons: [Lesson] = []
     @State private var isLoading = true
-    @State private var selectedLesson: Lesson? // 선택된 수업을 저장
+    @State private var selectedLesson: Lesson?
     @State private var showAlert = false
-    @State private var errorMessage: String? // 에러 메시지 저장
+    @State private var errorMessage: String?
 //    @State private var userId: String?
     var userId: String
     
@@ -23,7 +23,7 @@ struct LessonListView: View {
                     ScrollView {
                         ForEach(lessons) { lesson in
                             NavigationLink(
-                                destination: PerformanceListView(lesson: lesson), // 네비게이션 링크로 LessonCell 이동
+                                destination: PerformanceListView(lesson: lesson),
                                 label: {
                                     LessonCell(
                                         id: Int(lesson.id),
