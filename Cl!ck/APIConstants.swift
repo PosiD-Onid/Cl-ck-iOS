@@ -62,6 +62,9 @@ struct APIConstants {
         return PerformanceURL + "/lesson=\(lessonId)"
     }
     
+    // 달력용 수행평가 조회 (전체 조회)
+    static let readPerformanceDataURL = PerformanceURL + "/classof"
+    
     // 수행평가 조회 (한개 조회)
     static func readPerformancesURL(lessonId: String, id: String) -> String {
         return PerformanceURL + "/lesson=\(lessonId)/\(id)"

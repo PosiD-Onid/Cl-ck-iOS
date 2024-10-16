@@ -15,7 +15,7 @@ struct HomePerformanceCell: View {
     private var formattedTime: String {
         // 시간을 한국어로 포맷
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ko_KR")  // 한국어 로케일
+        formatter.locale = Locale(identifier: "ko_KR")
         formatter.dateStyle = .none
         formatter.timeStyle = .short
         return formatter.string(from: startData)

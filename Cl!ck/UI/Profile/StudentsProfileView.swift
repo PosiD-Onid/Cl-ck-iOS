@@ -11,7 +11,6 @@ struct StudentsProfileView: View {
     
     let username: String
     let userId: String
-    let classof: Int
     
     var body: some View {
         NavigationView {
@@ -19,11 +18,11 @@ struct StudentsProfileView: View {
                 ZStack {
                     VStack {
                         Rectangle()
-                            .foregroundColor(.white)
+                            .foregroundColor(Color.background)
                             .frame(width: .infinity)
                             .frame(maxHeight: 260)
                     }
-                    .padding(.top, 100)
+                    .padding(.top, 80)
                     VStack(alignment: .leading, spacing: 1) {
                         HStack {
                             S_ProfileImage()
@@ -37,7 +36,6 @@ struct StudentsProfileView: View {
                             Text("/ "+userId)
                                 .font(.system(size: 18))
                         }
-                        Text("\(classof)")
                             .font(.system(size: 20, weight: .regular))
                     }
                     .padding(.horizontal, 35)
@@ -51,7 +49,7 @@ struct StudentsProfileView: View {
                         .font(.system(size: 20))
                         .foregroundColor(.black)
                         .frame(maxWidth: .infinity, maxHeight: 60)
-                        .background(.white)
+                        .background(Color.background)
                         .cornerRadius(10)
                 }
                 .padding(.horizontal)
@@ -70,7 +68,7 @@ struct StudentsProfileView: View {
                         .font(.system(size: 20))
                         .foregroundColor(.red)
                         .frame(maxWidth: .infinity, maxHeight: 60)
-                        .background(.white)
+                        .background(Color.background)
                         .cornerRadius(10)
                 }
                 .padding(.horizontal)
@@ -81,7 +79,7 @@ struct StudentsProfileView: View {
                 
                 Spacer()
             }
-            .background(Color.background)
+            .background(.white)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Text("프로필")

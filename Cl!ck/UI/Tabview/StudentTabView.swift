@@ -10,7 +10,6 @@ import SwiftUI
 struct StudentTabView: View {
     @State private var s_username: String = ""
     @State private var userId: String = ""
-    @State private var classof: Int = 0
 
     var body: some View {
         NavigationView {
@@ -19,12 +18,12 @@ struct StudentTabView: View {
                     .tabItem {
                         Image(systemName: "house")
                     }
-                MyResultsView()
-                    .tabItem {
-                        Image(systemName: "book")
-                    }
+//                MyResultsView()
+//                    .tabItem {
+//                        Image(systemName: "book")
+//                    }
                 
-                StudentsProfileView(username: s_username, userId: userId, classof: classof)
+                StudentsProfileView(username: s_username, userId: userId)
                     .tabItem {
                         Image(systemName: "person")
                     }
@@ -41,10 +40,10 @@ struct StudentTabView: View {
         Service.shared.profile { result in
             switch result {
             case .success(let data):
-                if let profileData = data as? (String, String?, String?, String?) {
+                if let profileData = data as? (String?, String?, String?, String?) {
+                    print(profileData)
                     self.s_username = profileData.2 ?? ""
-                    self.userId = profileData.0
-                    self.classof = Int(profileData.3 ?? "") ?? 0
+                    self.userId = profileData.0 ?? ""
                 }
             case .pathErr:
                 print("Path Error")

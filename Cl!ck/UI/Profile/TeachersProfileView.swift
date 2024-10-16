@@ -17,11 +17,11 @@ struct TeachersProfileView: View {
                 ZStack {
                     VStack {
                         Rectangle()
-                            .foregroundColor(.white)
+                            .foregroundColor(.background)
                             .frame(width: .infinity)
                             .frame(maxHeight: 260)
                     }
-                    .padding(.top, 100)
+                    .padding(.top, 80)
                     VStack(alignment: .leading, spacing: 1) {
                         HStack {
                             T_ProfileImage()
@@ -49,7 +49,7 @@ struct TeachersProfileView: View {
                         .font(.system(size: 20))
                         .foregroundColor(.black)
                         .frame(maxWidth: .infinity, maxHeight: 60)
-                        .background(.white)
+                        .background(Color.background)
                         .cornerRadius(10)
                 }
                 .padding(.horizontal)
@@ -68,7 +68,7 @@ struct TeachersProfileView: View {
                         .font(.system(size: 20))
                         .foregroundColor(.red)
                         .frame(maxWidth: .infinity, maxHeight: 60)
-                        .background(.white)
+                        .background(Color.background)
                         .cornerRadius(10)
                 }
                 .padding(.horizontal)
@@ -78,7 +78,7 @@ struct TeachersProfileView: View {
                 }
                 Spacer()
             }
-            .background(Color.background)
+            .background(.white)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Text("프로필")

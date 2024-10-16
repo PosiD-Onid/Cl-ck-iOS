@@ -11,17 +11,14 @@ struct MyResultsView: View {
 
     var body: some View {
         NavigationView {
-            ZStack {
-                Color.background.edgesIgnoringSafeArea(.all)
-                VStack {
-                    MyResultsListHeader()
-                        .padding(.top, 5)
-                    
-                    ScrollView {
-                        VStack(alignment: .leading) {
-                            ForEach(1..<19) { index in
-                                MyResultsCell(subject: "인공지능 수학", result: 100)
-                            }
+            VStack {
+                MyResultsListHeader()
+                    .padding(.top, 5)
+                
+                ScrollView {
+                    VStack(alignment: .leading) {
+                        ForEach(1..<19) { index in
+                            MyResultsCell(subject: "인공지능 수학", result: 100)
                         }
                     }
                 }

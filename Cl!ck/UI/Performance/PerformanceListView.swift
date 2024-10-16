@@ -26,13 +26,14 @@ struct PerformanceListView: View {
                                 title: performance.p_title,
                                 place: performance.p_place,
                                 content: performance.p_content,
-                                startDate: performance.p_startdate,
-                                endDate: performance.p_enddate,
+                                startDate: performance.startDate!,
+                                endDate: performance.endDate!,
                                 lesson: lesson,
                                 onEdit: { id in }
                             )
                         }
                     }
+                    .padding(.top)
                 }
             }
             .onAppear(perform: fetchPerformances)
@@ -47,10 +48,12 @@ struct PerformanceListView: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 15, height: 27)
                                 .foregroundColor(.black)
-                            Text("수행평가 목록")
-                                .font(.system(size: 25, weight: .bold))
-                                .foregroundColor(.black)
-                                .padding(.leading)
+                            if let lesson = lesson {
+                                Text("\(lesson.l_title)_\(lesson.l_grade)학년\(lesson.l_class)반")
+                                    .font(.system(size: 25, weight: .bold))
+                                    .foregroundColor(.black)
+                                    .padding(.leading)
+                            }
                         }
                     }
                 }
@@ -73,11 +76,11 @@ struct PerformanceListView: View {
     
     private func fetchPerformances() {
         guard let lessonId = lesson?.id else {
-                errorMessage = "수업 ID를 가져올 수 없습니다."
-                showAlert = true
-                isLoading = false
-                return
-            }
+            errorMessage = "수업 ID를 가져올 수 없습니다."
+            showAlert = true
+            isLoading = false
+            return
+        }
         
         Service.shared.readPerformances(lessonId: "\(lessonId)") { result in
             DispatchQueue.main.async {
@@ -93,7 +96,3 @@ struct PerformanceListView: View {
         }
     }
 }
-//
-//#Preview {
-//    LessonListView()
-//}

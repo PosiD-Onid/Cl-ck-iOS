@@ -21,10 +21,10 @@ struct TeacherTabView: View {
                         Image(systemName: "tray")
                     }
 
-                ProcessingResultsView()
-                    .tabItem {
-                        Image(systemName: "book")
-                    }
+//                ProcessingResultsView()
+//                    .tabItem {
+//                        Image(systemName: "book")
+//                    }
                 
                 TeachersProfileView(username: t_username, userId: t_userId, subject: subject)
                     .tabItem {

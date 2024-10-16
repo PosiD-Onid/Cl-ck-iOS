@@ -11,9 +11,9 @@ struct S_ProfileImage: View {
     var body: some View {
         ZStack {
             Circle()
-                .frame(height: 182)
+                .frame(height: 172)
             Circle()
-                .frame(height: 180)
+                .frame(height: 170)
                 .foregroundColor(.white)
                 Image(systemName: "studentdesk")
                     .resizable()

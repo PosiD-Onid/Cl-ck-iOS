@@ -5,6 +5,7 @@ struct CalendarGridView: View {
     @Binding var selectedDate: Date?
     @Binding var isBViewVisible: Bool
     @Binding var bViewOffset: CGFloat
+    var performanceDates: Set<Date>
     
     var body: some View {
         let days = generateDays(for: selectedMonth)
@@ -20,14 +21,23 @@ struct CalendarGridView: View {
                         let isSelected = selectedDate == date
                         let weekday = Calendar.current.component(.weekday, from: date)
                         
-                        CalendarCellView(
-                            day: day,
-                            clicked: isSelected,
-                            isToday: isToday,
-                            cellHeight: cellHeight,
-                            isBViewVisible: isBViewVisible,
-                            weekday: weekday
-                        )
+                        ZStack {
+                            CalendarCellView(
+                                day: day,
+                                clicked: isSelected,
+                                isToday: isToday,
+                                cellHeight: cellHeight,
+                                isBViewVisible: isBViewVisible,
+                                weekday: weekday
+                            )
+                            
+                            if performanceDates.contains(Calendar.current.startOfDay(for: date)) {
+                                Circle()
+                                    .fill(Color.main) // 색상 설정
+                                    .frame(width: 8, height: 8)
+                                    .offset(y: -12) // 위치 조정
+                            }
+                        }
                         
                     } else {
                         CalendarCellView(

@@ -7,13 +7,13 @@ class Service {
     
     func profile(completion: @escaping (NetworkResult<Any>) -> Void) {
         let url = APIConstants.profileURL
-
+        
         AF.request(url, method: .get)
             .responseData { response in
                 switch response.result {
                 case .success(let data):
                     guard let statusCode = response.response?.statusCode else { return }
-
+                    
                     do {
                         if let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                             if (200...299).contains(statusCode) {
@@ -21,7 +21,6 @@ class Service {
                                    let t_username = jsonObject["t_username"] as? String?,
                                    let s_username = jsonObject["s_username"] as? String?,
                                    let usersubject = jsonObject["usersubject"] as? String? {
-
                                     completion(.success((userId, t_username, s_username, usersubject)))
                                 } else {
                                     completion(.pathErr)
@@ -239,8 +238,6 @@ class Service {
             }
         }
     }
-
-
     
     // 수행평가 전체 조회
     func readPerformances(lessonId: String, completion: @escaping (Result<[Performance], Error>) -> Void) {
@@ -248,6 +245,37 @@ class Service {
         let header: HTTPHeaders = ["Content-Type": "application/json"]
         
         AF.request(url, method: .get, headers: header)
+            .responseJSON { response in
+                switch response.result {
+                case .success(let json):
+                    print("Response JSON: \(json)")
+                    
+                    if let jsonArray = json as? [[String: Any]] {
+                        do {
+                            let jsonData = try JSONSerialization.data(withJSONObject: jsonArray, options: [])
+                            let performances = try JSONDecoder().decode([Performance].self, from: jsonData)
+                            completion(.success(performances))
+                        } catch {
+                            print("JSON 디코딩 실패: \(error)")
+                            completion(.failure(error))
+                        }
+                    } else {
+                        let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "응답 형식이 잘못되었습니다"])
+                        completion(.failure(error))
+                    }
+                    
+                case .failure(let error):
+                    print("수행평가 조회 실패: \(error)")
+                    completion(.failure(error))
+                }
+            }
+    }
+    
+    // 달력용 수행평가 전체 조회
+    func readPerformanceData(completion: @escaping (Result<[Performance], Error>) -> Void) {
+        let url = APIConstants.readPerformanceDataURL
+        
+        AF.request(url, method: .get)
             .responseJSON { response in
                 switch response.result {
                 case .success(let json):
