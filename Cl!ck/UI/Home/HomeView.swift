@@ -22,7 +22,8 @@ struct HomeView: View {
                         selectedDate: $selectedDate,
                         isBViewVisible: $isBViewVisible,
                         bViewOffset: $bViewOffset,
-                        performanceDates: performanceDates
+                        performanceDates: performanceDates,
+                        performances: performances
                     )
                     .padding(.horizontal)
                     .frame(height: calendarGridHeight)
@@ -105,7 +106,6 @@ struct HomeView: View {
                 case .success(let performances):
                     self.performances = performances
                     
-                    // startDate를 기준으로 각 날짜에 동그라미 표시
                     for performance in performances {
                         if let startDate = performance.startDate {
                             self.performanceDates.insert(startDate)

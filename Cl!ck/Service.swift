@@ -274,8 +274,9 @@ class Service {
     // 달력용 수행평가 전체 조회
     func readPerformanceData(completion: @escaping (Result<[Performance], Error>) -> Void) {
         let url = APIConstants.readPerformanceDataURL
+        let header: HTTPHeaders = ["Content-Type": "application/json"]
         
-        AF.request(url, method: .get)
+        AF.request(url, method: .get, headers: header)
             .responseJSON { response in
                 switch response.result {
                 case .success(let json):

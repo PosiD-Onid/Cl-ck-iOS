@@ -95,4 +95,21 @@ struct PerformanceListView: View {
             }
         }
     }
+
+    private func getPeriod(from date: Date) -> String {
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: date)
+        let minute = calendar.component(.minute, from: date)
+        
+        switch (hour, minute) {
+        case (8, 50): return "1교시"
+        case (9, 50): return "2교시"
+        case (10, 50): return "3교시"
+        case (11, 50): return "4교시"
+        case (13, 30): return "5교시"
+        case (14, 30): return "6교시"
+        case (15, 30): return "7교시"
+        default: return "시간 정보 없음"
+        }
+    }
 }

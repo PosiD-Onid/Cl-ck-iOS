@@ -13,7 +13,6 @@ struct HomePerformanceCell: View {
     let startData: Date
     
     private var formattedTime: String {
-        // 시간을 한국어로 포맷
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_KR")
         formatter.dateStyle = .none
@@ -22,22 +21,23 @@ struct HomePerformanceCell: View {
     }
     
     var body: some View {
-//        ScrollView {
+        VStack {
             HStack {
                 Rectangle()
                     .foregroundColor(Color.main.opacity(0.7))
-                    .frame(maxWidth: 5, maxHeight: 50)
+                    .frame(maxWidth: 4.5, maxHeight: 53)
                     .cornerRadius(10)
                 VStack(alignment: .leading, spacing: 5) {
                     Text(title)
-                        .font(.system(size: 17))
+                        .font(.system(size: 17, weight: .semibold))
                         .foregroundStyle(.black)
                     Text("\(formattedTime), \(place)")
                         .font(.system(size: 14))
                         .foregroundStyle(.gray)
                 }
+                .padding(.leading, 5)
             }
-//        }
+        }
     }
 }
 

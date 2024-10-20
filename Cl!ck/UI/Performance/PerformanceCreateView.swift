@@ -128,14 +128,13 @@ struct PerformanceCreateView: View {
             return
         }
         
-        // lessonId를 Int로 전달
         Service.shared.createPerformance(
             title: title,
             place: selectedPlace,
             content: detail,
             startDate: formattedStartDate,
             endDate: formattedEndDate,
-            lessonId: lessonId // lessonId를 Int로 올바르게 전달
+            lessonId: lessonId
         ) { result in
             DispatchQueue.main.async {
                 switch result {

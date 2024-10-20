@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct HomePerformanceListView: View {
-    @State private var showInformationDetailView: Performance? // 수정: 특정 Performance를 선택
+    @State private var showInformationDetailView: Performance?
     var selectedDate: Date?
     
     @State private var performances: [Performance] = []
@@ -36,26 +36,35 @@ struct HomePerformanceListView: View {
                     Spacer()
                 }
                 
-                // Performances가 있는 경우에만 표시
-                if performances.isEmpty {
+                let (filteredPerformances, performanceCount) = filterPerformances(for: selectedDate, from: performances)
+                
+                if filteredPerformances.isEmpty {
                     Text("수행평가 일정이 없습니다.")
                         .font(.system(size: 21))
                         .foregroundColor(.gray)
                         .padding()
                 } else {
-                    ForEach(performances.filter { Calendar.current.isDate($0.startDate!, inSameDayAs: selectedDate!) }) { performance in
-                        Button(action: {
-                            withAnimation(.easeInOut) {
-                                showInformationDetailView = performance // 클릭한 수행 평가를 보여줌
+                    ScrollView {
+                        VStack(alignment: .leading) {
+                            ForEach(filteredPerformances) { performance in
+                                Button(action: {
+                                    withAnimation(.easeInOut) {
+                                        showInformationDetailView = performance
+                                    }
+                                }) {
+                                    HStack {
+                                        HomePerformanceCell(
+                                            title: performance.p_title,
+                                            place: performance.p_place,
+                                            startData: performance.startDate!
+                                        )
+                                        .padding(.bottom, 8)
+                                        .padding(.leading, 20)
+                                        Spacer()
+                                    }
+                                }
                             }
-                        }) {
-                            HomePerformanceCell(
-                                title: performance.p_title,
-                                place: performance.p_place,
-                                startData: performance.startDate!
-                            )
                         }
-                        .padding(.leading, 20)
                     }
                 }
                 
@@ -76,7 +85,7 @@ struct HomePerformanceListView: View {
                         content: performance.p_content,
                         dismissAction: {
                             withAnimation(.easeInOut) {
-                                showInformationDetailView = nil // dismiss
+                                showInformationDetailView = nil
                             }
                         }
                     )
@@ -104,8 +113,4 @@ struct HomePerformanceListView: View {
             }
         }
     }
-}
-
-#Preview {
-    HomePerformanceListView(selectedDate: Date())
 }
