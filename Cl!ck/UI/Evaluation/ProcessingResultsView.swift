@@ -35,9 +35,9 @@ public struct CustomScrollTabView<Selection>: View where Selection: Hashable & I
                         Text(key.title)
                             .font(.system(size: 19, weight: key == selection ? .bold : .regular))
                             .padding()
-                            .background(
+                            .background (
                                 RoundedRectangle(cornerRadius: 10)
-                                    .fill(key == selection ? Color.main : Color.white)
+                                    .fill(key == selection ? Color.main : Color.background)
                                     .frame(height: 40)
                             )
                             .foregroundColor(
@@ -88,7 +88,7 @@ struct ProcessingResultsView: View {
                 selectedTabView(for: selectedTab)
                 Spacer()
             }
-            .background(Color.background)
+            .background(.white)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Text("성적 처리")

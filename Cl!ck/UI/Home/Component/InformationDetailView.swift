@@ -42,37 +42,61 @@ struct InformationDetailView: View {
             .padding(.top, 20)
             
             HStack {
-                VStack(spacing: 16) {
-                    Circle()
-                        .frame(maxWidth: 25)
-                        .foregroundColor(Color.main.opacity(0.7))
-                    Image(systemName: "calendar")
-                        .resizable()
-                        .frame(maxWidth: 23, maxHeight: 20)
-                    Image(systemName: "location")
-                        .resizable()
-                        .frame(maxWidth: 23, maxHeight: 23)
-                    Image(systemName: "bell")
-                        .resizable()
-                        .frame(maxWidth: 23, maxHeight: 23)
-                    Image(systemName: "text.alignleft")
-                        .resizable()
-                        .frame(maxWidth: 23, maxHeight: 23)
+                VStack(alignment: .leading, spacing: 10) {
+                    HStack {
+                        Circle()
+                            .frame(maxWidth: 24)
+                            .foregroundColor(Color.main.opacity(0.7))
+                            .padding(.trailing, 14)
+                        Text(title)
+                            .font(.system(size: 24, weight: .semibold))
+                    }
+                    HStack {
+                        Image(systemName: "location")
+                            .resizable()
+                            .frame(maxWidth: 23, maxHeight: 23)
+                            .padding(.trailing, 15)
+                        Text(place)
+                            .font(.system(size: 23))
+                    }
+                    HStack {
+                        VStack {
+                            Image(systemName: "calendar")
+                                .resizable()
+                                .frame(maxWidth: 23, maxHeight: 21)
+                                .padding(.top, 5)
+                            Spacer()
+                        }
+                        .padding(.trailing, 15)
+                        VStack {
+                            Text(formattedstartDate)
+                                .padding(.bottom, 2)
+                            Text(formattedendDate)
+                        }
+                        .font(.system(size: 23))
+                    }
+                    HStack {
+                        VStack {
+                            Image(systemName: "text.alignleft")
+                                .resizable()
+                                .frame(maxWidth: 23, maxHeight: 23)
+                                .padding(.trailing, 15)
+                            Spacer()
+                        }
+                        VStack {
+                            Text(content)
+                                .font(.system(size: 23))
+                                .frame(width: .infinity, height: 100, alignment: .topLeading)
+                                .multilineTextAlignment(.leading)
+                                .lineLimit(nil)
+                        }
+                    }
                 }
-                .padding(.horizontal, 30)
-                
-                VStack(alignment: .leading, spacing: 12) {
-                    Text(title)
-                        .font(.system(size: 23, weight: .semibold))
-                    Text(place)
-                    Text(formattedstartDate)
-                    Text(formattedendDate)
-                    Text(content)
-                }
-                .font(.system(size: 23))
+                .padding(.leading, 25)
                 Spacer()
             }
-            .padding(.bottom, 120)
+            .padding(.top, 20)
+            .padding(.bottom)
         }
         .background(Color.white)
     }

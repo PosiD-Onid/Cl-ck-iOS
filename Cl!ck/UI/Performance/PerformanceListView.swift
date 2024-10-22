@@ -20,14 +20,31 @@ struct PerformanceListView: View {
                         .foregroundColor(.gray)
                 } else {
                     ScrollView {
+                        if let lesson = lesson {
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Spacer()
+                                    Text(lesson.l_content)
+                                        .font(.system(size: 24))
+                                        .multilineTextAlignment(.leading)
+                                        .bold()
+                                    Text("\(lesson.l_year) \(lesson.l_semester)학기")
+                                }
+                                .padding(.leading)
+                                .padding([.leading, .bottom])
+                                Spacer()
+                            }
+                            .frame(width: .infinity, height: 150)
+                            .background(Color.pIn)
+                        }
                         ForEach(performances) { performance in
                             PerformanceCell(
                                 id: Int(performance.id),
                                 title: performance.p_title,
                                 place: performance.p_place,
                                 content: performance.p_content,
-                                startDate: performance.p_startdate,
-                                endDate: performance.p_enddate,
+                                startDate: performance.startDate!,
+                                endDate: performance.endDate!,
                                 lesson: lesson,
                                 onEdit: { id in }
                             )
@@ -47,10 +64,12 @@ struct PerformanceListView: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 15, height: 27)
                                 .foregroundColor(.black)
-                            Text("수행평가 목록")
-                                .font(.system(size: 25, weight: .bold))
-                                .foregroundColor(.black)
-                                .padding(.leading)
+                            if let lesson = lesson {
+                                Text("\(lesson.l_title)_\(lesson.l_grade)학년\(lesson.l_class)반")
+                                    .font(.system(size: 25, weight: .bold))
+                                    .foregroundColor(.black)
+                                    .padding(.leading)
+                            }
                         }
                     }
                 }
@@ -73,11 +92,11 @@ struct PerformanceListView: View {
     
     private func fetchPerformances() {
         guard let lessonId = lesson?.id else {
-                errorMessage = "수업 ID를 가져올 수 없습니다."
-                showAlert = true
-                isLoading = false
-                return
-            }
+            errorMessage = "수업 ID를 가져올 수 없습니다."
+            showAlert = true
+            isLoading = false
+            return
+        }
         
         Service.shared.readPerformances(lessonId: "\(lessonId)") { result in
             DispatchQueue.main.async {
@@ -92,8 +111,21 @@ struct PerformanceListView: View {
             }
         }
     }
+
+    private func getPeriod(from date: Date) -> String {
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: date)
+        let minute = calendar.component(.minute, from: date)
+        
+        switch (hour, minute) {
+        case (8, 50): return "1교시"
+        case (9, 50): return "2교시"
+        case (10, 50): return "3교시"
+        case (11, 50): return "4교시"
+        case (13, 30): return "5교시"
+        case (14, 30): return "6교시"
+        case (15, 30): return "7교시"
+        default: return "시간 정보 없음"
+        }
+    }
 }
-//
-//#Preview {
-//    LessonListView()
-//}

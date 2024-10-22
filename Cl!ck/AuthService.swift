@@ -125,9 +125,11 @@ class AuthService {
                             }
                         } else {
                             // 로그인 실패 처리
-                            let errorMessage = jsonObject["message"] as? String ?? "Unknown error"
-                            print("Error: \(errorMessage)")
-                            completion(.pathErr) // 여기에서 에러 처리 추가 가능
+                            if let errorMessage = jsonObject["message"] as? String {
+                                completion(.requestErr(errorMessage)) // 서버에서 받은 에러 메시지 전송
+                            } else {
+                                completion(.requestErr("로그인에 실패했습니다.")) // 기본 에러 메시지
+                            }
                         }
                     } else {
                         completion(.pathErr)

@@ -7,14 +7,27 @@ struct HomeView: View {
     @State private var dragOffset = CGSize.zero
     @State private var bViewOffset = CGFloat(0)
     
+    @State private var errorMessage: String?
+    @State private var showAlert = false
+    
+    @State private var performances: [Performance] = []
+    @State private var performanceDates: Set<Date> = []
+    
     var body: some View {
         NavigationView {
             ZStack(alignment: .top) {
                 VStack(spacing: 0) {
-                    CalendarGridView(selectedMonth: $selectedMonth, selectedDate: $selectedDate, isBViewVisible: $isBViewVisible, bViewOffset: $bViewOffset)
-                        .padding(.horizontal)
-                        .frame(height: calendarGridHeight)
-                        .frame(maxHeight: .infinity)
+                    CalendarGridView(
+                        selectedMonth: $selectedMonth,
+                        selectedDate: $selectedDate,
+                        isBViewVisible: $isBViewVisible,
+                        bViewOffset: $bViewOffset,
+                        performanceDates: performanceDates,
+                        performances: performances
+                    )
+                    .padding(.horizontal)
+                    .frame(height: calendarGridHeight)
+                    .frame(maxHeight: .infinity)
                     
                     if isBViewVisible {
                         HomePerformanceListView(selectedDate: selectedDate)
@@ -82,12 +95,34 @@ struct HomeView: View {
                 }
             )
             .navigationBarBackButtonHidden()
+            .onAppear(perform: fetchPerformances)
+        }
+    }
+    
+    private func fetchPerformances() {
+        Service.shared.readPerformanceData { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let performances):
+                    self.performances = performances
+                    
+                    for performance in performances {
+                        if let startDate = performance.startDate {
+                            self.performanceDates.insert(startDate)
+                        }
+                    }
+                case .failure(let error):
+                    self.errorMessage = "수행평가를 가져오는 데 실패했습니다: \(error.localizedDescription)"
+                    self.showAlert = true
+                }
+            }
         }
     }
     
     private func changeMonth(by value: Int) {
         if let newMonth = Calendar.current.date(byAdding: .month, value: value, to: selectedMonth) {
             selectedMonth = newMonth
+            fetchPerformances()
         }
     }
     

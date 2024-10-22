@@ -8,38 +8,56 @@
 import SwiftUI
 
 struct TeacherTabView: View {
-    @Binding var selectedTab: Int
+    @State private var t_username: String = ""
+    @State private var subject: String = ""
+    @State private var t_userId: String = ""
     var userId: String
 
     var body: some View {
         NavigationView {
-            TabView(selection: $selectedTab) { // 현재 선택된 탭 상태 바인딩
-                HomeView()
-                    .tabItem {
-                        Image(systemName: "house")
-                    }
-                    .tag(0) // HomeView의 탭 인덱스
-                
+            TabView {
                 LessonListView(userId: userId)
                     .tabItem {
                         Image(systemName: "tray")
                     }
-                    .tag(1) // LessonListView의 탭 인덱스
 
-                ProcessingResultsView()
-                    .tabItem {
-                        Image(systemName: "book")
-                    }
-                    .tag(2) // 다른 탭 인덱스
+//                ProcessingResultsView()
+//                    .tabItem {
+//                        Image(systemName: "book")
+//                    }
                 
-                TeachersProfileView(Name: "d", Subject: "국어국문학")
+                TeachersProfileView(username: t_username, userId: t_userId, subject: subject)
                     .tabItem {
                         Image(systemName: "person")
                     }
-                    .tag(3) // 다른 탭 인덱스
             }
             .accentColor(.main)
         }
         .navigationBarBackButtonHidden(true)
+        .onAppear {
+            loadProfile()
+        }
+    }
+    
+    func loadProfile() {
+        Service.shared.profile { result in
+            switch result {
+            case .success(let data):
+                if let profileData = data as? (String?, String?, String?, String?) {
+                    self.t_username = profileData.1 ?? ""
+                    self.t_userId = profileData.0 ?? ""
+                    self.subject = profileData.3 ?? ""
+                    
+                }
+            case .pathErr:
+                print("Path Error")
+            case .networkFail:
+                print("Network Failure")
+            case .serverErr:
+                print("Server Error")
+            case .requestErr(let message):
+                print("Request Error: \(message)")
+            }
+        }
     }
 }

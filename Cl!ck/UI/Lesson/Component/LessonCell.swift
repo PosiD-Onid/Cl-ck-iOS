@@ -11,6 +11,7 @@ struct LessonCell: View {
     let year: Int
     let place: String
     let userId: String
+    let hasPerformance: Bool // 수행평가 여부를 나타내는 변수 추가
     var onEdit: (UUID) -> Void
     
     @State private var isEditing = false
@@ -22,7 +23,7 @@ struct LessonCell: View {
     @State private var newPlace: String
     @State private var newYear: String
     
-    init(id: Int, title: String, data: String, grade: Int, group: Int, semester: Int, year: Int, place: String, userId: String, onEdit: @escaping (UUID) -> Void) {
+    init(id: Int, title: String, data: String, grade: Int, group: Int, semester: Int, year: Int, place: String, userId: String, hasPerformance: Bool, onEdit: @escaping (UUID) -> Void) {
         self.id = id
         self.title = title
         self.data = data
@@ -32,6 +33,7 @@ struct LessonCell: View {
         self.year = year
         self.place = place
         self.userId = userId
+        self.hasPerformance = hasPerformance
         self.onEdit = onEdit
         
         _newTitle = State(initialValue: title)
@@ -49,33 +51,24 @@ struct LessonCell: View {
     let places = ["교실", "국어실", "수학실", "음악실", "과학실", "임베디드실", "체육관"]
     
     var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text(title)
-                    .font(.system(size: 22, weight: .semibold))
-                    .padding(.bottom)
-                Text("\(grade)학년 \(group)반")
-                    .font(.system(size: 13))
-            }
-            Spacer()
-            VStack {
-                Button(action: {
-                    isEditing.toggle()
-                }) {
-                    Image(systemName: "ellipsis")
-                        .frame(width: 13, height: 13)
-                }
-                Spacer()
+        VStack(spacing: 0) {
+            Image(hasPerformance ? "fillFolder" : "emptyFolder")
+                .resizable()
+                .frame(maxWidth: 75, maxHeight: 65)
+            Text(title+"_\(grade)학년\(group)반")
+                .font(.system(size: 13))
+                .lineLimit(2)
+                .multilineTextAlignment(.center)
+                .frame(height: 40)
+                .foregroundStyle(.black)
+            Button {
+                isEditing = true
+            }label: {
+                Text("수정")
+                    .foregroundStyle(.blue)
+                    .font(.system(size: 10))
             }
         }
-        .foregroundColor(.black)
-        .padding(.vertical, 23)
-        .padding(.horizontal, 35)
-        .background(
-            RoundedRectangle(cornerRadius: 10)
-                .foregroundColor(.buttongary)
-                .padding(.horizontal)
-        )
         .sheet(isPresented: $isEditing) {
             NavigationView {
                 VStack {
@@ -129,7 +122,7 @@ struct LessonCell: View {
                                                     title: newTitle,
                                                     content: newContent,
                                                     grade: newGrade,
-                                                    class: newClassGroup, // 예약어를 피하기 위해 수정됨
+                                                    class: newClassGroup,
                                                     semester: newSemester,
                                                     place: newPlace,
                                                     year: newYear,

@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct HomePerformanceListView: View {
-    @State private var showInformationDetailView = false
+    @State private var showInformationDetailView: Performance?
     var selectedDate: Date?
     
     @State private var performances: [Performance] = []
@@ -35,27 +35,39 @@ struct HomePerformanceListView: View {
                         .padding(.leading, 20)
                     Spacer()
                 }
-                HStack {
-                    Button(action: {
-                        withAnimation(.easeInOut) {
-                            showInformationDetailView = true
+                
+                let (filteredPerformances, performanceCount) = filterPerformances(for: selectedDate, from: performances)
+                
+                if filteredPerformances.isEmpty {
+                    Text("수행평가 일정이 없습니다.")
+                        .font(.system(size: 21))
+                        .foregroundColor(.gray)
+                        .padding()
+                } else {
+                    ScrollView {
+                        VStack(alignment: .leading) {
+                            ForEach(filteredPerformances) { performance in
+                                Button(action: {
+                                    withAnimation(.easeInOut) {
+                                        showInformationDetailView = performance
+                                    }
+                                }) {
+                                    HStack {
+                                        HomePerformanceCell(
+                                            title: performance.p_title,
+                                            place: performance.p_place,
+                                            startData: performance.startDate!
+                                        )
+                                        .padding(.bottom, 8)
+                                        .padding(.leading, 20)
+                                        Spacer()
+                                    }
+                                }
+                            }
                         }
-                    }) {
-                        ForEach(performances) { performance in
-                            HomePerformanceCell(
-                                title: performance.p_title,
-                                place: performance.p_place,
-                                startData: Date() /*Calendar.current.date(bySettingHour: 14, minute: 30, second: 0, of: Date()) ?? Date()*/
-                            )
-                        }
-                        //                            title: performance.p_title
-                        //                            place: "국어실",
-                        //                            startData: Calendar.current.date(bySettingHour: 14, minute: 30, second: 0, of: Date()) ?? Date()
-                        //                        )
                     }
-                    .padding(.leading, 20)
-                    Spacer()
                 }
+                
                 Spacer()
             }
             .padding(.top, 20)
@@ -64,39 +76,32 @@ struct HomePerformanceListView: View {
         .onAppear(perform: fetchPerformances)
         .overlay(
             Group {
-                if showInformationDetailView {
-                    ForEach(performances) { performance in
-                        InformationDetailView (
-                            title: performance.p_title,
-                            startDate: Date(),
-                            place: performance.p_place,
-                            endDate: Date(),
-                            content: performance.p_content,
-                            dismissAction: {
-                                withAnimation(.easeInOut) {
-                                    showInformationDetailView = false
-                                }
+                if let performance = showInformationDetailView {
+                    InformationDetailView (
+                        title: performance.p_title,
+                        startDate: performance.startDate!,
+                        place: performance.p_place,
+                        endDate: performance.endDate!,
+                        content: performance.p_content,
+                        dismissAction: {
+                            withAnimation(.easeInOut) {
+                                showInformationDetailView = nil
                             }
-                        )
-                        .background(Color.white)
-                        .transition(.move(edge: .trailing))
-                        .zIndex(0)
-                    }
-                } else {
-                    Text("수행평가 일정이 없습니다.")
-                        .font(.system(size: 21))
-                        .foregroundColor(.gray)
-                        .transition(.move(edge: .trailing))
+                        }
+                    )
+                    .background(Color.white)
+                    .transition(.move(edge: .trailing))
+                    .zIndex(0)
                 }
             }
         )
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("오류"), message: Text(errorMessage ?? "알 수 없는 오류 발생"), dismissButton: .default(Text("확인")))
+        }
     }
     
-    
     private func fetchPerformances() {
-        let lessonId = 3
-        
-        Service.shared.readPerformances(lessonId: "\(lessonId)") { result in
+        Service.shared.readPerformanceData { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let performances):
@@ -105,13 +110,7 @@ struct HomePerformanceListView: View {
                     self.errorMessage = "수행평가를 가져오는 데 실패했습니다: \(error.localizedDescription)"
                     self.showAlert = true
                 }
-                self.isLoading = false
             }
         }
     }
-}
-
-
-#Preview {
-    HomePerformanceListView(selectedDate: Date())
 }

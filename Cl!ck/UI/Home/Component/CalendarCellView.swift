@@ -74,6 +74,7 @@ struct CalendarCellView: View {
                     .foregroundColor(.gray400)
             }
             if day != 0 {
+                
                 RoundedRectangle(cornerRadius: 10)
                     .fill(backgroundColor)
                     .frame(width: 35, height: 35)
@@ -91,8 +92,5 @@ struct CalendarCellView: View {
                 .frame(width: 52.7)
                 .foregroundColor(rectangleColor)
         )
-        .onTapGesture(count: 2) {
-        }
     }
 }
-

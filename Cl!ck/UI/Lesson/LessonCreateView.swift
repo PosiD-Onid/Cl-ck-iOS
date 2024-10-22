@@ -94,7 +94,7 @@ struct LessonCreateView: View {
                 }
                 
                 NavigationLink(
-                    destination: TeacherTabView(selectedTab: $selectTab, userId: userId),
+                    destination: TeacherTabView(userId: userId),
                     isActive: $navigateToTeacherTabView,
                     label: { EmptyView() }
                 )
