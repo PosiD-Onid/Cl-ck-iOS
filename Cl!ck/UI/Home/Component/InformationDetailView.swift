@@ -76,19 +76,27 @@ struct InformationDetailView: View {
                         .font(.system(size: 23))
                     }
                     HStack {
-                        Image(systemName: "text.alignleft")
-                            .resizable()
-                            .frame(maxWidth: 23, maxHeight: 23)
-                            .padding(.trailing, 15)
-                        Text(content)
-                            .font(.system(size: 23))
+                        VStack {
+                            Image(systemName: "text.alignleft")
+                                .resizable()
+                                .frame(maxWidth: 23, maxHeight: 23)
+                                .padding(.trailing, 15)
+                            Spacer()
+                        }
+                        VStack {
+                            Text(content)
+                                .font(.system(size: 23))
+                                .frame(width: .infinity, height: 100, alignment: .topLeading)
+                                .multilineTextAlignment(.leading)
+                                .lineLimit(nil)
+                        }
                     }
                 }
                 .padding(.leading, 25)
                 Spacer()
             }
             .padding(.top, 20)
-            .padding(.bottom, 100)
+            .padding(.bottom)
         }
         .background(Color.white)
     }

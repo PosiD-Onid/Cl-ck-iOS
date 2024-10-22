@@ -20,6 +20,23 @@ struct PerformanceListView: View {
                         .foregroundColor(.gray)
                 } else {
                     ScrollView {
+                        if let lesson = lesson {
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Spacer()
+                                    Text(lesson.l_content)
+                                        .font(.system(size: 24))
+                                        .multilineTextAlignment(.leading)
+                                        .bold()
+                                    Text("\(lesson.l_year) \(lesson.l_semester)학기")
+                                }
+                                .padding(.leading)
+                                .padding([.leading, .bottom])
+                                Spacer()
+                            }
+                            .frame(width: .infinity, height: 150)
+                            .background(Color.pIn)
+                        }
                         ForEach(performances) { performance in
                             PerformanceCell(
                                 id: Int(performance.id),
@@ -33,7 +50,6 @@ struct PerformanceListView: View {
                             )
                         }
                     }
-                    .padding(.top)
                 }
             }
             .onAppear(perform: fetchPerformances)

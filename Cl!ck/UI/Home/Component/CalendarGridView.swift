@@ -45,6 +45,7 @@ struct CalendarGridView: View {
                                                     .frame(maxWidth: 7.5)
                                             }
                                         }
+                                        .frame(maxWidth: 50)
                                         .offset(y: 4)
                                     }
                                 } else {
@@ -59,20 +60,9 @@ struct CalendarGridView: View {
                                             }
                                         }
                                     }
+                                    .frame(maxWidth: 50, maxHeight: 25)
+                                    .padding(.top)
                                 }
-                                    
-//                                } else {
-//                                    VStack {
-//                                        HStack(spacing: 5) {
-//                                            RoundedRectangle(cornerRadius: 10)
-//                                                .foregroundStyle(Color.main)
-//                                                .frame(maxWidth: 3, maxHeight: 15)
-//                                            Text("국어수행")
-//                                                .font(.system(size: 10))
-//                                        }
-//                                    }
-//                                    .padding(.top)
-//                                }
                             }
                         }
                     } else {
