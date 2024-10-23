@@ -11,7 +11,8 @@ struct CalendarGridView: View {
     var body: some View {
         let days = generateDays(for: selectedMonth)
         let numberOfWeeks = calculateNumberOfWeeks(for: selectedMonth)
-        let cellHeight: CGFloat = isBViewVisible ? (numberOfWeeks == 5 ? 55.7 : 46.4) : (numberOfWeeks == 5 ? 114 : 95)
+//        let cellHeight: CGFloat = isBViewVisible ? (numberOfWeeks == 5 ? 55.7 : 46.4) : (numberOfWeeks == 5 ? 114 : 95)
+        let cellHeight: CGFloat = isBViewVisible ? (numberOfWeeks == 6 ? 55.7 : 46.4) : (numberOfWeeks == 5 ? 114 : 95)
 
         return LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: 0) {
             ForEach(Array(days.enumerated()), id: \.offset) { (index, date) in
@@ -46,7 +47,7 @@ struct CalendarGridView: View {
                                             }
                                         }
                                         .frame(maxWidth: 50)
-                                        .offset(y: 4)
+                                        .offset(y: 9)
                                     }
                                 } else {
                                     VStack(alignment: .leading, spacing: 1.5) {

@@ -16,8 +16,8 @@ struct PerformanceCell: View {
     @State private var newContent: String
     @State private var startdate: Date
     @State private var enddate: Date
-    @State private var selectedStartPeriod = "1교시"
-    @State private var selectedEndPeriod = "1교시"
+    @State private var selectedStartPeriod: String
+    @State private var selectedEndPeriod: String
 
     let lessonId: Int
     let performanceId: Int
@@ -39,17 +39,20 @@ struct PerformanceCell: View {
         self.newTitle = title
         self.newPlace = place
         self.newContent = content
-
+        
         guard let lessonId = lesson?.id else {
             fatalError("수업 ID를 가져올 수 없습니다.")
         }
         self.lessonId = lessonId
         
+        self.startDate = startDate
+        self.endDate = endDate
+        
         self.startdate = startDate
         self.enddate = endDate
         
-        self.startDate = startDate
-        self.endDate = endDate
+        self.selectedStartPeriod = ""
+        self.selectedEndPeriod = ""
     }
 
     var body: some View {
@@ -61,15 +64,11 @@ struct PerformanceCell: View {
                     .frame(height: 0.8)
                     .foregroundColor(.gray)
                     .padding(.bottom)
-                HStack {
-                    Text("장소: \(place)")
-                        .font(.system(size: 13))
-                    Spacer()
-                    Text("교시: \(selectedStartPeriod) ~ \(selectedEndPeriod)")
-                        .font(.system(size: 13))
-                    Spacer()
-                }
-                Text("기간: \(formattedDate(from: startDate)) - \(formattedDate(from: endDate))")
+                Text("장소: \(place)")
+                    .font(.system(size: 13))
+                Text("기간: \(formattedDateAndTime(from: startDate))")
+                    .font(.system(size: 13))
+                Text("- \(formattedDateAndTime(from: endDate))")
                     .font(.system(size: 13))
                 Text("내용: \(content)")
                     .font(.system(size: 13))
@@ -136,16 +135,7 @@ struct PerformanceCell: View {
                     }
                     
                     Button("저장") {
-                        let newStartDate = formatISODate(from: startdate, period: selectedStartPeriod)
-                        let newEndDate = formatISODate(from: enddate, period: selectedEndPeriod)
-
-                        let endTime = getEndTime(for: selectedEndPeriod)
-                        let startTime = getStartTime(for: selectedStartPeriod)
-
-                        if endTime < startTime {
-                            print("종료 교시는 시작 교시보다 앞설 수 없습니다.")
-                            return
-                        }
+                        let (newStartDate, newEndDate) = formatISODate(from: startdate, startPeriod: selectedStartPeriod, endPeriod: selectedEndPeriod)
 
                         Service.shared.updatePerformance(id: String(performanceId),
                                                          title: newTitle,
@@ -182,34 +172,42 @@ struct PerformanceCell: View {
         }
     }
     
+    private func formattedDateAndTime(from date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일 EEEE HH시 mm분"
+        return dateFormatter.string(from: date)
+    }
+
+    
     private func formattedDate(from date: Date) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일 EEEE HH시 mm분" // 시간대 제외
+        dateFormatter.locale = Locale(identifier: "ko_KR") // 한국어로 설정
         return dateFormatter.string(from: date)
     }
     
-    private func formatISODate(from date: Date, period: String) -> String {
+    private func formatISODate(from date: Date, startPeriod: String, endPeriod: String) -> (String, String) {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
 
-        let startTime = getStartTime(for: period)
-        let endTime = getEndTime(for: period)
         let calendar = Calendar.current
         
-        let components = calendar.dateComponents([.year, .month, .day], from: date)
-        
+        let startTime = getStartTime(for: startPeriod)
+        let startComponents = calendar.dateComponents([.year, .month, .day], from: date)
         let finalStartDate = calendar.date(bySettingHour: calendar.component(.hour, from: startTime),
                                             minute: calendar.component(.minute, from: startTime),
                                             second: 0,
-                                            of: calendar.date(from: components)!)
+                                            of: calendar.date(from: startComponents)!)
         
+        let endTime = getEndTime(for: endPeriod)
         let finalEndDate = calendar.date(bySettingHour: calendar.component(.hour, from: endTime),
                                           minute: calendar.component(.minute, from: endTime),
                                           second: 0,
-                                          of: calendar.date(from: components)!)
+                                          of: calendar.date(from: startComponents)!)
         
-        return formatter.string(from: finalStartDate!)
+        return (formatter.string(from: finalStartDate!), formatter.string(from: finalEndDate!))
     }
+
     
     private func getStartTime(for period: String) -> Date {
         switch period {
@@ -254,14 +252,34 @@ struct PerformanceCell: View {
     }
     
     private func createDate(from time: String) -> Date {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm"
-        return formatter.date(from: time) ?? Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter.date(from: time) ?? Date()
+    }
+
+    private func availableEndPeriods() -> [String] {
+        return ["1교시", "2교시", "3교시", "4교시", "5교시", "6교시", "7교시"]
     }
     
-    private func availableEndPeriods() -> [String] {
-        let periods = ["1교시", "2교시", "3교시", "4교시", "5교시", "6교시", "7교시"]
-        let startPeriodIndex = periods.firstIndex(of: selectedStartPeriod) ?? 0
-        return Array(periods[startPeriodIndex...])
+    private func determinePeriod(for date: Date) -> String {
+        let hour = Calendar.current.component(.hour, from: date)
+        switch hour {
+        case 8:
+            return "1교시"
+        case 9:
+            return "2교시"
+        case 10:
+            return "3교시"
+        case 11:
+            return "4교시"
+        case 13:
+            return "5교시"
+        case 14:
+            return "6교시"
+        case 15:
+            return "7교시"
+        default:
+            return "미정"
+        }
     }
 }

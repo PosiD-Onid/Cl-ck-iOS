@@ -75,7 +75,7 @@ struct CalendarCellView: View {
             }
             if day != 0 {
                 
-                RoundedRectangle(cornerRadius: 10)
+                RoundedRectangle(cornerRadius: isBViewVisible ? 50 : 10)
                     .fill(backgroundColor)
                     .frame(width: 35, height: 35)
                     .overlay(

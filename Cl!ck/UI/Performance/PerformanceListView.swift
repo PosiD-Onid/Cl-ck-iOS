@@ -21,21 +21,7 @@ struct PerformanceListView: View {
                 } else {
                     ScrollView {
                         if let lesson = lesson {
-                            HStack {
-                                VStack(alignment: .leading) {
-                                    Spacer()
-                                    Text(lesson.l_content)
-                                        .font(.system(size: 24))
-                                        .multilineTextAlignment(.leading)
-                                        .bold()
-                                    Text("\(lesson.l_year) \(lesson.l_semester)학기")
-                                }
-                                .padding(.leading)
-                                .padding([.leading, .bottom])
-                                Spacer()
-                            }
-                            .frame(width: .infinity, height: 150)
-                            .background(Color.pIn)
+                            lessonHeader(lesson: lesson)
                         }
                         ForEach(performances) { performance in
                             PerformanceCell(
@@ -46,7 +32,9 @@ struct PerformanceListView: View {
                                 startDate: performance.startDate!,
                                 endDate: performance.endDate!,
                                 lesson: lesson,
-                                onEdit: { id in }
+                                onEdit: { id in
+                                    // Edit action here
+                                }
                             )
                         }
                     }
@@ -54,33 +42,7 @@ struct PerformanceListView: View {
             }
             .onAppear(perform: fetchPerformances)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        self.presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        HStack {
-                            Image(systemName: "chevron.backward")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 15, height: 27)
-                                .foregroundColor(.black)
-                            if let lesson = lesson {
-                                Text("\(lesson.l_title)_\(lesson.l_grade)학년\(lesson.l_class)반")
-                                    .font(.system(size: 25, weight: .bold))
-                                    .foregroundColor(.black)
-                                    .padding(.leading)
-                            }
-                        }
-                    }
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: PerformanceCreateView(lesson: lesson)) {
-                        Image(systemName: "plus.square")
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(.black)
-                    }
-                }
+                toolbarContent()
             }
             .alert(isPresented: $showAlert) {
                 Alert(title: Text("오류"), message: Text(errorMessage ?? "알 수 없는 오류 발생"),
@@ -88,6 +50,56 @@ struct PerformanceListView: View {
             }
         }
         .navigationBarBackButtonHidden()
+    }
+    
+    private func lessonHeader(lesson: Lesson) -> some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Spacer()
+                Text(lesson.l_content)
+                    .font(.system(size: 24))
+                    .multilineTextAlignment(.leading)
+                    .bold()
+                Text("\(lesson.l_year) \(lesson.l_semester)학기")
+            }
+            .padding(.leading)
+            .padding([.leading, .bottom])
+            Spacer()
+        }
+        .frame(width: .infinity, height: 150)
+        .background(Color.pIn)
+    }
+    
+    private func toolbarContent() -> some ToolbarContent {
+        Group {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    self.presentationMode.wrappedValue.dismiss()
+                } label: {
+                    HStack {
+                        Image(systemName: "chevron.backward")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 15, height: 27)
+                            .foregroundColor(.black)
+                        if let lesson = lesson {
+                            Text("\(lesson.l_title)_\(lesson.l_grade)학년\(lesson.l_class)반")
+                                .font(.system(size: 25, weight: .bold))
+                                .foregroundColor(.black)
+                                .padding(.leading)
+                        }
+                    }
+                }
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                NavigationLink(destination: PerformanceCreateView(lesson: lesson)) {
+                    Image(systemName: "plus.square")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(.black)
+                }
+            }
+        }
     }
     
     private func fetchPerformances() {
@@ -109,23 +121,6 @@ struct PerformanceListView: View {
                 }
                 self.isLoading = false
             }
-        }
-    }
-
-    private func getPeriod(from date: Date) -> String {
-        let calendar = Calendar.current
-        let hour = calendar.component(.hour, from: date)
-        let minute = calendar.component(.minute, from: date)
-        
-        switch (hour, minute) {
-        case (8, 50): return "1교시"
-        case (9, 50): return "2교시"
-        case (10, 50): return "3교시"
-        case (11, 50): return "4교시"
-        case (13, 30): return "5교시"
-        case (14, 30): return "6교시"
-        case (15, 30): return "7교시"
-        default: return "시간 정보 없음"
         }
     }
 }
