@@ -17,6 +17,7 @@ struct HomePerformanceCell: View {
         formatter.locale = Locale(identifier: "ko_KR")
         formatter.dateStyle = .none
         formatter.timeStyle = .short
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
         return formatter.string(from: startData)
     }
     

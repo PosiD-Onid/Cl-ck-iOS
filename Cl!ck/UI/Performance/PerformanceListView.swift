@@ -33,7 +33,6 @@ struct PerformanceListView: View {
                                 endDate: performance.endDate!,
                                 lesson: lesson,
                                 onEdit: { id in
-                                    // Edit action here
                                 }
                             )
                         }
@@ -83,7 +82,7 @@ struct PerformanceListView: View {
                             .frame(width: 15, height: 27)
                             .foregroundColor(.black)
                         if let lesson = lesson {
-                            Text("\(lesson.l_title)_\(lesson.l_grade)학년\(lesson.l_class)반")
+                            Text("\(lesson.l_title.count > 8 ? lesson.l_title.prefix(8) + "..." : lesson.l_title)_\(lesson.l_grade)학년\(lesson.l_class)반")
                                 .font(.system(size: 25, weight: .bold))
                                 .foregroundColor(.black)
                                 .padding(.leading)

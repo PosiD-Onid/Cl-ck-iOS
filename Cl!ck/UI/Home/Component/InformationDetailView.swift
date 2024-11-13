@@ -13,6 +13,7 @@ struct InformationDetailView: View {
         formatter.locale = Locale(identifier: "ko_KR")
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
         return formatter.string(from: startDate)
     }
 
@@ -21,6 +22,7 @@ struct InformationDetailView: View {
         formatter.locale = Locale(identifier: "ko_KR")
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
         return formatter.string(from: endDate)
     }
 

@@ -175,13 +175,14 @@ struct PerformanceCell: View {
     private func formattedDateAndTime(from date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy년 MM월 dd일 EEEE HH시 mm분"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0) // 서버가 UTC 사용 시
         return dateFormatter.string(from: date)
     }
-
     
     private func formattedDate(from date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy년 MM월 dd일 EEEE HH시 mm분" // 시간대 제외
+        
         dateFormatter.locale = Locale(identifier: "ko_KR") // 한국어로 설정
         return dateFormatter.string(from: date)
     }

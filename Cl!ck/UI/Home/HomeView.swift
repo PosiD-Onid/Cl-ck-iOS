@@ -76,8 +76,9 @@ struct HomeView: View {
                         Button(action: { changeMonth(by: 1) }) {
                             Image(systemName: "chevron.right")
                         }
+                        .padding(.leading)
                     }
-                    .font(.system(size: 17, weight: .semibold))
+                    .font(.system(size: 20, weight: .bold))
                     .foregroundColor(.black)
                 }
             }
